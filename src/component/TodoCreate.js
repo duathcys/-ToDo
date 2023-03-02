@@ -138,7 +138,7 @@ function TodoCreate() {
       <>
          {open && (
             <InsertFormPositioner>
-               <InsertForm form={open}>
+               <InsertForm form={open.toString()}>
                   <Input value={newTodo.title}
                          onChange={(e) => setNewTodo((prev) =>
                             ({...prev, title: e.target.value}))}

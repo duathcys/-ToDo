@@ -52,7 +52,6 @@ const TodoUser = (data) => {
    // const navigate = useNavigate();
    return axios.post(`http://localhost:8000/user/login/`, data)
       .then((res) => {
-         console.log("rwerwqre")
          localStorage.setItem('access', res.data.access);
          localStorage.setItem('refresh', res.data.refresh);
          localStorage.setItem('response', res.data);
