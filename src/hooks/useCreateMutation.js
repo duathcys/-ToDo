@@ -7,8 +7,6 @@ export const useCreateMutation = (newTodo) => {
    return useMutation(TodoAdd, {
       onSuccess: () => {
          queryClient.invalidateQueries("todo")
-            .then(res => {
-            })
       },
       onError:(error)=>{
          Swal.fire('다시 시도해주세요', `${error}`, 'error');
