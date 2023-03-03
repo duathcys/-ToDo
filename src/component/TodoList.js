@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import TodoItem from "./TodoItem";
+import TodoItem from "./TodoItem/TodoItem";
 import history from "./TodoCheck";
 
 const TodoListBlock = styled.div`

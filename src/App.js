@@ -1,21 +1,14 @@
-import React, {useCallback} from 'react';
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+import React from 'react';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 //import RestAPI from "./RestAPI.js";
 import {createGlobalStyle} from 'styled-components';
-import TodoTemplate from './component/TodoTemplate';
-import TodoList from './component/TodoList';
-import TodoHead from './component/TodoHead';
-import TodoCreate from './component/TodoCreate';
-import TodoLogin from "./component/TodoLogin";
+import TodoLogin from "./component/TodoLogin/TodoLogin";
 import Todo from "./component/Todo";
-import TodoHome from "./component/TodoHome";
-import TodoSignUp from "./component/TodoSignUp";
+import TodoHome from "./component/TodoHome/TodoHome";
+import TodoSignUp from "./component/TodoSignUp/TodoSignUp";
+import {PublicRoute} from "./component/Routes/PublicRoute";
 // import {RQpostData} from "./posttest";
-//import Users from './Users';
+//import Users from './Users';m
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -41,9 +34,12 @@ function App() {
        <GlobalStyle/>
        <BrowserRouter>
          <Routes>
-           <Route path="/" element={<TodoHome/>}/>
-           <Route path="/user/login" element={<TodoLogin />}/>
-           <Route path="/user/signup" element={<TodoSignUp />}/>
+
+            <Route element={<PublicRoute />}>
+               <Route path="/" element={<TodoHome/>}/>
+               <Route path="/user/login" element={<TodoLogin />}/>
+               <Route path="/user/signup" element={<TodoSignUp />}/>
+            </Route>
            <Route path="/todo/list" element={<Todo />}/>
          </Routes>
        </BrowserRouter>

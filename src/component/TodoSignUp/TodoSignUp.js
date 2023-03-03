@@ -1,117 +1,8 @@
 import React, {useEffect, useState} from "react";
-import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
-import {TodoInfoData, TodoSignInMutation, TodoSignUpMutation} from "./TodoMutate";
-import history from "./TodoCheck";
-// import {token} from "mysql/lib/protocol/Auth";
-
-const TodoLogingreet = styled.div`
-  padding: 50px 32px 20px;
-  margin: 10px;
-  text-align: center;
-  font-size: 40px;
-  color: #000000;
-`
-
-const TodoInputbox = styled.form`
-  width: 600px;
-  height: 500px;
-  background: #e0dddd;
-  margin-top: 150px;
-  margin-bottom: 0px;
-  margin-inline: auto;
-  border-radius: 16px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  h2 {
-    text-align: center;
-    font-size: 30px;
-    color: #000000;
-    margin-top: 0px;
-  }
-`
-
-const TodoInputid = styled.input`
-  width: 400px;
-  height: 50px;
-  background: white;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
-  font-size: 18px;
-  margin: 10px;
-  position: center;
-  //input:focus{
-  //  border: none;
-  //  outline:none;
-  //}
-  //input:active{
-  //  border:none;
-  //  outline:none;
-  //}
-  //&:hover{
-  //  border:none;
-  //}
-  //input:active{
-  //  outline:none;
-  //  border:none;
-  //}
-  //input:focus{
-  //  border:none;
-  //  outline:none;
-  //}
-`
-const TodoInputpw = styled.input`
-  width: 400px;
-  height: 50px;
-  background: white;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
-  font-size: 18px;
-  margin: 10px;
-`
-
-const LoginButton = styled.button`
-  width: 100px;
-  height: 30px;
-  cursor: pointer;
-  background: white;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
-  font-size: 18px;
-  margin-right: 30px;
-  margin-top: 30px;
-  position: relative;
-  margin-left: auto;
-`
-
-const SigninButton = styled.button`
-  width: 100px;
-  height: 30px;
-  cursor: pointer;
-  background: white;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
-  font-size: 18px;
-  margin-right: 30px;
-  position: relative;
-  margin-left: auto;
-  margin-top: 10px;
-`
-
-const TestDiv = styled.div`
-  width: 100%;
-  text-align: left;
-  padding-left: 150px;
-`
+import history from "../TodoCheck";
+import {LoginButton, SigninButton, TestDiv, TodoInputbox, TodoInputid, TodoInputpw, TodoLogingreet} from "./style";
+import {useSignUpMutation} from "../../hooks/useSignupMutation";
 
 function TodoSignUp() {
    const navigate = useNavigate();
@@ -120,14 +11,9 @@ function TodoSignUp() {
    const [inputCheck, setInputCheck] = useState('');
    const [signIn, setSignIn] = useState({user_id: "", user_pw: ""});
    const [locationKeys, setLocationKeys] = useState([]);
-   // const [searchParams, setsearchParams] = useSearchParams();
    // const {isLoading2, data} = TodoInfoData();
-   const {mutate: addUser, isLoading, isError, isSuccess, error} = TodoSignUpMutation(signIn);
+   const {mutate: addUser, isLoading, isError, isSuccess, error} = useSignUpMutation(signIn);
 
-   // const setParams = ()=>{
-   //    searchParams.set('info', localStorage.getItem('UserId'))
-   //    setsearchParams(searchParams)
-   // }
    useEffect(() => {
       return history.listen((location) => {
          if (history.action === "PUSH") {
@@ -143,9 +29,6 @@ function TodoSignUp() {
       })
    }, [locationKeys, history])
 
-   // useEffect(()=>{
-   //    localStorage.setItem("userId", data.user_id)
-   // },[]);
    const handleInputId = (e) => {
       setSignIn((prev) =>
          ({...prev, user_id: e.target.value}))
