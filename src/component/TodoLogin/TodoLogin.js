@@ -7,21 +7,12 @@ function TodoLogin() {
    const navigate = useNavigate();
    const [inputId, setInputId] = useState('');
    const [inputPw, setInputPw] = useState('');
-   // const {isLoading2, data} = TodoInfoData();
    const {mutate: onClickLoginButton, isLoading, isError, isSuccess, error, data} = useLoginMutation(inputId);
+   const handleInputId = (e) => setInputId(e.target.value)
+   const handleInputPw = (e) => setInputPw(e.target.value)
+   const handleClickSignUpButton = () => navigate("/user/signup/")
 
-   const handleInputId = (e) => {
-      setInputId(e.target.value)
-   }
-   const handleInputPw = (e) => {
-      setInputPw(e.target.value)
-   }
-
-   const handleClickSignUpButton = () => {
-      navigate("/user/signup/")
-   }
-
-   if (isLoading) return <h1>...loading</h1>;
+   if (isLoading) return <h2>Waiting for LogIn</h2>;
 
    return (
       <div>
@@ -44,11 +35,8 @@ function TodoLogin() {
                </TestDiv>
                <LoginButton
                   onClick={() => onClickLoginButton({user_id: inputId, user_pw: inputPw})}>로그인</LoginButton>
-               <SigninButton onClick={() => {
-                  handleClickSignUpButton()
-               }}>회원가입</SigninButton>
+               <SigninButton onClick={handleClickSignUpButton}>회원가입</SigninButton>
             </TodoInputbox>
-
          </>
       </div>
    )

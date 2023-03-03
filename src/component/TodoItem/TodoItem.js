@@ -7,23 +7,12 @@ import {useGetDataQuery} from "../../hooks/useGetDataQuery";
 
 function TodoItem() {
    const {isLoading, data}=useGetDataQuery();
-   const {mutate: removeTodo, isLoading2, isError2, error} = useDeleteMutation();
-   const onRemove = (id) => {
-      removeTodo(id);
-   }
-
-   // const onCheck = (id)=>{
-   //    setValue((prev)=>(
-   //    {...prev, done:check}
-   //    ))
-   //    console.log(check)
-   //    console.log(value)
-   //    setCheck(check);
-   //    updateTodo({id, value});
+   const {mutate: onClickRemove, isLoading2} = useDeleteMutation();
+   // const onRemove = (id) => {
+   //    removeTodo(id);
+   //    console.log(id)
    // }
-
    if (isLoading2) return <h2>loading</h2>
-   if (isError2) alert(`${error.message}오류 발생`)
    return (
       <ul>
          <BIGBlock>
@@ -37,10 +26,7 @@ function TodoItem() {
                         <Text done={Todo.done}>
                            {Todo.title}
                         </Text>
-                        <Remove
-                           onClick={() => {
-                              onRemove(Todo.id)
-                           }}>
+                        <Remove onClick={() => onClickRemove(Todo.id)}>
                            <MdDelete/>
                         </Remove>
                         <BasicModal id={Todo.id} title={Todo.title} done={Todo.done} memo={Todo.memo} info={Todo.info}/>

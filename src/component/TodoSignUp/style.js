@@ -82,12 +82,12 @@ export const LoginButton = styled.button`
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
   font-size: 18px;
   margin-right: 30px;
-  margin-top: 30px;
+  margin-top: 10px;
   position: relative;
   margin-left: auto;
 `
 
-export const SigninButton = styled.button`
+export const SignUpButton = styled.button`
   width: 100px;
   height: 30px;
   cursor: pointer;

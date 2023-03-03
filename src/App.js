@@ -5,8 +5,8 @@ import {createGlobalStyle} from 'styled-components';
 import TodoLogin from "./component/TodoLogin/TodoLogin";
 import Todo from "./component/Todo";
 import TodoHome from "./component/TodoHome/TodoHome";
-import TodoSignUp from "./component/TodoSignUp/TodoSignUp";
 import {PublicRoute} from "./component/Routes/PublicRoute";
+import TodoSignUp from "./component/TodoSignUp/TodoSignUp";
 // import {RQpostData} from "./posttest";
 //import Users from './Users';m
 
@@ -35,8 +35,8 @@ function App() {
        <BrowserRouter>
          <Routes>
 
+            <Route path="/" element={<TodoHome/>}/>
             <Route element={<PublicRoute />}>
-               <Route path="/" element={<TodoHome/>}/>
                <Route path="/user/login" element={<TodoLogin />}/>
                <Route path="/user/signup" element={<TodoSignUp />}/>
             </Route>

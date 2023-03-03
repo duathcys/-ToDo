@@ -6,6 +6,8 @@ export const useDeleteMutation = () => {
    return useMutation(TodoDelete, {
       onSuccess:()=>{
          queryClient.invalidateQueries('todo')
-      }
+            .then(res => res)
+      },
+      onError:(error)=>error
    })
 }

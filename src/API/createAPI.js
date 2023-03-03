@@ -1,11 +1,6 @@
 import axios from "axios";
 
-export const TodoAdd = (data) => {
+export const TodoAdd = async (data) => {
    return axios.post('http://localhost:8000/todo/list/', data)
-      .then((res) => {
-         console.log(res);
-      })
-      .catch((err) => {
-         console.log(err)
-      })
+      .then((res) => res)
 }

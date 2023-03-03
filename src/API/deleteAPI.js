@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const TodoDelete = (id) => {
+export const TodoDelete = async (id) => {
    return axios.delete(`http://localhost:8000/todo/list/${id}`)
-      .then(res => console.log(res.data))
+      .then(res => res)
 }

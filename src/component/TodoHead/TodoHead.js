@@ -1,8 +1,9 @@
 import React from 'react';
 import moment from "moment";
 import 'moment/locale/ko';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {TodoHeadBlock} from "./style";
+import Swal from "sweetalert2";
 
 const nowTime = moment().format('YYYY년 MM월 DD일');
 let today = moment();
@@ -12,12 +13,23 @@ let nowDay = week[today.day()];
 function TodoHead() {
 const navigate = useNavigate();
    const onClickLogoutBtn = () => {
-      const confirm = window.confirm("정말 로그아웃 하시겠습니까?")
-     if(confirm) {
-        localStorage.clear();
-        navigate("/user/login");
-     }
+      Swal.fire({title:'LOGOUT', text:'정말 로그아웃 하시겠습니까?', icon:'question', showCancelButton:true, confirmButtonText:'로그아웃'})
+         .then((result)=>{
+            if(result.isConfirmed){
+            localStorage.clear();
+            navigate("/user/login");
+            }
+         })
    };
+
+   const onClickHomeBtn = ()=>{
+      Swal.fire({title:'HOME', text:'홈으로 가시겠습니까?\n자동으로 로그아웃됩니다', icon:"question", showCancelButton:true, confirmButtonText:'홈'})
+         .then((result)=>{
+            if(result.isConfirmed){
+            navigate('/');
+            }
+         })
+   }
 
    return (
       <TodoHeadBlock>
@@ -25,11 +37,8 @@ const navigate = useNavigate();
          <div className="info">{localStorage.getItem("UserId")}님</div>
          <div className="linkto">
             <button onClick={onClickLogoutBtn}>Logout</button>
-            <Link to='/' className="link" onClick={() => {
-               return alert("홈으로 가시겠습니까?\n자동으로 로그아웃됩니다")
-            }}> Home </Link>
+            <button onClick={onClickHomeBtn}>HOME</button>
          </div>
-
          <div className="date">{nowTime}</div>
          <div className="day">{nowDay}</div>
       </TodoHeadBlock>
