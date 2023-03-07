@@ -1,29 +1,26 @@
 import React, {useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
-// import TodoMutate from "./TodoMutate";
 import {CircleButton, CreateButton, Input, InsertForm, InsertFormPositioner} from "./style";
 import {useCreateMutation} from "../../hooks/useCreateMutation";
 
-
 CreateButton.propTypes = {children: PropTypes.node};
-
 
 function TodoCreate() {
    const user_id =localStorage.getItem("UserId")
    const [open, setOpen] = useState(false);
    const [newTodo, setNewTodo] = useState({title: "", done: false, memo:"", info:user_id});
    const {mutate: onClickAddTodo, isLoading} = useCreateMutation(newTodo)
-   // const handleClickAddButton = (e) => {
-   //    addTodo(newTodo);
-   //    setNewTodo({title: "", done: false, memo:"", info:user_id});
-   //    setOpen(false)
-   // }
    const handleNewTodo = (e)=>{
       const {id, value} = e.target;
       setNewTodo((prev)=>(
          {...prev, [id]:value})
       )
+   }
+   const handleCreateTodoBtn = ()=>{
+      onClickAddTodo(newTodo);
+      setNewTodo({title: "", done: false, memo:"", info:user_id});
+      setOpen(!open);
    }
    const onToggle = () => setOpen(!open);
 
@@ -49,11 +46,10 @@ function TodoCreate() {
                          onChange={handleNewTodo}
                          placeholder="MEMO"
                   />
-                  <CreateButton onClick={()=>onClickAddTodo(newTodo)}
-                  >OK
+                  <CreateButton onClick={handleCreateTodoBtn}
+                  >추가
                   </CreateButton>
                </InsertForm>
-
             </InsertFormPositioner>
          )}
          <CircleButton

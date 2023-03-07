@@ -23,9 +23,6 @@ root.render(
       <App/>
       <ReactQueryDevtools initialIsOpen={false} position={"bottom-left"}/>
    </QueryClientProvider>
-   // <BrowserRouter>
-   //     <App/>
-   // </BrowserRouter>
 );
 
 reportWebVitals();

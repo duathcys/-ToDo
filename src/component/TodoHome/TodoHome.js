@@ -1,5 +1,5 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import {HomeForm, HomeLogin} from "./style";
 
 
@@ -8,6 +8,7 @@ function TodoHome(){
    const onLogin = ()=>{
       navigate('/user/login/')
    }
+   if (!onLogin) return <Navigate to="/"/>
    return (
       <>
          <HomeForm>

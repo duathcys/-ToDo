@@ -47,3 +47,13 @@ export const TodoHeadBlock = styled.div`
     font-weight: bold;
   }
 `;
+
+export const GoToBtn = styled.button`
+  align-items: center;
+  justify-content: right;
+  display: flex;
+  color : black;
+  border: 1px solid black;
+  outline: none;
+  margin-left: 5px;
+`

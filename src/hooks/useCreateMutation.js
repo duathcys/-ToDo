@@ -2,7 +2,7 @@ import {useMutation, useQueryClient} from "react-query";
 import {TodoAdd} from "../API/createAPI";
 import Swal from "sweetalert2";
 
-export const useCreateMutation = (newTodo) => {
+export const useCreateMutation = () => {
    const queryClient = useQueryClient()
    return useMutation(TodoAdd, {
       onSuccess: () => {
