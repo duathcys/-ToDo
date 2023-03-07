@@ -1,6 +1,6 @@
 import TodoTemplate from "./TodoTemplate";
 import TodoHead from "./TodoHead/TodoHead";
-import TodoList from "./TodoList/TodoList";
+import TodoList from "./TodoList";
 import TodoCreate from "./TodoCreate/TodoCreate";
 import {Navigate} from "react-router-dom";
 

@@ -4,7 +4,7 @@ import {Button, Canvas, Container, Detail, Input, MemoInput, Wrapper} from "./st
 import {useGetDataQuery} from "../../hooks/useGetDataQuery";
 import {useUpdateMutation} from "../../hooks/useUpdateMutation";
 
-const TodoModal = (props) => {
+const BasicModal = (props) => {
    const [modalOpen, setModalOpen] = useState(false);
    const {isLoading, data} = useGetDataQuery();
    const [inputValue, setInputValue] = useState({title: props.title, done: props.done, memo: props.memo, info:props.info});
@@ -31,8 +31,12 @@ const TodoModal = (props) => {
          {...prev, info:props.info}
       ))
    }
-   const disableModal = () => setModalOpen(!modalOpen);
-
+   const disableModal = () => {
+      setModalOpen(!modalOpen);
+      console.log("눌림");
+      console.log(modalOpen);
+      console.log(props.id)
+   };
    if (isLoading) return <h2>로딩중...</h2>
 
    return (
@@ -47,6 +51,9 @@ const TodoModal = (props) => {
                      &times;
                   </div>
                   <Wrapper>상세페이지</Wrapper>
+                  {/*   <Change onClick={()=>console.log(props.id)}>*/}
+                  {/*   <MdCreate/>*/}
+                  {/*</Change>*/}
                   <h3>TITLE</h3>
                   <Input name="title" value={inputValue.title} onChange={onInput}/>
                   <h3>DONE</h3>
@@ -64,4 +71,4 @@ const TodoModal = (props) => {
    )
 }
 
-export default TodoModal;
+export default BasicModal;

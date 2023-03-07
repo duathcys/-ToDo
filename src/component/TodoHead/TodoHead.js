@@ -2,7 +2,7 @@ import React from 'react';
 import moment from "moment";
 import 'moment/locale/ko';
 import {useNavigate} from "react-router-dom";
-import {GoToBtn, TodoHeadBlock} from "./style";
+import {TodoHeadBlock} from "./style";
 import Swal from "sweetalert2";
 
 const nowTime = moment().format('YYYY년 MM월 DD일');
@@ -26,8 +26,7 @@ const navigate = useNavigate();
       Swal.fire({title:'HOME', text:'홈으로 가시겠습니까?\n자동으로 로그아웃됩니다', icon:"question", showCancelButton:true, confirmButtonText:'홈'})
          .then((result)=>{
             if(result.isConfirmed){
-               localStorage.clear();
-               navigate('/');
+            navigate('/');
             }
          })
    }
@@ -37,8 +36,8 @@ const navigate = useNavigate();
          <h1>To Do List</h1>
          <div className="info">{localStorage.getItem("UserId")}님</div>
          <div className="linkto">
-            <GoToBtn onClick={onClickLogoutBtn}>Logout</GoToBtn>
-            <GoToBtn onClick={onClickHomeBtn}>HOME</GoToBtn>
+            <button onClick={onClickLogoutBtn}>Logout</button>
+            <button onClick={onClickHomeBtn}>HOME</button>
          </div>
          <div className="date">{nowTime}</div>
          <div className="day">{nowDay}</div>
