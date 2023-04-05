@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
 // import TodoMutate from "./TodoMutate";
-import {CircleButton, CreateButton, Input, InsertForm, InsertFormPositioner} from "./style";
-import {useCreateMutation} from "../../hooks/useCreateMutation";
+import { CircleButton, CreateButton, Input, InsertForm, InsertFormPositioner } from "./style";
+import { useCreateMutation } from "../../hooks/useCreateMutation";
+import { Checkbox } from "@mui/material";
 
 
 CreateButton.propTypes = {children: PropTypes.node};
@@ -13,6 +14,7 @@ function TodoCreate() {
    const user_id =localStorage.getItem("UserId")
    const [open, setOpen] = useState(false);
    const [newTodo, setNewTodo] = useState({title: "", done: false, memo:"", info:user_id});
+   const [checked, setChecked] = useState();
    const {mutate: onClickAddTodo, isLoading} = useCreateMutation(newTodo)
    // const handleClickAddButton = (e) => {
    //    addTodo(newTodo);
@@ -21,9 +23,13 @@ function TodoCreate() {
    // }
    const handleNewTodo = (e)=>{
       const {id, value} = e.target;
+      setChecked(e.target.checked);
       setNewTodo((prev)=>(
          {...prev, [id]:value})
       )
+      setNewTodo((prev)=>(
+         {...prev, done: e.target.checked}
+      ))
    }
    const onToggle = () => setOpen(!open);
 
@@ -39,10 +45,13 @@ function TodoCreate() {
                          onChange={handleNewTodo}
                          placeholder="TODO"
                   />
-                  <Input id={"done"}
-                     value={newTodo.done}
-                         onChange={handleNewTodo}
-                         placeholder="COMPLETE"
+                  <h3>COMPLETE</h3>
+                  <Checkbox id={"done"}
+                            label={"Yes"}
+                            value={newTodo.done}
+                            onChange={handleNewTodo}
+                            checked={checked}
+                            inputProps={{'aria-label':'controlled'}}
                   />
                   <Input id={"memo"}
                      value={newTodo.memo}
