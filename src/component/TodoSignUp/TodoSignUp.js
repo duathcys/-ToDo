@@ -3,6 +3,8 @@ import {useNavigate} from "react-router-dom";
 import {LoginButton, SignUpButton, TestDiv, TodoInputbox, TodoInputid, TodoInputpw, TodoLogingreet} from "./style";
 import {useSignUpMutation} from "../../hooks/useSignupMutation";
 import Swal from "sweetalert2"
+import HomeIcon from '@mui/icons-material/Home';
+import { IconButton } from "@mui/material";
 
 function TodoSignUp() {
    const navigate = useNavigate();
@@ -22,6 +24,7 @@ function TodoSignUp() {
       else Swal.fire('다시 시도해주세요', '비밀번호 확인이 바르지 않습니다.', 'error')
    }
    const handleClickLogInButton = () => navigate("/user/login/")
+   const handleClickGoHomeButton = () => navigate("/")
 
    if (isLoading) return <h2>Signing Up</h2>
 
@@ -30,6 +33,9 @@ function TodoSignUp() {
          <TodoLogingreet>WELCOME</TodoLogingreet>
          <TodoInputbox>
             <h2>SIGN UP</h2>
+            <IconButton onClick={handleClickGoHomeButton}>
+                  <HomeIcon/>
+               </IconButton>
             <TestDiv>
                <h3>ID</h3>
                <TodoInputid value={inputId}
