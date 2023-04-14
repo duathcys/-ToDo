@@ -29,6 +29,7 @@ function TodoList() {
    const [locationKeys, setLocationKeys] = useState([]);
    const [searchTerm,setSearchTerm] = useState('');
    const [filterlist, setFilterlist] = useState([]);
+   const [checkdone, setCheckdone] = useState(false);
    //
    // const filterlist = {
    //    if (searchTerm === '') {
@@ -67,7 +68,7 @@ function TodoList() {
       }
       // console.log(filterlist);
    }
-
+   
    useEffect(() => {
       return history.listen((location) => {
          if (history.action === "PUSH") {
@@ -82,7 +83,8 @@ function TodoList() {
          }
       })
    }, [locationKeys, history])
-
+   
+   console.log(checkdone);
 
    return (
       <TodoListBlock>
@@ -102,8 +104,8 @@ function TodoList() {
             <div>
                <FormLabel>선택할 수 있게</FormLabel>
                <FormGroup>
-                  <FormControlLabel control={<Checkbox/>} label="DONE"/>
-                  <FormControlLabel control={<Checkbox/>} label="NOT DONE"/>
+                  <FormControlLabel control={<Checkbox/>} label="DONE" onClick={()=>{setCheckdone(true)}}/>
+                  <FormControlLabel control={<Checkbox/>} label="NOT DONE" onClick={()=>{setCheckdone(false)}}/>
                </FormGroup>
             </div>
          </>
