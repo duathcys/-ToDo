@@ -1,7 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem/TodoItem";
 import history from "./TodoCheck";
+import { Checkbox, FormControlLabel, FormGroup, FormLabel, IconButton, TextField } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { useGetDataQuery } from "../hooks/useGetDataQuery";
 
 const TodoListBlock = styled.div`
     padding: 20px 32px;
@@ -22,9 +25,48 @@ const SearchButton = styled.button`
   flex-direction: column;
 `
 function TodoList() {
-
-   const [search, setSearch]=useState('');
+   const {isLoading, data}=useGetDataQuery();
    const [locationKeys, setLocationKeys] = useState([]);
+   const [searchTerm,setSearchTerm] = useState('');
+   const [filterlist, setFilterlist] = useState([]);
+   //
+   // const filterlist = {
+   //    if (searchTerm === '') {
+   //    setFilterlist(data?.data)
+   // } else {
+   //    setFilterlist(
+   //       data?.data.filter((todo) => todo.title === searchTerm));
+   // }
+   //
+   // }
+   // useEffect(() => {
+   //    return filterlist(()=>{
+   //       if (searchTerm === '') {
+   //          setFilterlist(data?.data)
+   //       } else {
+   //          setFilterlist(
+   //             data?.data.filter((todo) => todo.title === searchTerm));
+   //       }
+   //    })
+   //    }
+   // // // );
+   // useEffect(()=>{
+   //    setFilterlist(data?.data.filter((todo)=>todo.length>0));
+   // }, [])
+   const handleInputChange=(e)=>{
+      setSearchTerm(e.target.value);
+      console.log(searchTerm);
+   }
+
+   const onSearch = ()=>{
+      if (searchTerm === '') {
+         setFilterlist(data?.data)
+      } else {
+         setFilterlist(
+            data?.data.filter((todo) => todo.title === searchTerm));
+      }
+      // console.log(filterlist);
+   }
 
    useEffect(() => {
       return history.listen((location) => {
@@ -40,9 +82,32 @@ function TodoList() {
          }
       })
    }, [locationKeys, history])
+
+
    return (
       <TodoListBlock>
-         <TodoItem/>
+         <>
+            <div>
+               <TextField
+                  variant="standard"
+                  label="Search"
+                  onChange={handleInputChange}
+                  sx={{width: 500}}
+               />
+               <IconButton
+                  onClick={onSearch}>
+                  <SearchIcon/>
+               </IconButton>
+            </div>
+            <div>
+               <FormLabel>선택할 수 있게</FormLabel>
+               <FormGroup>
+                  <FormControlLabel control={<Checkbox/>} label="DONE"/>
+                  <FormControlLabel control={<Checkbox/>} label="NOT DONE"/>
+               </FormGroup>
+            </div>
+         </>
+         <TodoItem params={filterlist}/>
       </TodoListBlock>
    );
 }

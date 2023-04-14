@@ -77,6 +77,16 @@ export const Input = styled.input`
   box-sizing: border-box;
 `;
 
+export const InputArea = styled.textarea`
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  box-sizing: border-box;
+`;
+
 export const CreateButton = styled.button`
   background: #e0dddd;
   &:hover {

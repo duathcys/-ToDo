@@ -46,4 +46,8 @@ export const TodoHeadBlock = styled.div`
     color: black;
     font-weight: bold;
   }
+  .text{
+   font-size:11px;
+   font-weight:bold;
+   }
 `;

@@ -1,6 +1,6 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
-import {HomeForm, HomeLogin} from "./style";
+import { useNavigate } from "react-router-dom";
+import { HomeForm } from "./style";
 import { IconButton } from "@mui/material";
 import LoginIcon from '@mui/icons-material/Login';
 import AssignmentIcon from '@mui/icons-material/Assignment';
@@ -10,6 +10,10 @@ function TodoHome(){
    const onLogin = ()=>{
       navigate('/user/login/')
    }
+   const onSignUp = () =>{
+      navigate('/user/signup/')
+   }
+
    return (
       <>
          <HomeForm>
@@ -17,10 +21,11 @@ function TodoHome(){
             <div>
                <IconButton onClick={onLogin}>
                   <LoginIcon/>
-                  <h2>LOGIN</h2>
+                  <text>LOGIN</text>
                </IconButton>
-               <IconButton onClick={onLogin}>
-                  <AssignmentIcon>SIGNUP</AssignmentIcon>
+               <IconButton onClick={onSignUp}>
+                  <AssignmentIcon/>
+                  <text>SIGNUP</text>
                </IconButton>
                {/*<HomeLogin onClick={onLogin}/>*/}
             </div>

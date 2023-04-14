@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
 // import TodoMutate from "./TodoMutate";
-import { CircleButton, CreateButton, Input, InsertForm, InsertFormPositioner } from "./style";
+import { CircleButton, CreateButton, Input, InputArea, InsertForm, InsertFormPositioner } from "./style";
 import { useCreateMutation } from "../../hooks/useCreateMutation";
 import { Checkbox } from "@mui/material";
 
@@ -53,7 +53,7 @@ function TodoCreate() {
                             checked={checked}
                             inputProps={{'aria-label':'controlled'}}
                   />
-                  <Input id={"memo"}
+                  <InputArea id={"memo"}
                      value={newTodo.memo}
                          onChange={handleNewTodo}
                          placeholder="MEMO"
