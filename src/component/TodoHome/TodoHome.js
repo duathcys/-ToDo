@@ -32,7 +32,7 @@ function TodoHome(){
                <div>
                <IconButton onClick={onLogin}>
                   <ContactsIcon/>
-                  <text>FORGOT?</text>
+                  <text>FORGOT</text>
                </IconButton>
                {/*<HomeLogin onClick={onLogin}/>*/}
             </div>

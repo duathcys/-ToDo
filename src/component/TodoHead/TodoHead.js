@@ -92,8 +92,8 @@ const [opened, setOpened] = useState(false);
                <MenuItem onClick={handleClose}>
                   {localStorage.getItem("UserId")}님
                </MenuItem>
-               <MenuItem onClick={handleOpen}>
-                  <TextField onClick={handleMyPage}>마이페이지</TextField>
+               <MenuItem onClick={handleMyPage}>
+                  마이페이지
                </MenuItem>
                   {/*<Modal open={opened} onClick={handleOpen}>*/}
                   {/*   */}

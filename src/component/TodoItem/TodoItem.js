@@ -4,38 +4,19 @@ import BasicModal from "../TodoModal/TodoModal";
 import {BIGBlock, CheckCircle, Remove, Text, TodoItemBlock} from "./style";
 import {useDeleteMutation} from "../../hooks/useDeleteMutation";
 import {useGetDataQuery} from "../../hooks/useGetDataQuery";
+import { useUpdateMutation } from "../../hooks/useUpdateMutation";
 
 function TodoItem(params) {
    const {isLoading, data}=useGetDataQuery();
    const {mutate: onClickRemove, isLoading2} = useDeleteMutation();
+   const {mutate: updateTodo, isSuccess, isLoading3} = useUpdateMutation();
    console.log(params,'ppp');
+   console.log(params?.params.length);
    const [todo, setTodo] = useState([]);
 
-   // useEffect(() =>{
-   //       setTodo(params)
-   //       console.log(todo)
-   // }
-
-   // );
-   // useEffect(()=>{
-   //    data.map((e)=>())
-   // })
-   // const tell = 'aaa';
-   // console.log(params);
-   // const filterList = tell ? data.map((todo, idx)=>{
-   //    return todo.title.includes(tell)}) : 'sss';
-   // console.log(filterList);
-   // const filterlist = data?.data.filter((todo)=> todo.title === params);
-   // const alllist = data?.data.map((todo, idx)=>todo.title);
-   // const Todo_list = data?.data;
-
-   // console.log(alllist);
-   // const filters_list = data.data.filter(todo => todo.title.length > 0);
-   // console.log(filters_list, 'fil');
-   // console.log(filterlist);
-   // console.log(filterlist);
 
    if (isLoading2) return <h2>loading</h2>
+   if (isLoading3) return <h2>Updating..</h2>
    return (
       <ul>
          <BIGBlock>
