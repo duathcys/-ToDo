@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem/TodoItem";
 import history from "./TodoCheck";
@@ -29,6 +29,7 @@ function TodoList() {
    const [locationKeys, setLocationKeys] = useState([]);
    const [searchTerm,setSearchTerm] = useState('');
    const [filterlist, setFilterlist] = useState([]);
+   const [checkdone, setCheckdone] = useState(false);
    //
    // const filterlist = {
    //    if (searchTerm === '') {
@@ -83,6 +84,7 @@ function TodoList() {
       })
    }, [locationKeys, history])
 
+   console.log(checkdone);
 
    return (
       <TodoListBlock>
@@ -102,8 +104,8 @@ function TodoList() {
             <div>
                <FormLabel>선택할 수 있게</FormLabel>
                <FormGroup>
-                  <FormControlLabel control={<Checkbox/>} label="DONE"/>
-                  <FormControlLabel control={<Checkbox/>} label="NOT DONE"/>
+                  <FormControlLabel control={<Checkbox/>} label="DONE" onClick={()=>{setCheckdone(true)}}/>
+                  <FormControlLabel control={<Checkbox/>} label="NOT DONE" onClick={()=>{setCheckdone(false)}}/>
                </FormGroup>
             </div>
          </>

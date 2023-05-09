@@ -3,11 +3,13 @@ import {MdComment} from "react-icons/md";
 import {Button, Canvas, Container, Detail, Input, MemoInput, Wrapper} from "./style";
 import {useGetDataQuery} from "../../hooks/useGetDataQuery";
 import {useUpdateMutation} from "../../hooks/useUpdateMutation";
+import { Checkbox } from "@mui/material";
 
 const BasicModal = (props) => {
    const [modalOpen, setModalOpen] = useState(false);
    const {isLoading, data} = useGetDataQuery();
    const [inputValue, setInputValue] = useState({title: props.title, done: props.done, memo: props.memo, info:props.info});
+   const [checked, setChecked] = useState(props.done);
    const {mutate: updateTodo, isSuccess, isLoading2} = useUpdateMutation();
 
    const handleClickUpdateButton = () => {
@@ -27,15 +29,17 @@ const BasicModal = (props) => {
          ...inputValue,
          [name]: value
       })
+      setChecked(e.target.checked);
+      setInputValue((prev)=>(
+            {...prev, done:e.target.checked}
+      ))
       setInputValue((prev)=>(
          {...prev, info:props.info}
       ))
    }
+
    const disableModal = () => {
       setModalOpen(!modalOpen);
-      console.log("눌림");
-      console.log(modalOpen);
-      console.log(props.id)
    };
    if (isLoading) return <h2>로딩중...</h2>
 
@@ -57,9 +61,19 @@ const BasicModal = (props) => {
                   <h3>TITLE</h3>
                   <Input name="title" value={inputValue.title} onChange={onInput}/>
                   <h3>DONE</h3>
-                  <Input name="done" value={inputValue.done} onChange={onInput}/>
+                  <Checkbox
+                     name="done"
+                     label="Yes"
+                     value={inputValue.done}
+                     onChange={onInput}
+                     checked={checked}
+                  />
                   <h3>MEMO</h3>
-                  <MemoInput name="memo" value={inputValue.memo} onChange={onInput}/>
+                  <MemoInput
+                     name="memo"
+                     value={inputValue.memo}
+                     onChange={onInput}
+                  />
                   <Button onClick={handleClickUpdateButton}>
                      완료
                   </Button>
