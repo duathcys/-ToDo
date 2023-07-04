@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from "react-query";
-import {TodoUpdate} from "../API/updateAPI";
+import {TodoCheckUpdate, TodoUpdate} from "../API/updateAPI";
 
 export const useUpdateMutation = () => {
    const queryClient = useQueryClient()
@@ -8,6 +8,19 @@ export const useUpdateMutation = () => {
    }, {
       onSuccess: (data) => {
          queryClient.invalidateQueries("todo")
+            .then(res => res)
+      },
+      onError:(error)=>error
+   })
+}
+
+export const useCheckUpdateMutation = () => {
+   const queryClient = useQueryClient()
+   return useMutation(({id, done}) => {
+      TodoCheckUpdate(id, {done})
+   }, {
+      onSuccess: (data) => {
+         queryClient.invalidateQueries('todo')
             .then(res => res)
       },
       onError:(error)=>error

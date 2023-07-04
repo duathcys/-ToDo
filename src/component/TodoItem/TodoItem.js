@@ -4,14 +4,12 @@ import BasicModal from "../TodoModal/TodoModal";
 import {BIGBlock, CheckCircle, Remove, Text, TodoItemBlock} from "./style";
 import {useDeleteMutation} from "../../hooks/useDeleteMutation";
 import {useGetDataQuery} from "../../hooks/useGetDataQuery";
-import { useUpdateMutation } from "../../hooks/useUpdateMutation";
+import { useCheckUpdateMutation } from "../../hooks/useUpdateMutation";
 
 function TodoItem(params) {
-   const {isLoading, data}=useGetDataQuery();
    const {mutate: onClickRemove, isLoading2} = useDeleteMutation();
-   const {mutate: updateTodo, isSuccess, isLoading3} = useUpdateMutation();
-   console.log(params,'ppp');
-   const [todo, setTodo] = useState([]);
+   const {mutate: onClickUpdate, isSuccess, isLoading3} = useCheckUpdateMutation();
+
 
    if (isLoading2) return <h2>loading</h2>
    if (isLoading3) return <h2>Updating..</h2>
@@ -22,7 +20,7 @@ function TodoItem(params) {
                   return (
                      <li key={idx} >
                         <TodoItemBlock>
-                           <CheckCircle done={Todo.done}>
+                           <CheckCircle done={Todo.done} onClick={()=> onClickUpdate({id: Todo.id, done:!Todo.done})}>
                               {Todo.done && <MdDone/>}
                            </CheckCircle>
                            <Text done={Todo.done}>

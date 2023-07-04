@@ -7,6 +7,9 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import ContactsIcon from '@mui/icons-material/Contacts';
 
 function TodoHome(){
+   if (localStorage.getItem("UserId")) {
+      localStorage.clear()
+   }
    const navigate = useNavigate();
    const onLogin = ()=>{
       navigate('/user/login/')
