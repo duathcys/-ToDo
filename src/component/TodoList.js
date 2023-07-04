@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem/TodoItem";
 import history from "./TodoCheck";
-import { Checkbox, FormControlLabel, FormGroup, FormLabel, IconButton, TextField } from "@mui/material";
+import {Checkbox, FormControlLabel, FormGroup, FormLabel, IconButton, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useGetDataQuery } from "../hooks/useGetDataQuery";
+import {useGetDataQuery} from "../hooks/useGetDataQuery";
 
 const TodoListBlock = styled.div`
     padding: 20px 32px;
@@ -28,32 +28,9 @@ function TodoList() {
    const {isLoading, data}=useGetDataQuery();
    const [locationKeys, setLocationKeys] = useState([]);
    const [searchTerm,setSearchTerm] = useState('');
-   const [filterlist, setFilterlist] = useState([]);
+   const [filterlist, setFilterlist] = useState( []);
    const [checkdone, setCheckdone] = useState(false);
-   //
-   // const filterlist = {
-   //    if (searchTerm === '') {
-   //    setFilterlist(data?.data)
-   // } else {
-   //    setFilterlist(
-   //       data?.data.filter((todo) => todo.title === searchTerm));
-   // }
-   //
-   // }
-   // useEffect(() => {
-   //    return filterlist(()=>{
-   //       if (searchTerm === '') {
-   //          setFilterlist(data?.data)
-   //       } else {
-   //          setFilterlist(
-   //             data?.data.filter((todo) => todo.title === searchTerm));
-   //       }
-   //    })
-   //    }
-   // // // );
-   // useEffect(()=>{
-   //    setFilterlist(data?.data.filter((todo)=>todo.length>0));
-   // }, [])
+
    const handleInputChange=(e)=>{
       setSearchTerm(e.target.value);
       console.log(searchTerm);
@@ -66,7 +43,6 @@ function TodoList() {
          setFilterlist(
             data?.data.filter((todo) => todo.title === searchTerm));
       }
-      // console.log(filterlist);
    }
    
    useEffect(() => {
@@ -86,6 +62,11 @@ function TodoList() {
    
    console.log(checkdone);
 
+   useEffect(()=>{
+      if (data?.data) {
+         setFilterlist(data.data);
+      }
+   }, [data])
    return (
       <TodoListBlock>
          <>

@@ -10,7 +10,7 @@ export const TodoLogingreet = styled.div`
 
 export const TodoInputbox = styled.form`
   width: 600px;
-  height: 500px;
+  height: auto;
   background: #e0dddd;
   margin-top: 150px;
   margin-bottom: 0px;

@@ -3,9 +3,7 @@ import TodoHead from "./TodoHead/TodoHead";
 import TodoList from "./TodoList";
 import TodoCreate from "./TodoCreate/TodoCreate";
 import {Navigate} from "react-router-dom";
-import { Checkbox, FormControlLabel, FormGroup, FormLabel, IconButton, TextField } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import React, { useState } from "react";
+import React from "react";
 
 function Todo() {
 

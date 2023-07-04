@@ -11,9 +11,7 @@ function TodoItem(params) {
    const {mutate: onClickRemove, isLoading2} = useDeleteMutation();
    const {mutate: updateTodo, isSuccess, isLoading3} = useUpdateMutation();
    console.log(params,'ppp');
-   console.log(params?.params.length);
    const [todo, setTodo] = useState([]);
-
 
    if (isLoading2) return <h2>loading</h2>
    if (isLoading3) return <h2>Updating..</h2>
