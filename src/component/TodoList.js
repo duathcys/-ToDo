@@ -29,20 +29,25 @@ function TodoList() {
    const [locationKeys, setLocationKeys] = useState([]);
    const [searchTerm,setSearchTerm] = useState('');
    const [filterlist, setFilterlist] = useState( []);
-   const [checkdone, setCheckdone] = useState(false);
+   const [done, setDone] = useState(true);
+   const [notDone, setNotDone] = useState(true);
 
    const handleInputChange=(e)=>{
       setSearchTerm(e.target.value);
-      console.log(searchTerm);
    }
 
    const onSearch = ()=>{
-      if (searchTerm === '') {
-         setFilterlist(data?.data)
-      } else {
-         setFilterlist(
-            data?.data.filter((todo) => todo.title === searchTerm));
+      let filterData = data?.data;
+      if (searchTerm !== '') {
+         filterData = filterData.filter((todo) => todo.title === searchTerm);
       }
+      if (done === true) {
+         filterData = filterData.filter((todo) => todo.done === true);
+      } else if (notDone === true) {
+         filterData = filterData.filter((todo) => todo.done === false);
+      }
+
+      setFilterlist(filterData);
    }
    
    useEffect(() => {
@@ -60,7 +65,6 @@ function TodoList() {
       })
    }, [locationKeys, history])
    
-   console.log(checkdone);
 
    useEffect(()=>{
       if (data?.data) {
@@ -85,8 +89,8 @@ function TodoList() {
             <div>
                <FormLabel>선택할 수 있게</FormLabel>
                <FormGroup>
-                  <FormControlLabel control={<Checkbox/>} label="DONE" onClick={()=>{setCheckdone(true)}}/>
-                  <FormControlLabel control={<Checkbox/>} label="NOT DONE" onClick={()=>{setCheckdone(false)}}/>
+                  <FormControlLabel control={<Checkbox checked={done}/>} label="DONE" onClick={()=>{setDone(!done)}}/>
+                  <FormControlLabel control={<Checkbox checked={notDone}/>} label="NOT DONE" onClick={()=>{setNotDone(!notDone)}}/>
                </FormGroup>
             </div>
          </>
