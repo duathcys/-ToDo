@@ -29,22 +29,42 @@ function TodoList() {
    const [locationKeys, setLocationKeys] = useState([]);
    const [searchTerm,setSearchTerm] = useState('');
    const [filterlist, setFilterlist] = useState( []);
-   const [checkdone, setCheckdone] = useState(false);
+   const [done, setDone] = useState(true);
+   const [notDone, setNotDone] = useState(true);
 
    const handleInputChange=(e)=>{
       setSearchTerm(e.target.value);
-      console.log(searchTerm);
    }
+   let filterData = data?.data;
 
    const onSearch = ()=>{
       if (searchTerm === '') {
-         setFilterlist(data?.data)
+         setFilterlist(filterData)
       } else {
          setFilterlist(
-            data?.data.filter((todo) => todo.title === searchTerm));
+            data?.data.filter((todo) => todo.title.includes(searchTerm)));
       }
    }
-   
+   const applyFilter = () => {
+
+
+       if (searchTerm === "") {
+         filterData = data?.data;
+       } else {
+         filterData = data?.data.filter((todo) => todo.title.includes(searchTerm));
+       }
+
+       if (!done) {
+         filterData = filterData.filter((todo) => !todo.done);
+       }
+
+       if (!notDone) {
+         filterData = filterData.filter((todo) => todo.done);
+       }
+
+       setFilterlist(filterData);
+     };
+
    useEffect(() => {
       return history.listen((location) => {
          if (history.action === "PUSH") {
@@ -60,13 +80,12 @@ function TodoList() {
       })
    }, [locationKeys, history])
    
-   console.log(checkdone);
 
    useEffect(()=>{
       if (data?.data) {
-         setFilterlist(data.data);
+         applyFilter();
       }
-   }, [data])
+   }, [data, done, notDone])
    return (
       <TodoListBlock>
          <>
@@ -85,8 +104,8 @@ function TodoList() {
             <div>
                <FormLabel>선택할 수 있게</FormLabel>
                <FormGroup>
-                  <FormControlLabel control={<Checkbox/>} label="DONE" onClick={()=>{setCheckdone(true)}}/>
-                  <FormControlLabel control={<Checkbox/>} label="NOT DONE" onClick={()=>{setCheckdone(false)}}/>
+                  <FormControlLabel control={<Checkbox checked={done}/>} label="DONE" onClick={()=>{setDone(!done)}}/>
+                  <FormControlLabel control={<Checkbox checked={notDone}/>} label="NOT DONE" onClick={()=>{setNotDone(!notDone)}}/>
                </FormGroup>
             </div>
          </>
