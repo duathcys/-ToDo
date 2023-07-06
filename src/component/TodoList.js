@@ -46,8 +46,6 @@ function TodoList() {
       }
    }
    const applyFilter = () => {
-
-
        if (searchTerm === "") {
          filterData = data?.data;
        } else {

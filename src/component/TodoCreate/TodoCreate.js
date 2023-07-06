@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
 // import TodoMutate from "./TodoMutate";
@@ -14,24 +14,21 @@ function TodoCreate() {
    const user_id =localStorage.getItem("UserId")
    const [open, setOpen] = useState(false);
    const [newTodo, setNewTodo] = useState({title: "", done: false, memo:"", info:user_id});
-   const [checked, setChecked] = useState();
+   const [checked, setChecked] = useState(false);
    const {mutate: onClickAddTodo, isLoading} = useCreateMutation(newTodo)
-   // const handleClickAddButton = (e) => {
-   //    addTodo(newTodo);
-   //    setNewTodo({title: "", done: false, memo:"", info:user_id});
-   //    setOpen(false)
-   // }
    const handleNewTodo = (e)=>{
-      const {id, value} = e.target;
+      const {id, value, checked} = e.target;
       setChecked(e.target.checked);
       setNewTodo((prev)=>(
-         {...prev, [id]:value})
+         {...prev, [id]: id === 'done' ? checked : value})
       )
-      setNewTodo((prev)=>(
-         {...prev, done: e.target.checked}
-      ))
    }
    const onToggle = () => setOpen(!open);
+
+   const onCreate = () => {
+      onClickAddTodo(newTodo)
+      setOpen(false);
+   };
 
    if (isLoading) return <h2>Loading..</h2>;
 
@@ -58,7 +55,7 @@ function TodoCreate() {
                          onChange={handleNewTodo}
                          placeholder="MEMO"
                   />
-                  <CreateButton onClick={()=>onClickAddTodo(newTodo)}
+                  <CreateButton onClick={onCreate}
                   >OK
                   </CreateButton>
                </InsertForm>
