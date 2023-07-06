@@ -35,21 +35,36 @@ function TodoList() {
    const handleInputChange=(e)=>{
       setSearchTerm(e.target.value);
    }
+   let filterData = data?.data;
 
    const onSearch = ()=>{
-      let filterData = data?.data;
-      if (searchTerm !== '') {
-         filterData = filterData.filter((todo) => todo.title === searchTerm);
+      if (searchTerm === '') {
+         setFilterlist(filterData)
+      } else {
+         setFilterlist(
+            data?.data.filter((todo) => todo.title.includes(searchTerm)));
       }
-      if (done === true) {
-         filterData = filterData.filter((todo) => todo.done === true);
-      } else if (notDone === true) {
-         filterData = filterData.filter((todo) => todo.done === false);
-      }
-
-      setFilterlist(filterData);
    }
-   
+   const applyFilter = () => {
+
+
+       if (searchTerm === "") {
+         filterData = data?.data;
+       } else {
+         filterData = data?.data.filter((todo) => todo.title.includes(searchTerm));
+       }
+
+       if (!done) {
+         filterData = filterData.filter((todo) => !todo.done);
+       }
+
+       if (!notDone) {
+         filterData = filterData.filter((todo) => todo.done);
+       }
+
+       setFilterlist(filterData);
+     };
+
    useEffect(() => {
       return history.listen((location) => {
          if (history.action === "PUSH") {
@@ -64,13 +79,13 @@ function TodoList() {
          }
       })
    }, [locationKeys, history])
-   
+
 
    useEffect(()=>{
       if (data?.data) {
-         setFilterlist(data.data);
+         applyFilter();
       }
-   }, [data])
+   }, [data, done, notDone])
    return (
       <TodoListBlock>
          <>
