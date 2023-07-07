@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {MdDelete, MdDone} from 'react-icons/md';
 import BasicModal from "../TodoModal/TodoModal";
 import {BIGBlock, CheckCircle, Remove, Text, TodoItemBlock} from "./style";
 import {useDeleteMutation} from "../../hooks/useDeleteMutation";
-import {useGetDataQuery} from "../../hooks/useGetDataQuery";
-import { useCheckUpdateMutation } from "../../hooks/useUpdateMutation";
+import {useCheckUpdateMutation} from "../../hooks/useUpdateMutation";
 
 function TodoItem(params) {
    const {mutate: onClickRemove, isLoading2} = useDeleteMutation();

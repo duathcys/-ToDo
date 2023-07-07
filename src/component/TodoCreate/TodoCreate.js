@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
-import { CircleButton, CreateButton, Input, InputArea, InsertForm, InsertFormPositioner } from "./style";
-import { useCreateMutation } from "../../hooks/useCreateMutation";
-import { Checkbox } from "@mui/material";
+import {CircleButton, CreateButton, Input, InputArea, InsertForm, InsertFormPositioner} from "./style";
+import {useCreateMutation} from "../../hooks/useCreateMutation";
+import {Checkbox} from "@mui/material";
 
 
 CreateButton.propTypes = {children: PropTypes.node};

@@ -1,8 +1,5 @@
-import { TextField } from "@mui/material";
-import { useGetMyInfoQuery } from "../../hooks/useGetMyInfoQuery";
-import { useGetDataQuery } from "../../hooks/useGetDataQuery";
+import {useGetMyInfoQuery} from "../../hooks/useGetMyInfoQuery";
 import {TodoMyPageBlock, TodoMypageHead} from "./style";
-
 
 
 function TodoMypage(){
