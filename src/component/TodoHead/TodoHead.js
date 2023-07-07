@@ -67,7 +67,7 @@ const [opened, setOpened] = useState(false);
    }
 
    const handleMyPage= (e)=>{
-      navigate(`/user/info?userid=${localStorage.getItem("UserId")}`);
+      navigate(`/user/mypage`);
    }
 
    return (

@@ -18,6 +18,9 @@ function TodoHome(){
       navigate('/user/signup/')
    }
 
+   const onFindInfo = () =>{
+      navigate('/user/info/')
+   }
    return (
       <>
          <HomeForm>
@@ -33,11 +36,10 @@ function TodoHome(){
                </IconButton>
                </div>
                <div>
-               <IconButton onClick={onLogin}>
+               <IconButton onClick={onFindInfo}>
                   <ContactsIcon/>
                   <text>FORGOT</text>
                </IconButton>
-               {/*<HomeLogin onClick={onLogin}/>*/}
             </div>
          </HomeForm>
       </>
