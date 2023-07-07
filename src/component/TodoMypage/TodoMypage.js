@@ -1,35 +1,41 @@
 import { TextField } from "@mui/material";
 import { useGetMyInfoQuery } from "../../hooks/useGetMyInfoQuery";
 import { useGetDataQuery } from "../../hooks/useGetDataQuery";
+import {TodoMyPageBlock, TodoMypageHead} from "./style";
+
 
 
 function TodoMypage(){
-   const {isLoading, data}=useGetMyInfoQuery();
+    const {isLoading, data}=useGetMyInfoQuery();
 
-   return(
-      <>
-         <h1>
-            마이페이지
-         </h1>
-         <h2>
-            {localStorage.getItem("UserId")}님
-            {data?.params.userid}님
-         </h2>
-         <ul>
-            <li>
-               Total :
-               {/*총 할일 : ${TodoData?.TodoData.length}*/}
-            </li>
-            <li>
-               Left :
-               {/*남은 할일 : ${data?.data.filter((todo)=> todo.done == false).length}*/}
-            </li>
-            <li>
-               회원 정보 수정
-            </li>
-         </ul>
-      </>
-   )
+    return(
+        <TodoMyPageBlock>
+            <TodoMypageHead>
+                <h1>
+                    마이페이지
+                </h1>
+                <h2>
+                    {localStorage.getItem("UserId")}님
+                </h2>
+            </TodoMypageHead>
+            <ul>
+                <li>
+                    Total :
+                    {localStorage.getItem("Total")} 개
+                </li>
+                <li>
+                    Left :
+                    {localStorage.getItem("Left")} 개
+                </li>
+                <li>
+                    회원 정보 수정
+                </li>
+                <li>
+                    아바타 꾸미기
+                </li>
+            </ul>
+        </TodoMyPageBlock>
+    )
 
 }
 

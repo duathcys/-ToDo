@@ -95,18 +95,13 @@ const [opened, setOpened] = useState(false);
                <MenuItem onClick={handleMyPage}>
                   마이페이지
                </MenuItem>
-                  {/*<Modal open={opened} onClick={handleOpen}>*/}
-                  {/*   */}
-                  {/*</Modal>*/}
-               <MenuItem onClick={handleClose}>
-                  몇건의 리스트가 있는지
+               <MenuItem>
+                  Total: {localStorage.getItem("Total")}개
                </MenuItem>
-               <MenuItem onClick={handleClose}>
-                  몇건의 완료 리스트가 있는지
+               <MenuItem>
+                  Left: {localStorage.getItem("Left")}개
                </MenuItem>
             </Menu>
-            {/*<div className="info">{localStorage.getItem("UserId")}님</div>*/}
-
             <IconButton onClick={onClickLogoutBtn}>
                <LogoutIcon/>
                <text className="text">LOGOUT</text>
@@ -116,26 +111,6 @@ const [opened, setOpened] = useState(false);
                <text className="text">HOME</text>
             </IconButton>
          </div>
-         {/*<>*/}
-         {/*   <div>*/}
-         {/*      <TextField*/}
-         {/*         variant="standard"*/}
-         {/*         label="Search"*/}
-         {/*         onChange={handleInputChange}*/}
-         {/*         sx={{width: 500}}*/}
-         {/*         />*/}
-         {/*      <IconButton>*/}
-         {/*         <SearchIcon/>*/}
-         {/*      </IconButton>*/}
-         {/*   </div>*/}
-         {/*   <div>*/}
-         {/*      <FormLabel>선택할 수 있게</FormLabel>*/}
-         {/*      <FormGroup>*/}
-         {/*         <FormControlLabel control={<Checkbox/>} label="DONE"/>*/}
-         {/*         <FormControlLabel control={<Checkbox/>} label="NOT DONE"/>*/}
-         {/*      </FormGroup>*/}
-         {/*   </div>*/}
-         {/*</>*/}
       </TodoHeadBlock>
 
    );

@@ -25,7 +25,7 @@ const SearchButton = styled.button`
   flex-direction: column;
 `
 function TodoList() {
-   const {isLoading, data}=useGetDataQuery();
+   const {isLoading, isSuccess, data}=useGetDataQuery();
    const [locationKeys, setLocationKeys] = useState([]);
    const [searchTerm,setSearchTerm] = useState('');
    const [filterlist, setFilterlist] = useState( []);
@@ -84,6 +84,12 @@ function TodoList() {
          applyFilter();
       }
    }, [data, done, notDone])
+    if(isSuccess) {
+        let totaltodos = data?.data;
+        let lefttodos = data?.data.filter((todo) => todo.done === false);
+        localStorage.setItem("Total", totaltodos.length);
+        localStorage.setItem("Left", lefttodos.length);
+    }
    return (
       <TodoListBlock>
          <>

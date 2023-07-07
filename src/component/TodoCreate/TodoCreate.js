@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
-// import TodoMutate from "./TodoMutate";
 import { CircleButton, CreateButton, Input, InputArea, InsertForm, InsertFormPositioner } from "./style";
 import { useCreateMutation } from "../../hooks/useCreateMutation";
 import { Checkbox } from "@mui/material";
@@ -11,7 +10,7 @@ CreateButton.propTypes = {children: PropTypes.node};
 
 
 function TodoCreate() {
-   const user_id =localStorage.getItem("UserId")
+   const user_id = localStorage.getItem("UserId")
    const [open, setOpen] = useState(false);
    const [newTodo, setNewTodo] = useState({title: "", done: false, memo:"", info:user_id});
    const [checked, setChecked] = useState(false);
