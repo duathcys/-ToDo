@@ -23,12 +23,11 @@ function App() {
          <GlobalStyle/>
          <BrowserRouter>
             <Routes>
-
                <Route path="/" element={<TodoHome/>}/>
                <Route element={<PublicRoute/>}>
                   <Route path="/user/login" element={<TodoLogin/>}/>
                   <Route path="/user/signup" element={<TodoSignUp/>}/>
-                  <Route path="/user/info" element={<TodoFindInfo/>}/>
+                  <Route path="/user/find" element={<TodoFindInfo/>}/>
                </Route>
                <Route path="/todo/list" element={<Todo/>}/>
                <Route path="/user/mypage" element={<TodoMypage/>}/>

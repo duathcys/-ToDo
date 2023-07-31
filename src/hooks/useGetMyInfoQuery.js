@@ -3,5 +3,5 @@ import { useQuery } from "react-query";
 
 
 export const useGetMyInfoQuery = () =>{
-   return useQuery("MyInfo", getMyInfo)
+   return useQuery("MyInfo", getMyInfo())
 }

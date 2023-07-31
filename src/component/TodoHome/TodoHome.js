@@ -19,7 +19,7 @@ function TodoHome(){
    }
 
    const onFindInfo = () =>{
-      navigate('/user/info/')
+      navigate('/user/find/')
    }
    return (
       <>
