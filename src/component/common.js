@@ -1,12 +1,22 @@
 import styled from "styled-components";
 
-export const FindForm = styled.form`
+export const Title = styled.div`
+  padding: 50px 32px 20px;
+  margin: 10px;
+  text-align: center;
+  font-size: 40px;
+  color: #000000;
+`
+export const TodoInputbox = styled.form`
   width: 600px;
-  height: 400px;
+  height: auto;
+  min-height: 450px;
   background: #e0dddd;
-  margin-top: 280px;
-  margin-bottom: 0px;
+  margin-top: 100px;
+  //margin-bottom: 0px;
   margin-inline: auto;
+  padding: 10px;
+  
   border-radius: 16px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
   text-align: center;
@@ -14,18 +24,17 @@ export const FindForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
   h2 {
     text-align: center;
     font-size: 30px;
     color: #000000;
-    margin-top: 0px;
+    padding: 10px;
+    margin-top: 10px;
   }
-  //font-size:50px;
-  //text-align: center;
 `
 
-export const TodoInputid = styled.input`
+export const TodoInput = styled.input`
   width: 400px;
   height: 50px;
   background: white;
@@ -34,16 +43,9 @@ export const TodoInputid = styled.input`
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
   font-size: 18px;
   margin: 10px;
-  position: center;
 `
 
-export const TestDiv = styled.div`
-  width: 100%;
-  text-align: left;
-  padding-left: 150px;
-`
-
-export const SubmitButton = styled.div`
+export const ConfirmButton = styled.button`
   width: auto;
   min-width: 100px;
   height: 30px;
@@ -56,4 +58,12 @@ export const SubmitButton = styled.div`
   margin-right: 30px;
   position: relative;
   margin-left: auto;
+  margin-top: 10px;
+  
+`
+
+export const Formdiv = styled.div`
+  width: 100%;
+  text-align: left;
+  padding-left: 150px;
 `

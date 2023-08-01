@@ -2,35 +2,23 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem/TodoItem";
 import history from "./TodoCheck";
-import {Checkbox, FormControlLabel, FormGroup, FormLabel, IconButton, TextField} from "@mui/material";
+import {FormControl, IconButton, InputLabel, MenuItem, OutlinedInput, Select, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {useGetDataQuery} from "../hooks/useGetDataQuery";
+import {isElementType} from "@testing-library/user-event/dist/utils";
 
 const TodoListBlock = styled.div`
     padding: 20px 32px;
     padding-bottom: 225px;
     overflow-x: auto;
 `;
-
-const TodoSearch = styled.input`
-  display: flex;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  flex-direction: column;
-`
-const SearchButton = styled.button`
-  display: flex;
-  width: 30px;
-  height: 30px;
-  flex-direction: column;
-`
-function TodoList() {
+function TodoList(effect, deps) {
    const {isLoading, isSuccess, data}=useGetDataQuery();
    const [locationKeys, setLocationKeys] = useState([]);
    const [searchTerm,setSearchTerm] = useState('');
    const [filterlist, setFilterlist] = useState( []);
-   const [done, setDone] = useState(true);
-   const [notDone, setNotDone] = useState(true);
+   const [done, setDone] = useState({complete:true, use:false});
+   const [selection, setSelection] = useState('');
 
    const handleInputChange=(e)=>{
       setSearchTerm(e.target.value);
@@ -51,17 +39,16 @@ function TodoList() {
        } else {
          filterData = data?.data.filter((todo) => todo.title.includes(searchTerm));
        }
-
-       if (!done) {
-         filterData = filterData.filter((todo) => !todo.done);
+       if (done.use === true) {
+           console.log('ioisjdf');
+           filterData = filterData.filter((todo) => todo.done === done.complete);
        }
-
-       if (!notDone) {
-         filterData = filterData.filter((todo) => todo.done);
-       }
-
        setFilterlist(filterData);
      };
+   const handleSelect = (e)=>{
+       setSelection(e.target.value);
+   }
+
 
    useEffect(() => {
       return history.listen((location) => {
@@ -83,39 +70,59 @@ function TodoList() {
       if (data?.data) {
          applyFilter();
       }
-   }, [data, done, notDone])
+   }, [data, done])
+
+    useEffect(() => {
+
+        if (selection === 'Complete') {
+            setDone({complete:true, use:true});
+        } else if (selection === 'Incomplete') {
+            setDone({complete:false, use:true});
+        }
+        else if (selection === 'All') {
+            setDone({complete: false, use: false})
+            }
+        console.log(done);
+    }, [selection, done.complete, done.use]);
+
     if(isSuccess) {
         let totaltodos = data?.data;
         let lefttodos = data?.data.filter((todo) => todo.done === false);
         localStorage.setItem("Total", totaltodos.length);
         localStorage.setItem("Left", lefttodos.length);
     }
-   return (
-      <TodoListBlock>
-         <>
-            <div>
-               <TextField
-                  variant="standard"
-                  label="Search"
-                  onChange={handleInputChange}
-                  sx={{width: 500}}
-               />
-               <IconButton
-                  onClick={onSearch}>
-                  <SearchIcon/>
-               </IconButton>
-            </div>
-            <div>
-               <FormLabel>선택할 수 있게</FormLabel>
-               <FormGroup>
-                  <FormControlLabel control={<Checkbox checked={done}/>} label="DONE" onClick={()=>{setDone(!done)}}/>
-                  <FormControlLabel control={<Checkbox checked={notDone}/>} label="NOT DONE" onClick={()=>{setNotDone(!notDone)}}/>
-               </FormGroup>
-            </div>
-         </>
-         <TodoItem params={filterlist}/>
-      </TodoListBlock>
-   );
+    return (
+        <TodoListBlock>
+            <>
+                <div style={{display:"flex", flexDirection:"row"}}>
+                    <TextField
+                        variant="standard"
+                        label="Search"
+                        onChange={handleInputChange}
+                        sx={{width: 400}}
+                    />
+                    <IconButton
+                        onClick={onSearch}>
+                        <SearchIcon/>
+                    </IconButton>
+                    <FormControl sx={{m:1, minWidth:120}}>
+                        <InputLabel>선택</InputLabel>
+                        <Select
+                            value={selection}
+                            label="selection"
+                            onChange={handleSelect}
+                            input={<OutlinedInput label="선택"/>}
+                        >
+                            <MenuItem value="All">All</MenuItem>
+                            <MenuItem value="Complete">Complete</MenuItem>
+                            <MenuItem value="Incomplete">Incomplete</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
+            </>
+            <TodoItem params={filterlist}/>
+        </TodoListBlock>
+    );
 }
 
 
