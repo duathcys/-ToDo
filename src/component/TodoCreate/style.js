@@ -27,7 +27,7 @@ export const CircleButton = styled.button`
   border: none;
   outline: none;
   display: flex;
-  align-items: center;
+  align-items: center;  
   justify-content: center;
 
   transition: 0.125s all ease-in;
@@ -49,6 +49,7 @@ export const CircleButton = styled.button`
 `;
 
 export const InsertFormPositioner = styled.div`
+  z-index: 4;
   width: 100%;
   bottom: 0;
   left: 0;
@@ -56,6 +57,7 @@ export const InsertFormPositioner = styled.div`
 `;
 
 export const InsertForm = styled.form`
+
   background: #f8f9fa;
   padding-left: 32px;
   padding-top: 32px;
@@ -65,9 +67,20 @@ export const InsertForm = styled.form`
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   border-top: 1px solid #e9ecef;
+
+  h1 {
+    text-align: center;
+    font-size: 25px;
+    color: #000000;
+  }
+  h2 {
+    text-align: left;
+    font-size: 20px;
+    color: #000000;
+  }
 `;
 
-export const Input = styled.input`
+export const CreateInput = styled.input`
   padding: 12px;
   border-radius: 4px;
   border: 1px solid #dee2e6;
@@ -89,6 +102,7 @@ export const InputArea = styled.textarea`
 
 export const CreateButton = styled.button`
   background: #e0dddd;
+
   &:hover {
     color: #5e5b5b;
   }
@@ -96,6 +110,7 @@ export const CreateButton = styled.button`
   &:active {
     color: #343131;
   }
+
   color: black;
   outline: 1px solid #e0dddd;
   border-radius: 4px;
@@ -104,8 +119,9 @@ export const CreateButton = styled.button`
   width: 50px;
   height: 32px;
   margin-top: 10px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 15px;
 `

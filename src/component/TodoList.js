@@ -5,15 +5,14 @@ import history from "./TodoCheck";
 import {FormControl, IconButton, InputLabel, MenuItem, OutlinedInput, Select, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {useGetDataQuery} from "../hooks/useGetDataQuery";
-import {isElementType} from "@testing-library/user-event/dist/utils";
 
 const TodoListBlock = styled.div`
     padding: 20px 32px;
     padding-bottom: 225px;
     overflow-x: auto;
 `;
-function TodoList(effect, deps) {
-   const {isLoading, isSuccess, data}=useGetDataQuery();
+function TodoList() {
+   const {isLoading, isSuccess, data} = useGetDataQuery();
    const [locationKeys, setLocationKeys] = useState([]);
    const [searchTerm,setSearchTerm] = useState('');
    const [filterlist, setFilterlist] = useState( []);
@@ -85,6 +84,9 @@ function TodoList(effect, deps) {
         console.log(done);
     }, [selection, done.complete, done.use]);
 
+    if (isLoading) {
+        return <div>Waiting</div>;
+    }
     if(isSuccess) {
         let totaltodos = data?.data;
         let lefttodos = data?.data.filter((todo) => todo.done === false);

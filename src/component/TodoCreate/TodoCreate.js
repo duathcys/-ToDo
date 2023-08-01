@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
-import {CircleButton, CreateButton, Input, InputArea, InsertForm, InsertFormPositioner} from "./style";
+import {CircleButton, CreateButton, CreateInput, Input, InputArea, InsertForm, InsertFormPositioner} from "./style";
 import {useCreateMutation} from "../../hooks/useCreateMutation";
 import {Checkbox} from "@mui/material";
 
@@ -36,26 +36,31 @@ function TodoCreate() {
          {open && (
             <InsertFormPositioner>
                <InsertForm form={open.toString()}>
-                  <Input id={"title"}
+                  <h1>Create Todo</h1>
+                  <h2>TITLE</h2>
+                  <CreateInput id={"title"}
                      value={newTodo.title}
                          onChange={handleNewTodo}
-                         placeholder="TODO"
+                         placeholder="할 일을 입력하세요."
                   />
-                  <h3>COMPLETE</h3>
-                  <Checkbox id={"done"}
-                            label={"Yes"}
-                            value={newTodo.done}
-                            onChange={handleNewTodo}
-                            checked={checked}
-                            inputProps={{'aria-label':'controlled'}}
-                  />
-                  <InputArea id={"memo"}
+                  <div style={{display:"flex", flexDirection: "row"}}>
+                     <h2>COMPLETE</h2>
+                     <Checkbox id={"done"}
+                               label={"Yes"}
+                               value={newTodo.done}
+                               onChange={handleNewTodo}
+                               checked={checked}
+                               inputProps={{'aria-label':'controlled'}}
+                     />
+                  </div>
+                  <h2>MEMO</h2>
+                  <CreateInput id={"memo"}
                      value={newTodo.memo}
                          onChange={handleNewTodo}
-                         placeholder="MEMO"
+                         placeholder="할 일에 대한 메모를 입력하세요."
                   />
                   <CreateButton onClick={onCreate}
-                  >OK
+                  >생성
                   </CreateButton>
                </InsertForm>
 
