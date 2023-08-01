@@ -1,23 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import moment from "moment";
 import 'moment/locale/ko';
-import { useNavigate } from "react-router-dom";
-import { TodoHeadBlock } from "./style";
+import {useNavigate} from "react-router-dom";
+import {TodoHeadBlock} from "./style";
 import Swal from "sweetalert2";
-import {
-   Avatar, Checkbox,
-   FormControlLabel,
-   FormGroup,
-   FormLabel,
-   Icon,
-   IconButton,
-   Menu,
-   MenuItem,
-   TextField
-} from "@mui/material";
-import HomeIcon from '@mui/icons-material/Home';
-import LogoutIcon from '@mui/icons-material/Logout';
-import SearchIcon from "@mui/icons-material/Search";
+import {Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem} from "@mui/material";
+import {Home, Logout, Person} from "@mui/icons-material";
 
 const nowTime = moment().format('YYYY년 MM월 DD일');
 let today = moment();
@@ -25,11 +13,9 @@ let week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'S
 let nowDay = week[today.day()];
 
 function TodoHead() {
-const navigate = useNavigate();
-const [click, setClick] = useState();
-const open = Boolean(click);
-const [searchTerm, setSearchTerm] = useState();
-const [opened, setOpened] = useState(false);
+   const navigate = useNavigate();
+   const [anchorEl, setanchorEl] = useState(null);
+   const open = Boolean(anchorEl);
    const onClickLogoutBtn = () => {
       Swal.fire({title:'LOGOUT', text:'정말 로그아웃 하시겠습니까?', icon:'question', showCancelButton:true, confirmButtonText:'로그아웃'})
          .then((result)=>{
@@ -41,7 +27,7 @@ const [opened, setOpened] = useState(false);
    };
 
    const onClickHomeBtn = ()=>{
-      Swal.fire({title:'HOME', text:'홈으로 가시겠습니까?\n자동으로 로그아웃됩니다', icon:"question", showCancelButton:true, confirmButtonText:'홈'})
+      Swal.fire({title:'HOME', text:'홈으로 가시겠습니까? 자동으로 로그아웃됩니다', icon:"question", showCancelButton:true, confirmButtonText:'홈'})
          .then((result)=>{
             if(result.isConfirmed){
                localStorage.clear();
@@ -51,21 +37,11 @@ const [opened, setOpened] = useState(false);
    }
 
    const handleClick=(e)=>{
-      setClick(e.currentTarget)
-      console.log(open, 'open')
+      setanchorEl(e.currentTarget);
    }
    const handleClose=(e)=>{
-      setClick(false)
+      setanchorEl(null)
    }
-   const handleInputChange=(e)=>{
-      setSearchTerm(e.target.value);
-      console.log(searchTerm);
-   }
-
-   const handleOpen=(e)=>{
-      setOpened(!opened);
-   }
-
    const handleMyPage= (e)=>{
       navigate(`/user/mypage`);
    }
@@ -76,40 +52,47 @@ const [opened, setOpened] = useState(false);
          <div className="date">{nowTime}</div>
          <div className="day">{nowDay}</div>
          <div className="linkto">
+            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
             <IconButton
                onClick={handleClick}
-               aria-controls={click ? 'menu' : undefined}
+               sx={{ ml: 2 }}
+               aria-controls={open ? 'menu' : undefined}
                aria-haspopup="true"
-               aria-expanded={click ? 'true' : undefined}>
+               aria-expanded={open ? 'true' : undefined}>
                <Avatar
                   sx={{bgcolor: '#e1bee7'}}>
                   {localStorage.getItem("UserId").charAt(0)}
                </Avatar>
             </IconButton>
-            <Menu
+            </Box>
+            <Menu anchorEl={anchorEl}
                open={open}
-               id="menu">
-               <MenuItem onClick={handleClose}>
+               id="menu"
+               onClose={handleClose}
+               onClick={handleClose}>
+               <MenuItem style={{fontWeight:"bold"}}>
                   {localStorage.getItem("UserId")}님
                </MenuItem>
+               <Divider/>
                <MenuItem onClick={handleMyPage}>
-                  마이페이지
+               <ListItemIcon>
+                  <Person fontSize="small"/>
+               </ListItemIcon>
+                  My Page
+            </MenuItem>
+               <MenuItem onClick={onClickLogoutBtn}>
+                  <ListItemIcon>
+                     <Logout fontSize="small"/>
+                  </ListItemIcon>
+                  Logout
                </MenuItem>
-               <MenuItem>
-                  Total: {localStorage.getItem("Total")}개
-               </MenuItem>
-               <MenuItem>
-                  Left: {localStorage.getItem("Left")}개
+               <MenuItem onClick={onClickHomeBtn}>
+                  <ListItemIcon>
+                     <Home fontSize="small"/>
+                  </ListItemIcon>
+                  Home
                </MenuItem>
             </Menu>
-            <IconButton onClick={onClickLogoutBtn}>
-               <LogoutIcon/>
-               <text className="text">LOGOUT</text>
-            </IconButton>
-            <IconButton onClick={onClickHomeBtn}>
-               <HomeIcon/>
-               <text className="text">HOME</text>
-            </IconButton>
          </div>
       </TodoHeadBlock>
 

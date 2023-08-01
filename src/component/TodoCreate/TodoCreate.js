@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
-import {CircleButton, CreateButton, CreateInput, Input, InputArea, InsertForm, InsertFormPositioner} from "./style";
+import {CircleButton, CreateButton, CreateInput, InsertForm, InsertFormPositioner} from "./style";
 import {useCreateMutation} from "../../hooks/useCreateMutation";
 import {Checkbox} from "@mui/material";
 
