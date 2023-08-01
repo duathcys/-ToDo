@@ -32,7 +32,3 @@ export const TodoMypageHead = styled.div `
     color: #000000;
   }
 `
-
-// export const TodoMypageContent = styled.div`
-//
-// `

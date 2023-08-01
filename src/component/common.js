@@ -67,3 +67,66 @@ export const Formdiv = styled.div`
   text-align: left;
   padding-left: 150px;
 `
+
+export const TodoTemplateBlock = styled.div `
+  width: 800px;
+  height: 800px;
+
+  position: relative;
+  background: #e0dddd;
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+
+  margin: 0 auto;
+
+  margin-top: 96px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TodoHeadBlock = styled.div`
+  padding: 20px 32px;
+  padding-bottom: 48px;
+
+  h1 {
+    margin: 0px;
+    text-align: center;
+    font-size: 40px;
+    color: #000000;
+  }
+
+  .detail {
+    margin: 10px;
+    font-size: 20px;
+    text-align: right;
+    color: black;
+  }
+  
+  .link{
+    margin:10px;
+    font-size:15px;
+    text-align: right;
+    font-weight: bold;
+    display: flex;
+    flex-flow: row;
+    color: cadetblue;
+  }
+  .linkto{
+    align-items: center;
+    justify-content: right;
+    display: flex;
+  }
+  .info{
+    align-items: center;
+    justify-content: right;
+    display: flex;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+  }
+  .text{
+   font-size:11px;
+   font-weight:bold;
+   }
+`;

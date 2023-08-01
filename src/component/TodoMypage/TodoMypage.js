@@ -1,20 +1,20 @@
 import {useGetMyInfoQuery} from "../../hooks/useGetMyInfoQuery";
-import {TodoMyPageBlock, TodoMypageHead} from "./style";
+import {TodoHeadBlock, TodoTemplateBlock} from "../common";
 
 
 function TodoMypage(){
     const {isLoading, data}=useGetMyInfoQuery();
 
     return(
-        <TodoMyPageBlock>
-            <TodoMypageHead>
+        <TodoTemplateBlock>
+            <TodoHeadBlock>
                 <h1>
-                    마이페이지
+                    My Page
                 </h1>
-                <h2>
+                <div className="detail">
                     {localStorage.getItem("UserId")}님
-                </h2>
-            </TodoMypageHead>
+                </div>
+            </TodoHeadBlock>
             <ul>
                 <li>
                     Total :
@@ -31,7 +31,7 @@ function TodoMypage(){
                     아바타 꾸미기
                 </li>
             </ul>
-        </TodoMyPageBlock>
+        </TodoTemplateBlock>
     )
 
 }

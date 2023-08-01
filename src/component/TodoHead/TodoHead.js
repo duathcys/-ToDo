@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import moment from "moment";
 import 'moment/locale/ko';
 import {useNavigate} from "react-router-dom";
-import {TodoHeadBlock} from "./style";
 import Swal from "sweetalert2";
 import {Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem} from "@mui/material";
 import {Home, Logout, Person} from "@mui/icons-material";
+import {TodoHeadBlock} from "../common";
 
 const nowTime = moment().format('YYYY년 MM월 DD일');
 let today = moment();
@@ -49,8 +49,8 @@ function TodoHead() {
    return (
       <TodoHeadBlock>
          <h1>To Do List</h1>
-         <div className="date">{nowTime}</div>
-         <div className="day">{nowDay}</div>
+         <div className="detail">{nowTime}</div>
+         <div className="detail">{nowDay}</div>
          <div className="linkto">
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
             <IconButton
