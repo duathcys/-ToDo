@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
 import {CircleButton, CreateButton, CreateInput, InsertForm, InsertFormPositioner} from "./style";
 import {useCreateMutation} from "../../hooks/useCreateMutation";
 import {Checkbox} from "@mui/material";
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import '../../CustomDatePicker.css';
 
 
 CreateButton.propTypes = {children: PropTypes.node};
 
 
+
 function TodoCreate() {
    const user_id = localStorage.getItem("UserId")
    const [open, setOpen] = useState(false);
-   const [newTodo, setNewTodo] = useState({title: "", done: false, memo:"", info:user_id});
+   const [newTodo, setNewTodo] = useState({title: "", done: false, memo:"", info:user_id, dueDate:""});
    const [checked, setChecked] = useState(false);
+   const [dueDate, setDueDate] = useState(new Date());
    const {mutate: onClickAddTodo, isLoading} = useCreateMutation(newTodo)
    const handleNewTodo = (e)=>{
       const {id, value, checked} = e.target;
@@ -23,11 +28,19 @@ function TodoCreate() {
       )
    }
    const onToggle = () => setOpen(!open);
+   const handleDateChange =(date)=>{
+      const formatDate = date.toISOString().split('T')[0];
+      setDueDate(date);
+      setNewTodo((prev)=>(
+          {...prev, dueDate:formatDate})
+      )
+   }
 
    const onCreate = () => {
       onClickAddTodo(newTodo)
       setOpen(false);
    };
+
 
    if (isLoading) return <h2>Loading..</h2>;
 
@@ -52,6 +65,10 @@ function TodoCreate() {
                                checked={checked}
                                inputProps={{'aria-label':'controlled'}}
                      />
+                     <h2>Due Date</h2>
+                     <div style={{display:"flex", padding:"10px"}}>
+                        <DatePicker selected={dueDate} onChange={handleDateChange}/>
+                     </div>
                   </div>
                   <h2>MEMO</h2>
                   <CreateInput id={"memo"}
@@ -63,7 +80,6 @@ function TodoCreate() {
                   >생성
                   </CreateButton>
                </InsertForm>
-
             </InsertFormPositioner>
          )}
          <CircleButton
