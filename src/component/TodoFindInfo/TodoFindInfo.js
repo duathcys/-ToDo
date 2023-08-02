@@ -1,5 +1,4 @@
 import {getMyInfo} from "../../API/getMyInfoAPI";
-import {FindForm, SubmitButton, TestDiv, TodoInputid} from "./style";
 import React, {useState} from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import {IconButton, Tooltip} from "@mui/material";
@@ -61,12 +60,12 @@ function TodoFindInfo() {
                             <HomeIcon/>
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Login">
+                    <Tooltip title="로그인">
                         <IconButton onClick={onLogin}>
                             <LoginIcon/>
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="SignUp">
+                    <Tooltip title="회원가입">
                         <IconButton onClick={onSignUp}>
                             <AssignmentIcon/>
                         </IconButton>

@@ -5,6 +5,8 @@ import Swal from "sweetalert2"
 import HomeIcon from '@mui/icons-material/Home';
 import {IconButton, Tooltip} from "@mui/material";
 import {ConfirmButton, Formdiv, Title, TodoInput, TodoInputbox} from "../common";
+import LoginIcon from "@mui/icons-material/Login";
+import ContactsIcon from "@mui/icons-material/Contacts";
 
 function TodoSignUp() {
    const navigate = useNavigate();
@@ -24,7 +26,8 @@ function TodoSignUp() {
       if(inputPw === inputCheck) {onClickSignUpButton({user_id:inputId, user_pw:inputPw, nickname:inputNick})}
       else Swal.fire('다시 시도해주세요', '비밀번호 확인이 바르지 않습니다.', 'error')
    }
-   const handleClickLogInButton = () => navigate("/user/login/")
+   const onLogin = () => navigate("/user/login/")
+   const onFindInfo = () => navigate("/user/find/")
    const handleClickGoHomeButton = () => navigate("/")
 
    if (isLoading) return <h2>Signing Up</h2>
@@ -35,11 +38,24 @@ function TodoSignUp() {
              <Title>WELCOME</Title>
              <TodoInputbox>
                 <h2>SIGN UP</h2>
-                <Tooltip title="Home">
-                   <IconButton onClick={handleClickGoHomeButton}>
-                      <HomeIcon/>
-                   </IconButton>
-                </Tooltip>
+                <div>
+                   <Tooltip title="Home">
+                      <IconButton onClick={handleClickGoHomeButton}>
+                         <HomeIcon/>
+                      </IconButton>
+                   </Tooltip>
+                   <Tooltip title="로그인">
+                      <IconButton onClick={onLogin}>
+                         <LoginIcon/>
+                      </IconButton>
+                   </Tooltip>
+                   <Tooltip title="정보 찾기">
+                      <IconButton onClick={onFindInfo}>
+                         <ContactsIcon/>
+                      </IconButton>
+                   </Tooltip>
+                </div>
+
                 <Formdiv>
                    <h3>ID</h3>
                    <TodoInput value={inputId}
@@ -61,8 +77,7 @@ function TodoSignUp() {
                               autoComplete="off"
                               placeholder="비밀번호를 한번 더 입력하세요"/>
                 </Formdiv>
-                <ConfirmButton onClick={handleClickSignUpButton}>회원가입</ConfirmButton>
-                <ConfirmButton onClick={handleClickLogInButton}>로그인</ConfirmButton>
+                <ConfirmButton onClick={handleClickSignUpButton}>확인</ConfirmButton>
              </TodoInputbox>
 
           </>

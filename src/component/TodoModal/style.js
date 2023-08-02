@@ -27,6 +27,10 @@ export const Container = styled.div`
     background-color: transparent;
     cursor: pointer;
   }
+
+  h3 {
+    padding: 0;
+  }
 `;
 
 export const Canvas = styled.div`

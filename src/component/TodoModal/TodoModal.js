@@ -4,14 +4,25 @@ import {Button, Canvas, Container, Detail, Input, MemoInput, Wrapper} from "./st
 import {useGetDataQuery} from "../../hooks/useGetDataQuery";
 import {useUpdateMutation} from "../../hooks/useUpdateMutation";
 import { Checkbox } from "@mui/material";
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import '../../CustomDatePicker.css';
 
-const BasicModal = (props) => {
+const TodoModal = (props) => {
    const [modalOpen, setModalOpen] = useState(false);
    const {isLoading, data} = useGetDataQuery();
-   const [inputValue, setInputValue] = useState({title: props.title, done: props.done, memo: props.memo, info:props.info});
+   const [inputValue, setInputValue] = useState({title: props.title, done: props.done, memo: props.memo, info:props.info, dueDate:''});
    const [checked, setChecked] = useState(props.done);
    const {mutate: updateTodo, isSuccess, isLoading2} = useUpdateMutation();
+   const [dueDate, setDueDate] = useState(new Date());
 
+   const handleDateChange =(date)=>{
+      const formatDate = date.toISOString().split('T')[0];
+      setDueDate(date);
+      setInputValue((prev)=>(
+          {...prev, dueDate:formatDate})
+      )
+   }
    const handleClickUpdateButton = () => {
       console.log('input', inputValue)
       updateTodo({id: props.id, inputValue})
@@ -55,19 +66,22 @@ const BasicModal = (props) => {
                      &times;
                   </div>
                   <Wrapper>상세페이지</Wrapper>
-                  {/*   <Change onClick={()=>console.log(props.id)}>*/}
-                  {/*   <MdCreate/>*/}
-                  {/*</Change>*/}
                   <h3>TITLE</h3>
                   <Input name="title" value={inputValue.title} onChange={onInput}/>
-                  <h3>DONE</h3>
-                  <Checkbox
-                     name="done"
-                     label="Yes"
-                     value={inputValue.done}
-                     onChange={onInput}
-                     checked={checked}
-                  />
+                  <div style={{display:"flex", flexDirection: "row"}}>
+                     <h3>COMPLETE</h3>
+                     <Checkbox
+                        name="done"
+                        label="Yes"
+                        value={inputValue.done}
+                        onChange={onInput}
+                        checked={checked}
+                     />
+                     <h3>Due Date</h3>
+                     <div style={{display:"flex", padding:"10px"}}>
+                        <DatePicker selected={dueDate} onChange={handleDateChange}/>
+                     </div>
+                  </div>
                   <h3>MEMO</h3>
                   <MemoInput
                      name="memo"
@@ -85,4 +99,4 @@ const BasicModal = (props) => {
    )
 }
 
-export default BasicModal;
+export default TodoModal;

@@ -4,6 +4,8 @@ import {useLoginMutation} from "../../hooks/useLoginMutation";
 import HomeIcon from '@mui/icons-material/Home';
 import {IconButton, Tooltip} from "@mui/material";
 import {ConfirmButton, Formdiv, Title, TodoInput, TodoInputbox} from "../common";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import ContactsIcon from "@mui/icons-material/Contacts";
 
 function TodoLogin() {
    const navigate = useNavigate();
@@ -12,7 +14,8 @@ function TodoLogin() {
    const {mutate: onClickLoginButton, isLoading, isError, isSuccess, error, data} = useLoginMutation(inputId);
    const handleInputId = (e) => setInputId(e.target.value)
    const handleInputPw = (e) => setInputPw(e.target.value)
-   const handleClickSignUpButton = () => navigate("/user/signup/")
+   const onSignUp = () => navigate("/user/signup/")
+   const onFindInfo = () => navigate("/user/find/")
    const handleClickGoHomeButton = () => navigate("/")
 
    if (isLoading) return <h2>Waiting for LogIn</h2>;
@@ -23,11 +26,24 @@ function TodoLogin() {
             <Title>WELCOME</Title>
             <TodoInputbox>
                <h2>LOGIN</h2>
-               <Tooltip title="Home">
-                  <IconButton onClick={handleClickGoHomeButton}>
-                     <HomeIcon/>
-                  </IconButton>
-               </Tooltip>
+               <div>
+                  <Tooltip title="Home">
+                     <IconButton onClick={handleClickGoHomeButton}>
+                        <HomeIcon/>
+                     </IconButton>
+                  </Tooltip>
+                  <Tooltip title="회원가입">
+                     <IconButton onClick={onSignUp}>
+                        <AssignmentIcon/>
+                     </IconButton>
+                  </Tooltip>
+                  <Tooltip title="정보찾기">
+                     <IconButton onClick={onFindInfo}>
+                        <ContactsIcon/>
+                     </IconButton>
+                  </Tooltip>
+               </div>
+
                <Formdiv>
                   <h3>ID</h3>
                   <TodoInput
@@ -42,8 +58,9 @@ function TodoLogin() {
                                placeholder="비밀번호를 입력하세요"/>
                </Formdiv>
                <ConfirmButton
-                  onClick={() => onClickLoginButton({user_id: inputId, user_pw: inputPw})}>로그인</ConfirmButton>
-               <ConfirmButton onClick={handleClickSignUpButton}>회원가입</ConfirmButton>
+                  onClick={() => onClickLoginButton({user_id: inputId, user_pw: inputPw})}>
+                  확인
+               </ConfirmButton>
             </TodoInputbox>
          </>
       </div>

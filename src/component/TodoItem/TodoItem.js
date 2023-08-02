@@ -1,9 +1,11 @@
 import React from 'react';
 import {MdDelete, MdDone} from 'react-icons/md';
-import BasicModal from "../TodoModal/TodoModal";
 import {BIGBlock, CheckCircle, Remove, Text, TodoItemBlock} from "./style";
 import {useDeleteMutation} from "../../hooks/useDeleteMutation";
 import {useCheckUpdateMutation} from "../../hooks/useUpdateMutation";
+import TodoModal from "../TodoModal/TodoModal";
+
+TodoModal.propTypes = {};
 
 function TodoItem(params) {
    const {mutate: onClickRemove, isLoading2} = useDeleteMutation();
@@ -28,7 +30,7 @@ function TodoItem(params) {
                            <Remove onClick={() => onClickRemove(Todo.id)}>
                               <MdDelete/>
                            </Remove>
-                           <BasicModal id={Todo.id} title={Todo.title} done={Todo.done} memo={Todo.memo} info={Todo.info}/>
+                           <TodoModal id={Todo.id} title={Todo.title} done={Todo.done} memo={Todo.memo} info={Todo.info} dueDate={Todo.dueDate}/>
                         </TodoItemBlock>
                      </li>
                   )
