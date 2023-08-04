@@ -87,7 +87,7 @@ function TodoCreate() {
                      </div>
                   </div>
                   <h2>MEMO</h2>
-                  <CreateInput id={"memo"}
+                  <CreateInput id="memo"
                      value={newTodo.memo}
                          onChange={handleNewTodo}
                          placeholder="할 일에 대한 메모를 입력하세요."
@@ -95,6 +95,9 @@ function TodoCreate() {
                   <Divider/>
                   <h2>CATEGORY</h2>
                   <Select placeholder="카테고리 선택"
+                          id="category"
+                          onChange={handleNewTodo}
+                          value={newTodo.category}
                           indicator={<KeyboardArrowDown/>}
                           sx={{
                              width: 240,

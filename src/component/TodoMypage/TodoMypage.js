@@ -8,8 +8,10 @@ import {Text} from "../TodoItem/style";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {Block, Checklist} from "@mui/icons-material";
 import {useDeleteUserMutation} from "../../hooks/useDeleteUserMutation";
+import {useNavigate} from "react-router-dom";
 
 function TodoMypage(){
+    const navigate = useNavigate();
     const [category, setCategory] = useState("");
     const [newCat, setNewCat] = useState({name: "", priority: 0});
     const {isLoading, data} = useGetCategoryQuery();
@@ -17,6 +19,8 @@ function TodoMypage(){
     const open = Boolean(anchorEl);
     const {mutate: onCreateCategory, isLoading2} = useCreateCategoryMutation(newCat)
     const {mutate: onClickRemove} = useDeleteUserMutation();
+
+    const categoryList = JSON.parse(localStorage.getItem('categoryList'))
     const handleClick = (e)=>{
         setAnchorEl(e.currentTarget);
     }
@@ -27,18 +31,22 @@ function TodoMypage(){
     const handleCategory = (e)=>{
         setCategory(e.target.value);
     }
-    localStorage.setItem('categoryList', JSON.stringify(data?.data));
     const onCreate =()=>{
+        categoryList.push(newCat);
+        JSON.stringify(categoryList);
         onCreateCategory(newCat);
-        localStorage.setItem('categoryList', JSON.stringify(data?.data));
         setCategory('');
         setNewCat({name: "", priority: 0});
     }
-
+    const handleTodo = ()=>{
+        navigate(`/todo/list/?info=${localStorage.getItem('UserId')}`)
+    }
     // const onRemove = ()=>{
     //     onClickRemove()
     // }
+    const handleDropOut = ()=>{
 
+    }
     useEffect(()=>{
         setNewCat({name: category, priority: 0});
     })
@@ -68,13 +76,13 @@ function TodoMypage(){
                             onClose={handleClose}
                             onClick={handleClose}
                         >
-                            <MenuItem>
+                            <MenuItem onClick={handleTodo}>
                                 <ListItemIcon>
                                     <Checklist/>
                                 </ListItemIcon>
                                     TODO LIST 보기
                             </MenuItem>
-                            <MenuItem>
+                            <MenuItem onClick={handleDropOut}>
                                 <ListItemIcon>
                                     <Block/>
                                 </ListItemIcon>
