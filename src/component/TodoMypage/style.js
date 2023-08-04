@@ -32,3 +32,9 @@ export const TodoMypageHead = styled.div `
     color: #000000;
   }
 `
+
+const TodoListBlock = styled.div`
+    padding: 20px 32px;
+    padding-bottom: 225px;
+    overflow-x: auto;
+`;

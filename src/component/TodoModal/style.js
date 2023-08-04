@@ -29,7 +29,8 @@ export const Container = styled.div`
   }
 
   h3 {
-    padding: 0;
+    padding: 12px 0 12px 0;
+    margin: 0;
   }
 `;
 

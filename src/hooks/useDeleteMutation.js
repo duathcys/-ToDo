@@ -1,5 +1,6 @@
 import {useMutation, useQueryClient} from "react-query";
-import {TodoDelete} from "../API/deleteAPI";
+import {TodoDelete} from "../API/todo";
+
 
 export const useDeleteMutation = () => {
    const queryClient = useQueryClient()

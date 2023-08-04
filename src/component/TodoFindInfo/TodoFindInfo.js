@@ -1,4 +1,3 @@
-import {getMyInfo} from "../../API/getMyInfoAPI";
 import React, {useState} from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import {IconButton, Tooltip} from "@mui/material";
@@ -7,13 +6,14 @@ import Swal from "sweetalert2";
 import LoginIcon from "@mui/icons-material/Login";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import {ConfirmButton, Formdiv, Title, TodoInput, TodoInputbox} from "../common";
+import {getMyInfo} from "../../API/user";
 
 
 function TodoFindInfo() {
     const navigate = useNavigate();
     const [inputName, setInputName] = useState('');
 
-    const onLogin = ()=>{
+    const onLogin = ()=> {
         navigate('/user/login/')
     }
     const onSignUp = () =>{

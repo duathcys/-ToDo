@@ -1,5 +1,5 @@
-import { getMyInfo } from "../API/getMyInfoAPI";
 import { useQuery } from "react-query";
+import {getMyInfo} from "../API/user";
 
 
 export const useGetMyInfoQuery = () =>{

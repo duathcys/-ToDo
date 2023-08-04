@@ -27,6 +27,9 @@ function TodoItem(params) {
                            <Text done={Todo.done}>
                               {Todo.title}
                            </Text>
+                            <Text done={Todo.done}>
+                                기한 : {Todo.dueDate}
+                            </Text>
                            <Remove onClick={() => onClickRemove(Todo.id)}>
                               <MdDelete/>
                            </Remove>

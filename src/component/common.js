@@ -86,8 +86,7 @@ export const TodoTemplateBlock = styled.div `
 `;
 
 export const TodoHeadBlock = styled.div`
-  padding: 20px 32px;
-  padding-bottom: 48px;
+  padding: 20px 32px 20px;
 
   h1 {
     margin: 0px;
@@ -102,22 +101,24 @@ export const TodoHeadBlock = styled.div`
     text-align: right;
     color: black;
   }
-  
-  .link{
-    margin:10px;
-    font-size:15px;
+
+  .link {
+    margin: 10px;
+    font-size: 15px;
     text-align: right;
     font-weight: bold;
     display: flex;
     flex-flow: row;
     color: cadetblue;
   }
-  .linkto{
+
+  .linkto {
     align-items: center;
     justify-content: right;
     display: flex;
   }
-  .info{
+
+  .info {
     align-items: center;
     justify-content: right;
     display: flex;
@@ -125,8 +126,15 @@ export const TodoHeadBlock = styled.div`
     color: black;
     font-weight: bold;
   }
-  .text{
-   font-size:11px;
-   font-weight:bold;
-   }
+
+  .text {
+    font-size: 11px;
+    font-weight: bold;
+  }
+`;
+
+export const TodoListBlock = styled.div`
+    padding: 20px 32px;
+    padding-bottom: 225px;
+    overflow-x: auto;
 `;

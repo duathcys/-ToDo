@@ -1,7 +1,7 @@
 import {useMutation} from "react-query";
 import {useNavigate} from "react-router-dom";
-import {doLoginAsync} from "../API/loginAPI";
 import Swal from "sweetalert2";
+import {doLoginAsync} from "../API/user";
 export const useLoginMutation = (inputId) => {
    const navigate = useNavigate();
    return useMutation(doLoginAsync, {

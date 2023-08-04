@@ -1,5 +1,6 @@
 import {useMutation, useQueryClient} from "react-query";
-import {TodoCheckUpdate, TodoUpdate} from "../API/updateAPI";
+import {TodoCheckUpdate, TodoUpdate} from "../API/todo";
+
 
 export const useUpdateMutation = () => {
    const queryClient = useQueryClient()

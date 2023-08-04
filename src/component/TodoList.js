@@ -94,36 +94,36 @@ function TodoList() {
         localStorage.setItem("Left", lefttodos.length);
     }
     return (
-        <TodoListBlock>
-            <>
-                <div style={{display:"flex", flexDirection:"row"}}>
-                    <TextField
-                        variant="standard"
-                        label="Search"
-                        onChange={handleInputChange}
-                        sx={{width: 400}}
-                    />
-                    <IconButton
-                        onClick={onSearch}>
-                        <SearchIcon/>
-                    </IconButton>
-                    <FormControl sx={{m:1, minWidth:120}}>
-                        <InputLabel>선택</InputLabel>
-                        <Select
-                            value={selection}
-                            label="selection"
-                            onChange={handleSelect}
-                            input={<OutlinedInput label="선택"/>}
-                        >
-                            <MenuItem value="All">All</MenuItem>
-                            <MenuItem value="Complete">Complete</MenuItem>
-                            <MenuItem value="Incomplete">Incomplete</MenuItem>
-                        </Select>
-                    </FormControl>
-                </div>
-            </>
-            <TodoItem params={filterlist}/>
-        </TodoListBlock>
+        <>
+            <div style={{display:"flex", flexDirection:"row", paddingLeft:"30px"}}>
+                <TextField
+                    variant="standard"
+                    label="Search"
+                    onChange={handleInputChange}
+                    sx={{width: 400}}
+                />
+                <IconButton
+                    onClick={onSearch}>
+                    <SearchIcon/>
+                </IconButton>
+                <FormControl sx={{m:1,  minWidth:120}} style={{paddingLeft:"30px"}}>
+                    <InputLabel style={{paddingLeft:"30px", fontWeight:"bold"}}>선택</InputLabel>
+                    <Select
+                        value={selection}
+                        label="selection"
+                        onChange={handleSelect}
+                        input={<OutlinedInput label="선택"/>}
+                    >
+                        <MenuItem value="All">All</MenuItem>
+                        <MenuItem value="Complete">Complete</MenuItem>
+                        <MenuItem value="Incomplete">Incomplete</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <TodoListBlock>
+                <TodoItem params={filterlist}/>
+            </TodoListBlock>
+        </>
     );
 }
 
