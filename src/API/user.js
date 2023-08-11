@@ -12,9 +12,10 @@ export const doSignUpAsync = async (data)=>{
 }
 
 
-export const deleteUser = async (id) =>{
-    return axios.delete(`http://localhost:8000/user/auth/${id}`)
-        .then(res => res);
+export const deleteUser = async () =>{
+    return axios.delete(`http://localhost:8000/user/auth/drop/`, {
+        params : {user_id: localStorage.getItem("UserId")}
+    })
 }
 
 export const getMyInfo = ()=> {
