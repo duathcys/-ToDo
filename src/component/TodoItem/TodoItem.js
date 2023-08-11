@@ -19,7 +19,6 @@ function TodoItem(params) {
          <BIGBlock>
              <TodoItemBlock>
                  <CheckCircle/>
-                 <Text>카테고리</Text>
                  <Text>할 일</Text>
                  <Text>기 한</Text>
              </TodoItemBlock>
