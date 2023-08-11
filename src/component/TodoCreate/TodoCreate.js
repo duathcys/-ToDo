@@ -1,14 +1,13 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
 import {CircleButton, CreateButton, CreateInput, InsertForm, InsertFormPositioner} from "./style";
 import {useCreateMutation} from "../../hooks/useCreateMutation";
-import {Checkbox, Divider, MenuItem, Select, selectClasses} from "@mui/material";
+import {Checkbox, Divider, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CustomDatePicker.css';
-import {KeyboardArrowDown} from "@mui/icons-material";
-import Option from '@mui/joy/Option';
+import Swal from "sweetalert2";
 
 
 CreateButton.propTypes = {children: PropTypes.node};
@@ -24,7 +23,6 @@ function TodoCreate() {
    const [dueDate, setDueDate] = useState(new Date());
    const {mutate: onClickAddTodo, isLoading} = useCreateMutation()
    const categoryList = JSON.parse(localStorage.getItem('categoryList'));
-   console.log(categoryList);
    const handleNewTodo = (e)=>{
       const {id, value, checked} = e.target;
       setChecked(e.target.checked);
@@ -32,8 +30,16 @@ function TodoCreate() {
          {...prev, [id]: id === 'done' ? checked : value})
       )
    }
+   const handleCategory = (e)=>{
+      setNewTodo((prev)=>(
+          {...prev, category: e.target.value}
+      ))
+   }
    const onToggle = () => setOpen(!open);
    const handleDateChange =(date)=>{
+      if (date < Date.now()) {
+         Swal.fire('할 일 생성', '기한은 오늘보다 이전일 수 없습니다.', 'warning');
+      }
       const formatDate = date.toISOString().split('T')[0];
       setDueDate(date);
       setNewTodo((prev)=>(
@@ -41,22 +47,10 @@ function TodoCreate() {
       )
    }
    const onCreate = () => {
-      if (todoValidation) {
-         onClickAddTodo(newTodo);
-      }
+      onClickAddTodo(newTodo);
       setOpen(false);
    };
 
-   const todoValidation = () => {
-      if (newTodo.title === "") {
-         console.log('empty title');
-      }
-      if (newTodo.dueDate < Date.now()) {
-         console.log('date before');
-         return false;
-      }
-      return true;
-   };
 
    if (isLoading) return <h2>Loading..</h2>;
 
@@ -94,27 +88,21 @@ function TodoCreate() {
                   />
                   <Divider/>
                   <h2>CATEGORY</h2>
-                  <Select placeholder="카테고리 선택"
-                          id="category"
-                          onChange={handleNewTodo}
-                          value={newTodo.category}
-                          indicator={<KeyboardArrowDown/>}
-                          sx={{
-                             width: 240,
-                             [`& .${selectClasses.indicator}`]: {
-                                transition: '0.2s',
-                                [`&.${selectClasses.expanded}`]: {
-                                   transform: 'rotate(-180deg)',
-                                },
-                             },
-                          }}
+                  <FormControl fullWidth>
+                     <InputLabel>Category</InputLabel>
+                     <Select placeholder="카테고리 선택"
+                                                              id="category"
+                                                              label="category"
+                                                              onChange={handleCategory}
+                                                              value={newTodo.category}
                   >
                      {categoryList.map((category, idx)=>{
                         return (
-                            <MenuItem id={idx} value={category.name}>{category.name}</MenuItem>
+                            <MenuItem value={category.name}>{category.name}</MenuItem>
                         )
                      })}
-                  </Select>
+                     </Select>
+                  </FormControl>
                   <CreateButton onClick={onCreate}
                   >생성
                   </CreateButton>
