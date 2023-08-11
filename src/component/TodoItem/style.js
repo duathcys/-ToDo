@@ -77,11 +77,11 @@ export const CheckCircle = styled.div`
 `;
 
 export const Text = styled.div`
-  width: 200px;
+  width: 160px;
   font-size: 20px;
-  font-weight: bold;
+  //font-weight: bold;
   color: #495057;
-  padding-right: 20px;
+  //padding-right: ;
   border-bottom: black;
   ${props =>
    props.done &&

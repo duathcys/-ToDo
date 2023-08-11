@@ -17,6 +17,12 @@ function TodoItem(params) {
    return (
       <ul>
          <BIGBlock>
+             <TodoItemBlock>
+                 <CheckCircle/>
+                 <Text>카테고리</Text>
+                 <Text>할 일</Text>
+                 <Text>기 한</Text>
+             </TodoItemBlock>
             {params?.params.map((Todo, idx) => {
                   return (
                      <li key={idx} >
@@ -24,11 +30,14 @@ function TodoItem(params) {
                            <CheckCircle done={Todo.done} onClick={()=> onClickUpdate({id: Todo.id, done:!Todo.done})}>
                               {Todo.done && <MdDone/>}
                            </CheckCircle>
+                            <Text>
+                                {Todo.category}
+                            </Text>
                            <Text done={Todo.done}>
                               {Todo.title}
                            </Text>
                             <Text done={Todo.done}>
-                                기한 : {Todo.dueDate}
+                                {Todo.dueDate}
                             </Text>
                            <Remove onClick={() => onClickRemove(Todo.id)}>
                               <MdDelete/>

@@ -69,17 +69,17 @@ export const Formdiv = styled.div`
 `
 
 export const TodoTemplateBlock = styled.div `
-  width: 800px;
-  height: 800px;
+  width: 1500px;
+  height: 870px;
 
   position: relative;
   background: #e0dddd;
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
 
   margin: 0 auto;
 
-  margin-top: 96px;
+  margin-top: 32px;
   margin-bottom: 32px;
   display: flex;
   flex-direction: column;
