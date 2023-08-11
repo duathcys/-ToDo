@@ -1,5 +1,5 @@
 import {TodoHeadBlock, TodoListBlock, TodoTemplateBlock} from "../common";
-import {Divider, IconButton, Input, ListItemIcon, Menu, MenuItem, TextField} from "@mui/material";
+import {Divider, IconButton, ListItemIcon, Menu, MenuItem, TextField} from "@mui/material";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
@@ -7,47 +7,51 @@ import {useCreateCategoryMutation} from "../../hooks/useCreateMutation";
 import {Text} from "../TodoItem/style";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {Block, Checklist} from "@mui/icons-material";
-import {useDeleteUserMutation} from "../../hooks/useDeleteUserMutation";
 import {useNavigate} from "react-router-dom";
+import Swal from "sweetalert2";
+import {deleteUser} from "../../API/user";
 
-function TodoMypage(){
+function TodoMypage() {
     const navigate = useNavigate();
     const [category, setCategory] = useState("");
     const [newCat, setNewCat] = useState({name: "", priority: 0});
     const {isLoading, data} = useGetCategoryQuery();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const {mutate: onCreateCategory, isLoading2} = useCreateCategoryMutation(newCat)
-    const {mutate: onClickRemove} = useDeleteUserMutation();
+    const {mutate: onCreateCategory, isLoading2} = useCreateCategoryMutation(newCat);
 
     const categoryList = JSON.parse(localStorage.getItem('categoryList'))
-    const handleClick = (e)=>{
+    const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
     }
-    const handleClose =()=>{
+    const handleClose = () => {
         setAnchorEl(null);
     }
 
-    const handleCategory = (e)=>{
+    const handleCategory = (e) => {
         setCategory(e.target.value);
     }
-    const onCreate =()=>{
+    const onCreate = () => {
         categoryList.push(newCat);
         JSON.stringify(categoryList);
         onCreateCategory(newCat);
         setCategory('');
         setNewCat({name: "", priority: 0});
     }
-    const handleTodo = ()=>{
+    const handleTodo = () => {
         navigate(`/todo/list/?info=${localStorage.getItem('UserId')}`)
     }
-    // const onRemove = ()=>{
-    //     onClickRemove()
-    // }
-    const handleDropOut = ()=>{
+    const handleDropOut = () => {
+        deleteUser().then(
+            Swal.fire('회원 탈퇴 완료', '회원 탈퇴가 되었습니다.', 'success')
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        navigate('/');
+                    }
+                }));
+    };
 
-    }
-    useEffect(()=>{
+    useEffect(() => {
         setNewCat({name: category, priority: 0});
     })
 
@@ -67,7 +71,7 @@ function TodoMypage(){
                             aria-haspopup="true"
                             onClick={handleClick}
                         >
-                            <MoreVertIcon />
+                            <MoreVertIcon/>
                         </IconButton>
                         <Menu
                             anchorEl={anchorEl}
@@ -80,7 +84,7 @@ function TodoMypage(){
                                 <ListItemIcon>
                                     <Checklist/>
                                 </ListItemIcon>
-                                    TODO LIST 보기
+                                TODO LIST 보기
                             </MenuItem>
                             <MenuItem onClick={handleDropOut}>
                                 <ListItemIcon>
@@ -143,19 +147,6 @@ function TodoMypage(){
                 <button onClick={onCreate}>생성</button>
                 <Divider/>
             </TodoListBlock>
-            {/*<ul>*/}
-            {/*    <li>*/}
-            {/*        Total :*/}
-            {/*        {localStorage.getItem("Total")} 개*/}
-            {/*    </li>*/}
-            {/*    <li>*/}
-            {/*        Left :*/}
-            {/*        {localStorage.getItem("Left")} 개*/}
-            {/*    </li>*/}
-            {/*    <li>*/}
-            {/*        아바타 꾸미기*/}
-            {/*    </li>*/}
-            {/*</ul>*/}
         </TodoTemplateBlock>
     );
 
