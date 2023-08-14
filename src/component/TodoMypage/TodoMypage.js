@@ -1,5 +1,5 @@
 import {TodoHeadBlock, TodoListBlock, TodoTemplateBlock} from "../common";
-import {Divider, IconButton, ListItemIcon, Menu, MenuItem, TextField} from "@mui/material";
+import {Button, Divider, IconButton, ListItemIcon, Menu, MenuItem, TextField} from "@mui/material";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
@@ -10,6 +10,7 @@ import {Block, Checklist} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import {deleteUser} from "../../API/user";
+import {ReportBlock, TextBlock, textBlock} from "./style";
 
 function TodoMypage() {
     const navigate = useNavigate();
@@ -50,6 +51,10 @@ function TodoMypage() {
                     }
                 }));
     };
+
+    const handleUpdateInfo = ()=>{
+
+    }
 
     useEffect(() => {
         setNewCat({name: category, priority: 0});
@@ -98,30 +103,43 @@ function TodoMypage() {
                 </div>
             </TodoHeadBlock>
             <TodoListBlock>
-                <h2>TODAY REPORT</h2>
-                <div style={{display: "flex", flexDirection: "column"}}>
-                    <text>기한 일주일 미만</text>
-                    <text>오늘 등록한 TODO</text>
-                    <text>어제 등록한 TODO</text>
-                </div>
-                <Divider/>
-                <h2>회원 정보 수정</h2>
-                <div>
-                    <TextField name="nickname"
-                               defaultValue="example"
-                               variant="standard"
-                               label="Nickname"/>
-                    <TextField disabled
-                               name="userId"
-                               defaultValue={localStorage.getItem("UserId")}
-                               variant="standard"
-                               label="ID"/>
-                    <TextField name="password"
-                               variant="standard"
-                               label="Password"/>
-                    <TextField name="password"
-                               variant="standard"
-                               label="PasswordConfirm"/>
+                <div style={{display:"flex", flexDirection: "row"}}>
+                    <div style={{display:"flex", flexDirection:"column"}}>
+                        <h2>TODAY REPORT</h2>
+                        <TextBlock>
+                            <h4>기한 일주일 미만 : </h4>
+                            <h4>오늘 등록한 TODO : {localStorage.getItem('Today')} (개)</h4>
+                            <h4>어제 등록한 TODO : </h4>
+                            <h4>총 TODO : {localStorage.getItem('Total')} (개)</h4>
+                            <h4>남은 TODO : {localStorage.getItem('Left')} (개)</h4>
+                        </TextBlock>
+                    </div>
+                    <Divider/>
+                    <div>
+                        <h2>회원 정보 수정</h2>
+                        <TextBlock style={{display:"flex", flexDirection:"column"}}>
+                            <TextField name="nickname"
+                                       defaultValue="example"
+                                       variant="standard"
+                                       label="Nickname"
+                                       style={{width:"200px", margin:"10px"}}/>
+                            <TextField disabled
+                                       name="userId"
+                                       defaultValue={localStorage.getItem("UserId")}
+                                       variant="standard"
+                                       label="ID"
+                                       style={{width:"200px", margin:"10px"}}/>
+                            <TextField name="password"
+                                       variant="standard"
+                                       label="Password"
+                                       style={{width:"200px", margin:"10px"}}/>
+                            <TextField name="password"
+                                       variant="standard"
+                                       label="PasswordConfirm"
+                                       style={{width:"200px", margin:"10px"}}/>
+                            <Button style={{width: "150px"}} onClick={handleUpdateInfo}>저 장</Button>
+                        </TextBlock>
+                    </div>
                 </div>
                 <Divider/>
                 <h2>카테고리 편집</h2>
@@ -135,7 +153,7 @@ function TodoMypage() {
                         </li>
                     )
                 })}
-                <TextField value={category} onChange={handleCategory}/>
+                <TextField value={category} onChange={handleCategory} variant="standard"/>
                 {/*<Select>*/}
                 {/*    <Option value={category.prior}>0</Option>*/}
                 {/*    <Option value={category.prior}>1</Option>*/}

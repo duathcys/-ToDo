@@ -51,24 +51,30 @@ function TodoList() {
         setDoneList(doneFilter);
         setUnDoneList(unDoneFilter);
     }
+    const handleSelect = (e) => {
+        setSelection(e.target.value);
+    }
 
-
+    console.log(selection);
     const applyFilter = () => {
-        if (searchTerm === "") {
-            doneFilter = data?.data.filter((todo) => todo.done === true);
-            unDoneFilter = data?.data.filter((todo) => todo.done === false);
-        } else if(searchTerm !== "") {
+        // if (searchTerm === "") {
+        //     doneFilter = data?.data.filter((todo) => todo.done === true);
+        //     unDoneFilter = data?.data.filter((todo) => todo.done === false);
+        // } else
+        if(searchTerm !== "") {
             doneFilter = data?.data.filter((todo) => todo.done === true && todo.title.includes(searchTerm));
             unDoneFilter = data?.data.filter((todo) => todo.done === false && todo.title.includes(searchTerm));
         }
-
+        if (selection !== "") {
+            doneFilter = doneFilter?.filter((todo) => todo.category === selection);
+            unDoneFilter = unDoneFilter?.filter((todo) => todo.category === selection);
+        }
+        console.log(doneFilter);
+        console.log(unDoneFilter);
         setDoneList(doneFilter);
         setUnDoneList(unDoneFilter);
     };
-    const handleSelect = (e) => {
-        setSelection(e.target.value);
-        console.log(e.target.value);
-    }
+
 
     useEffect(() => {
         return history.listen((location) => {
@@ -90,7 +96,7 @@ function TodoList() {
         if (data?.data) {
             applyFilter();
         }
-    }, [data])
+    }, [data, selection])
 
     if (isLoading) {
         return <div>Waiting</div>;
@@ -98,8 +104,11 @@ function TodoList() {
     if (isSuccess) {
         let totalTodos = data?.data;
         let leftTodos = data?.data.filter((todo) => todo.done === false);
+        let TodayDate = Date.now();
+        let todayTodos = data?.data.filter((todo) => Date(todo.createAt) === Date(TodayDate));
         localStorage.setItem("Total", totalTodos.length);
         localStorage.setItem("Left", leftTodos.length);
+        localStorage.setItem("Today", todayTodos.length);
     }
     return (
         <>
@@ -114,8 +123,8 @@ function TodoList() {
                     onClick={onSearch}>
                     <SearchIcon/>
                 </IconButton>
-                <FormControl sx={{m: 1, minWidth: 120}} style={{paddingLeft: "30px"}}>
-                    <InputLabel style={{paddingLeft: "30px", fontWeight: "bold"}}>선택</InputLabel>
+                <FormControl sx={{m: 1, minWidth: 120}}>
+                    <InputLabel style={{fontWeight: "bold"}}>선택</InputLabel>
                     <Select
                         value={selection}
                         label="selection"
@@ -133,12 +142,12 @@ function TodoList() {
             <div style={{display: "flex", flexDirection: "row", alignContent: "center", justifyContent: "center"}}>
                 <Block>
                     <h1>해야할 일</h1>
-                    <TodoItem params={doneList}/>
+                    <TodoItem params={unDoneList}/>
                 </Block>
                 <Divider sx={{borderColor: "black"}}/>
                 <Block>
                     <h1>완료한 일</h1>
-                    <TodoItem params={unDoneList}/>
+                    <TodoItem params={doneList}/>
                 </Block>
             </div>
         </>

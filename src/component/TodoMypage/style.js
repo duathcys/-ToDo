@@ -38,3 +38,21 @@ const TodoListBlock = styled.div`
     padding-bottom: 225px;
     overflow-x: auto;
 `;
+
+export const TextBlock = styled.form`
+  //display: flex;
+  //flex-direction: column;
+  border-radius: 5px;
+  width: 500px;
+  height: 300px;
+  
+  border: 1px solid grey;
+  padding: 10px;
+  margin-bottom: 15px;
+
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+;
+`

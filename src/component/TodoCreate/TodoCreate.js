@@ -27,7 +27,7 @@ function TodoCreate() {
       const {id, value, checked} = e.target;
       setChecked(e.target.checked);
       setNewTodo((prev)=>(
-         {...prev, [id]: id === 'done' ? checked : value})
+          {...prev, [id]: id === 'done' ? checked : value})
       )
    }
    const handleCategory = (e)=>{
@@ -48,74 +48,77 @@ function TodoCreate() {
    }
    const onCreate = () => {
       onClickAddTodo(newTodo);
+      setNewTodo({
+         title: "", done: false, memo: "", info: user_id,
+         dueDate: "", category: ""
+      });
       setOpen(false);
    };
 
 
    if (isLoading) return <h2>Loading..</h2>;
-
    return (
-      <>
-         {open && (
-            <InsertFormPositioner>
-               <InsertForm form={open.toString()}>
-                  <h1>Create Todo</h1>
-                  <h2>TITLE</h2>
-                  <CreateInput id={"title"}
-                     value={newTodo.title}
-                         onChange={handleNewTodo}
-                         placeholder="할 일을 입력하세요."
-                  />
-                  <div style={{display:"flex", flexDirection: "row"}}>
-                     <h2>COMPLETE</h2>
-                     <Checkbox id={"done"}
-                               label={"Yes"}
-                               value={newTodo.done}
-                               onChange={handleNewTodo}
-                               checked={checked}
-                               inputProps={{'aria-label':'controlled'}}
-                     />
-                     <h2>Due Date</h2>
-                     <div style={{display:"flex", padding:"10px"}}>
-                        <DatePicker selected={dueDate} onChange={handleDateChange}/>
-                     </div>
-                  </div>
-                  <h2>MEMO</h2>
-                  <CreateInput id="memo"
-                     value={newTodo.memo}
-                         onChange={handleNewTodo}
-                         placeholder="할 일에 대한 메모를 입력하세요."
-                  />
-                  <Divider/>
-                  <h2>CATEGORY</h2>
-                  <FormControl fullWidth>
-                     <InputLabel>Category</InputLabel>
-                     <Select placeholder="카테고리 선택"
-                                                              id="category"
-                                                              label="category"
-                                                              onChange={handleCategory}
-                                                              value={newTodo.category}
-                  >
-                     {categoryList.map((category, idx)=>{
-                        return (
-                            <MenuItem value={category.name}>{category.name}</MenuItem>
-                        )
-                     })}
-                     </Select>
-                  </FormControl>
-                  <CreateButton onClick={onCreate}
-                  >생성
-                  </CreateButton>
-               </InsertForm>
-            </InsertFormPositioner>
-         )}
-         <CircleButton
-            onClick={onToggle}
-            open={open}
-         >
-            <MdAdd/>
-         </CircleButton>
-      </>
+       <>
+          {open && (
+              <InsertFormPositioner>
+                 <InsertForm form={open.toString()}>
+                    <h1>Create Todo</h1>
+                    <h2>TITLE</h2>
+                    <CreateInput id={"title"}
+                                 value={newTodo.title}
+                                 onChange={handleNewTodo}
+                                 placeholder="할 일을 입력하세요."
+                    />
+                    <div style={{display:"flex", flexDirection: "row"}}>
+                       <h2>COMPLETE</h2>
+                       <Checkbox id={"done"}
+                                 label={"Yes"}
+                                 value={newTodo.done}
+                                 onChange={handleNewTodo}
+                                 checked={checked}
+                                 inputProps={{'aria-label':'controlled'}}
+                       />
+                       <h2>Due Date</h2>
+                       <div style={{display:"flex", padding:"10px"}}>
+                          <DatePicker selected={dueDate} onChange={handleDateChange}/>
+                       </div>
+                    </div>
+                    <h2>MEMO</h2>
+                    <CreateInput id="memo"
+                                 value={newTodo.memo}
+                                 onChange={handleNewTodo}
+                                 placeholder="할 일에 대한 메모를 입력하세요."
+                    />
+                    <Divider/>
+                    <h2>CATEGORY</h2>
+                    <FormControl fullWidth>
+                       <InputLabel>Category</InputLabel>
+                       <Select placeholder="카테고리 선택"
+                               id="category"
+                               label="category"
+                               onChange={handleCategory}
+                               value={newTodo.category}
+                       >
+                          {categoryList.map((category, idx)=>{
+                             return (
+                                 <MenuItem value={category.name}>{category.name}</MenuItem>
+                             )
+                          })}
+                       </Select>
+                    </FormControl>
+                    <CreateButton onClick={onCreate}
+                    >생성
+                    </CreateButton>
+                 </InsertForm>
+              </InsertFormPositioner>
+          )}
+          <CircleButton
+              onClick={onToggle}
+              open={open}
+          >
+             <MdAdd/>
+          </CircleButton>
+       </>
    );
 }
 
