@@ -5,6 +5,7 @@ import history from "./TodoCheck";
 import {Divider, FormControl, IconButton, InputLabel, MenuItem, OutlinedInput, Select, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {useGetDataQuery} from "../hooks/useGetDataQuery";
+import {useGetCategoryQuery} from "../hooks/useGetCategoryQuery";
 
 const TodoListBlock = styled.div`
     padding: 20px 32px;
@@ -17,13 +18,9 @@ const Block = styled.form`
   flex-direction: column;
   width: 800px;
   height: 500px;
-  //padding: 50px;
   margin: 10px;
-  //border: 1px solid;
   border-radius: 8px;
   box-shadow: #282c34;
-  //justify-content: center;
-  //align-content: center;
   h1 {
     font-size: 20px;
     text-align: center;
@@ -35,48 +32,43 @@ function TodoList() {
     const {isLoading, isSuccess, data} = useGetDataQuery();
     const [locationKeys, setLocationKeys] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [filterlist, setFilterlist] = useState([]);
-    const [done, setDone] = useState({complete: true, use: false});
     const [selection, setSelection] = useState('');
     const [doneList, setDoneList] = useState([]);
     const [unDoneList, setUnDoneList] = useState([]);
+    const {data:categoryData} = useGetCategoryQuery();
 
     const handleInputChange = (e) => {
         setSearchTerm(e.target.value);
     }
-    // let filterData = data?.data;
-    // let doneData = dat
 
+    let doneFilter = data?.data.filter((todo) => todo.done === true);
+    let unDoneFilter = data?.data.filter((todo) => todo.done === false);
     const onSearch = () => {
         if (searchTerm !== '') {
-            setDoneList(doneList.filter((todo) => todo.title.includes(searchTerm)));
-            setUnDoneList(unDoneList.filter((todo) => todo.title.includes(searchTerm)));
-            // setFilterlist(filterData)
+            doneFilter = data?.data.filter((todo) => todo.done === true && todo.title.includes(searchTerm));
+            unDoneFilter = data?.data.filter((todo) => todo.done === false && todo.title.includes(searchTerm));
         }
-        // else {
-        //    setFilterlist(
-        //       data?.data.filter((todo) => todo.title.includes(searchTerm)));
-        // }
+        setDoneList(doneFilter);
+        setUnDoneList(unDoneFilter);
     }
+
+
     const applyFilter = () => {
-        if (searchTerm !== "") {
-            setDoneList(doneList.filter((todo) => todo.title.includes(searchTerm)));
-            setUnDoneList(unDoneList.filter((todo) => todo.title.includes(searchTerm)));
+        if (searchTerm === "") {
+            doneFilter = data?.data.filter((todo) => todo.done === true);
+            unDoneFilter = data?.data.filter((todo) => todo.done === false);
+        } else if(searchTerm !== "") {
+            doneFilter = data?.data.filter((todo) => todo.done === true && todo.title.includes(searchTerm));
+            unDoneFilter = data?.data.filter((todo) => todo.done === false && todo.title.includes(searchTerm));
         }
-        // if (done.use === true) {
-        //     console.log('ioisjdf');
-        //     filterData = filterData.filter((todo) => todo.done === done.complete);
-        // }
-        // setFilterlist(filterData);
+
+        setDoneList(doneFilter);
+        setUnDoneList(unDoneFilter);
     };
     const handleSelect = (e) => {
         setSelection(e.target.value);
+        console.log(e.target.value);
     }
-
-    useEffect(() => {
-        setDoneList(data?.data.filter((todo) => todo.done === true));
-        setUnDoneList(data?.data.filter((todo) => todo.done === false));
-    }, [doneList, unDoneList])
 
     useEffect(() => {
         return history.listen((location) => {
@@ -98,28 +90,16 @@ function TodoList() {
         if (data?.data) {
             applyFilter();
         }
-    }, [data, done])
-
-    useEffect(() => {
-
-        if (selection === 'Complete') {
-            setDone({complete: true, use: true});
-        } else if (selection === 'Incomplete') {
-            setDone({complete: false, use: true});
-        } else if (selection === 'All') {
-            setDone({complete: false, use: false})
-        }
-        console.log(done);
-    }, [selection, done.complete, done.use]);
+    }, [data])
 
     if (isLoading) {
         return <div>Waiting</div>;
     }
     if (isSuccess) {
-        let totaltodos = data?.data;
-        let lefttodos = data?.data.filter((todo) => todo.done === false);
-        localStorage.setItem("Total", totaltodos.length);
-        localStorage.setItem("Left", lefttodos.length);
+        let totalTodos = data?.data;
+        let leftTodos = data?.data.filter((todo) => todo.done === false);
+        localStorage.setItem("Total", totalTodos.length);
+        localStorage.setItem("Left", leftTodos.length);
     }
     return (
         <>
@@ -142,16 +122,14 @@ function TodoList() {
                         onChange={handleSelect}
                         input={<OutlinedInput label="선택"/>}
                     >
-                        <MenuItem value="All">All</MenuItem>
-                        <MenuItem value="Complete">Complete</MenuItem>
-                        <MenuItem value="Incomplete">Incomplete</MenuItem>
+                        {categoryData?.data.map((cat)=>{
+                            return (
+                                    <MenuItem value={cat.name}>{cat.name}</MenuItem>
+                                )
+                        })}
                     </Select>
                 </FormControl>
             </div>
-            {/*//     <TodoListBlock>*/}
-            {/*//         <TodoItem params={filterlist}/>*/}
-            {/*//     </TodoListBlock>*/}
-            {/*// </>*/}
             <div style={{display: "flex", flexDirection: "row", alignContent: "center", justifyContent: "center"}}>
                 <Block>
                     <h1>해야할 일</h1>
