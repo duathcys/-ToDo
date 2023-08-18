@@ -55,7 +55,6 @@ function TodoList() {
         setSelection(e.target.value);
     }
 
-    console.log(selection);
     const applyFilter = () => {
         // if (searchTerm === "") {
         //     doneFilter = data?.data.filter((todo) => todo.done === true);
@@ -69,8 +68,6 @@ function TodoList() {
             doneFilter = doneFilter?.filter((todo) => todo.category === selection);
             unDoneFilter = unDoneFilter?.filter((todo) => todo.category === selection);
         }
-        console.log(doneFilter);
-        console.log(unDoneFilter);
         setDoneList(doneFilter);
         setUnDoneList(unDoneFilter);
     };
@@ -106,9 +103,9 @@ function TodoList() {
         let leftTodos = data?.data.filter((todo) => todo.done === false);
         let TodayDate = Date.now();
         let todayTodos = data?.data.filter((todo) => Date(todo.createAt) === Date(TodayDate));
-        localStorage.setItem("Total", totalTodos.length);
-        localStorage.setItem("Left", leftTodos.length);
-        localStorage.setItem("Today", todayTodos.length);
+        localStorage.setItem("Total", JSON.stringify(totalTodos));
+        localStorage.setItem("Left", JSON.stringify(leftTodos));
+        localStorage.setItem("Today", JSON.stringify(todayTodos));
     }
     return (
         <>

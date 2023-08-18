@@ -40,19 +40,50 @@ const TodoListBlock = styled.div`
 `;
 
 export const TextBlock = styled.form`
-  //display: flex;
-  //flex-direction: column;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  //border-radius: 5px;
   width: 500px;
   height: 300px;
-  
-  border: 1px solid grey;
-  padding: 10px;
-  margin-bottom: 15px;
+
+  //border: 1px solid grey;
+  padding: 20px;
+  margin: 20px;
+  //margin-bottom: 15px;
+  align-content: center;
+  justify-content: center;
 
   h4 {
     font-size: 20px;
     font-weight: bold;
+    margin: 15px;
+    &:hover{
+      cursor:pointer;
+    }
+  }
+;
+`
+export const DetailBlock = styled.form`
+  display: flex;
+  flex-direction: column;
+  //border-radius: 5px;
+  width: 500px;
+  height: 300px;
+
+  //border: 1px solid grey;
+  padding: 20px;
+  margin: 20px;
+  //margin-bottom: 15px;
+  align-content: center;
+  justify-content: center;
+
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px;
+    &:hover{
+      cursor:pointer;
+    }
   }
 ;
 `

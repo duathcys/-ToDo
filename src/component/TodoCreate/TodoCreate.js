@@ -89,7 +89,6 @@ function TodoCreate() {
                                  onChange={handleNewTodo}
                                  placeholder="할 일에 대한 메모를 입력하세요."
                     />
-                    <Divider/>
                     <h2>CATEGORY</h2>
                     <FormControl fullWidth>
                        <InputLabel>Category</InputLabel>

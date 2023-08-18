@@ -135,6 +135,8 @@ export const TodoHeadBlock = styled.div`
 
 export const TodoListBlock = styled.div`
     padding: 20px 32px;
-    padding-bottom: 225px;
     overflow-x: auto;
+  h2 {
+    text-align: center;
+  }
 `;
