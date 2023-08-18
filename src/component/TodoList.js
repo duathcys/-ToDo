@@ -56,15 +56,11 @@ function TodoList() {
     }
 
     const applyFilter = () => {
-        // if (searchTerm === "") {
-        //     doneFilter = data?.data.filter((todo) => todo.done === true);
-        //     unDoneFilter = data?.data.filter((todo) => todo.done === false);
-        // } else
         if(searchTerm !== "") {
             doneFilter = data?.data.filter((todo) => todo.done === true && todo.title.includes(searchTerm));
             unDoneFilter = data?.data.filter((todo) => todo.done === false && todo.title.includes(searchTerm));
         }
-        if (selection !== "") {
+        if (selection !== "" && selection !== "전체") {
             doneFilter = doneFilter?.filter((todo) => todo.category === selection);
             unDoneFilter = unDoneFilter?.filter((todo) => todo.category === selection);
         }
@@ -128,6 +124,7 @@ function TodoList() {
                         onChange={handleSelect}
                         input={<OutlinedInput label="선택"/>}
                     >
+                        <MenuItem value="전체">전체</MenuItem>
                         {categoryData?.data.map((cat)=>{
                             return (
                                     <MenuItem value={cat.name}>{cat.name}</MenuItem>
