@@ -17,7 +17,7 @@ CreateButton.propTypes = {children: PropTypes.node};
 function TodoCreate() {
    const user_id = localStorage.getItem("UserId")
    const [open, setOpen] = useState(false);
-   const [newTodo, setNewTodo] = useState({title: "", done: false, memo:"", info:user_id,
+   const [newTodo, setNewTodo] = useState({title: "", done: false, memo:null, info:user_id,
       dueDate:"", category:""});
    const [checked, setChecked] = useState(false);
    const [dueDate, setDueDate] = useState(new Date());
