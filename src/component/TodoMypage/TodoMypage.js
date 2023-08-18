@@ -3,7 +3,7 @@ import {FormControl, IconButton, InputLabel, ListItemIcon, Menu, MenuItem, Selec
 import * as React from "react";
 import {useState} from "react";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {Block, Checklist} from "@mui/icons-material";
+import {Block, Checklist, Logout} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import {deleteUser} from "../../API/user";
@@ -36,6 +36,22 @@ export default function TodoMypage() {
                         navigate('/');
                     }
                 }));
+    };
+
+    const handleLogOut = () => {
+        Swal.fire({
+            title: 'LOGOUT',
+            text: '정말 로그아웃 하시겠습니까?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: '로그아웃'
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.clear();
+                    navigate("/user/login");
+                }
+            });
     };
 
     return (
@@ -74,6 +90,12 @@ export default function TodoMypage() {
                                     <Block/>
                                 </ListItemIcon>
                                 회원 탈퇴
+                            </MenuItem>
+                            <MenuItem onClick={handleLogOut}>
+                                <ListItemIcon>
+                                    <Logout/>
+                                </ListItemIcon>
+                                로그아웃
                             </MenuItem>
                         </Menu>
                     </div>
