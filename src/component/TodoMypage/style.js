@@ -44,8 +44,9 @@ export const TextBlock = styled.form`
   flex-direction: column;
   //border-radius: 5px;
   width: 500px;
-  height: 300px;
-
+  height: auto;
+  min-height: 300px;
+  
   //border: 1px solid grey;
   padding: 20px;
   margin: 20px;
@@ -57,8 +58,9 @@ export const TextBlock = styled.form`
     font-size: 20px;
     font-weight: bold;
     margin: 15px;
-    &:hover{
-      cursor:pointer;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 ;

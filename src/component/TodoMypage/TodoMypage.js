@@ -9,12 +9,18 @@ import Swal from "sweetalert2";
 import {deleteUser} from "../../API/user";
 import TodoChangeInfo from "./TodoChangeInfo";
 import TodoReport from "./TodoReport";
+import TodoCategory from "./TodoCategory";
 
 export default function TodoMypage() {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const [selection, setSelection] = useState('');
+    const [selection, setSelection] = useState('report');
+    const componentsBySelection = {
+        report: <TodoReport/>,
+        info: <TodoChangeInfo/>,
+        category: <TodoCategory/>
+    }
 
     const handleMenu = (e) => {
         setSelection(e.target.value);
@@ -102,7 +108,7 @@ export default function TodoMypage() {
                     {localStorage.getItem("UserId")}님
                 </div>
             </TodoHeadBlock>
-            <FormControl sx={{m:3, width: 300}}>
+            <FormControl sx={{m: 3, width: 300}}>
                 <InputLabel>메뉴 선택</InputLabel>
                 <Select placeholder="메뉴 선택"
                         id="selection"
@@ -111,11 +117,11 @@ export default function TodoMypage() {
                         value={selection}
                         defaultValue="report">
                     <MenuItem value="report">Today Report</MenuItem>
-                    <MenuItem value="upInfo">닉네임 및 아바타 수정</MenuItem>
-                    <MenuItem value="upPass">비밀번호 수정</MenuItem>
+                    <MenuItem value="info">회원정보 수정</MenuItem>
+                    <MenuItem value="category">카테고리 편집</MenuItem>
                 </Select>
             </FormControl>
-            {selection === "report" ? <TodoReport/> : <TodoChangeInfo/>}
+            {componentsBySelection[selection] || null}
         </TodoTemplateBlock>
     );
 

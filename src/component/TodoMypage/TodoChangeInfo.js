@@ -4,6 +4,7 @@ import * as React from "react";
 import {useState} from "react";
 import Swal from "sweetalert2";
 import {updateMyInfo} from "../../API/user";
+import {TodoListBlock} from "../common";
 
 export default function TodoChangeInfo() {
 
@@ -34,7 +35,7 @@ export default function TodoChangeInfo() {
         }
     }
     return (
-        <div>
+        <TodoListBlock>
             <h2>회원 정보 수정</h2>
             <TextBlock style={{display:"flex", flexDirection:"column"}}>
                 <TextField name="nickname"
@@ -69,7 +70,6 @@ export default function TodoChangeInfo() {
                            onChange={handleNewPwConfirm}/>
                 <Button style={{width: "150px"}} onClick={handleUpdateInfo}>저 장</Button>
             </TextBlock>
-        </div>
-
+        </TodoListBlock>
     );
 };

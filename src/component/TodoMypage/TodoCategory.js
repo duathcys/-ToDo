@@ -4,11 +4,13 @@ import * as React from "react";
 import {useCreateCategoryMutation} from "../../hooks/useCreateMutation";
 import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
 import {useEffect, useState} from "react";
+import {TodoListBlock} from "../common";
+import {TextBlock} from "./style";
 
 export default function TodoCategory() {
-    const {mutate: onCreateCategory, isLoading2} = useCreateCategoryMutation(newCat);
     const {isLoading, data} = useGetCategoryQuery();
-    const [newCat, setNewCat] = useState({name: "", priority: 0});
+    const [newCat, setNewCat] = useState({name: ""});
+    const {mutate: onCreateCategory, isLoading2} = useCreateCategoryMutation(newCat);
     const [category, setCategory] = useState("");
 
     const categoryList = JSON.parse(localStorage.getItem('categoryList'))
@@ -21,31 +23,27 @@ export default function TodoCategory() {
         JSON.stringify(categoryList);
         onCreateCategory(newCat);
         setCategory('');
-        setNewCat({name: "", priority: 0});
+        setNewCat({name: ""});
     }
 
     useEffect(() => {
-        setNewCat({name: category, priority: 0});
+        setNewCat({name: category});
     })
     return (
-        <>
+        <TodoListBlock>
             <h2>카테고리 편집</h2>
+            <TextBlock>
             {
                 data?.data.map((Cat, idx) => {
                     return (
-                        <li key={idx}>
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                <Text>{Cat.name}</Text>
-                                <Text>{Cat.priority}</Text>
-                            </div>
-                        </li>
+                        <h4>{Cat.name}</h4>
                     )
                 })
             }
             <TextField value={category} onChange={handleCategory} variant="standard"/>
             <button onClick={onCreate}>생성</button>
-            <Divider/>
-        </>
-
-)
+            {/*<Divider/>*/}
+        </TextBlock>
+        </TodoListBlock>
+        )
 };
