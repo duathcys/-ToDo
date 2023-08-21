@@ -15,7 +15,7 @@ export default function TodoMypage() {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const [selection, setSelection] = useState('report');
+    const [selection, setSelection] = useState('');
     const componentsBySelection = {
         report: <TodoReport/>,
         info: <TodoChangeInfo/>,

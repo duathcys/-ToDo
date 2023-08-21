@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CustomDatePicker.css';
 import Swal from "sweetalert2";
+import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
 
 
 CreateButton.propTypes = {children: PropTypes.node};
@@ -22,7 +23,8 @@ function TodoCreate() {
    const [checked, setChecked] = useState(false);
    const [dueDate, setDueDate] = useState(new Date());
    const {mutate: onClickAddTodo, isLoading} = useCreateMutation()
-   const categoryList = JSON.parse(localStorage.getItem('categoryList'));
+   // const categoryList = JSON.parse(localStorage.getItem('categoryList'));
+   const {data: categoryList} = useGetCategoryQuery();
    const handleNewTodo = (e)=>{
       const {id, value, checked} = e.target;
       setChecked(e.target.checked);

@@ -11,9 +11,9 @@ import '../../CustomDatePicker.css';
 const TodoModal = (props) => {
    const [modalOpen, setModalOpen] = useState(false);
    const {isLoading, data} = useGetDataQuery();
-   const [inputValue, setInputValue] = useState({title: props.title, done: props.done, memo: props.memo, info:props.info, dueDate:''});
+   const [inputValue, setInputValue] = useState({title: props.title, done: props.done, memo: props.memo, info:props.info, dueDate:props.dueDate});
    const [checked, setChecked] = useState(props.done);
-   const {mutate: updateTodo, isSuccess, isLoading2} = useUpdateMutation();
+   const {mutate: updateTodo, isSuccess} = useUpdateMutation();
    const [dueDate, setDueDate] = useState(new Date());
 
    const handleDateChange =(date)=>{

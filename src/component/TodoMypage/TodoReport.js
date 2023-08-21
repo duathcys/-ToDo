@@ -42,9 +42,6 @@ export default function TodoReport(){
                     <h4 onClick={onClickButton} id="unFinish">남은 TODO : {leftTodo.length} (개)</h4>
                 </TextBlock>
                 <DetailBlock>
-                    {/*<h4>할  일</h4>*/}
-                    {/*<h4>기  한</h4>*/}
-                    {/*<h4>분  류</h4>*/}
                     {data?.map((todo)=>{
                         return(
                             <>

@@ -28,7 +28,6 @@ function TodoFindInfo() {
         navigate('/');
     }
     const handleSubmit = () => {
-        localStorage.setItem("nickname", inputName);
         getMyInfo().then((res)=>{
             if (!res.error) {
                 Swal.fire({
