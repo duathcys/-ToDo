@@ -3,11 +3,7 @@ import axios from "axios";
 
 const TodoChange = (id)=>{
    return axios.put(`http://localhost:8000/todo/list/${id}`)
-      .then(res => {
-         console.log(id)
-         console.log(res);
-         console.log(res.data);
-      })
+      .then(res => res)
 }
 
 const TodoInfo = () => {

@@ -26,6 +26,6 @@ export const getMyInfo = ()=> {
 
 export const updateMyInfo = (data)=>{
     return axios.put(`http://localhost:8000/user/auth/`, data, {
-        params : {user_id: localStorage.getItem("UserId")}
-    })
+        params: {user_id: localStorage.getItem("UserId")}
+    });
 }

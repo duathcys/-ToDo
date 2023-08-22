@@ -3,7 +3,7 @@ import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
 import {CircleButton, CreateButton, CreateInput, InsertForm, InsertFormPositioner} from "./style";
 import {useCreateMutation} from "../../hooks/useCreateMutation";
-import {Checkbox, Divider, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import {Checkbox, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CustomDatePicker.css';
@@ -23,7 +23,6 @@ function TodoCreate() {
    const [checked, setChecked] = useState(false);
    const [dueDate, setDueDate] = useState(new Date());
    const {mutate: onClickAddTodo, isLoading} = useCreateMutation()
-   // const categoryList = JSON.parse(localStorage.getItem('categoryList'));
    const {data: categoryList} = useGetCategoryQuery();
    const handleNewTodo = (e)=>{
       const {id, value, checked} = e.target;
@@ -100,7 +99,7 @@ function TodoCreate() {
                                onChange={handleCategory}
                                value={newTodo.category}
                        >
-                          {categoryList.map((category, idx)=>{
+                          {categoryList?.data.map((category, idx)=>{
                              return (
                                  <MenuItem value={category.name}>{category.name}</MenuItem>
                              )

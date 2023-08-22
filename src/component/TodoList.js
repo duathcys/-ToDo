@@ -8,9 +8,9 @@ import {useGetDataQuery} from "../hooks/useGetDataQuery";
 import {useGetCategoryQuery} from "../hooks/useGetCategoryQuery";
 
 const TodoListBlock = styled.div`
-    padding: 20px 32px;
-    padding-bottom: 225px;
-    overflow-x: auto;
+  padding: 20px 32px;
+  padding-bottom: 225px;
+  overflow-x: auto;
 `;
 
 const Block = styled.form`
@@ -24,7 +24,7 @@ const Block = styled.form`
   h1 {
     font-size: 20px;
     text-align: center;
-    
+
   }
 `
 
@@ -91,17 +91,28 @@ function TodoList() {
         }
     }, [data, selection])
 
+    const calDaysPassed = (date1, date2) => Math.trunc(date2 - date1) / (1000 * 60 * 60 * 24);
+
     if (isLoading) {
         return <div>Waiting</div>;
     }
     if (isSuccess) {
         let totalTodos = data?.data;
         let leftTodos = data?.data.filter((todo) => todo.done === false);
-        let TodayDate = Date.now();
-        let todayTodos = data?.data.filter((todo) => Date(todo.createAt) === Date(TodayDate));
+        let TodayDate = new Date();
+        let weekTodos = data?.data.filter((todo)=>{
+            console.log(new Date(todo.dueDate));
+
+            const dueDays = calDaysPassed(TodayDate, new Date(todo.dueDate));
+            console.log(todo.title,dueDays);
+            if(dueDays > 0 && dueDays < 7) return todo;
+        })
+        let todayTodos = data?.data.filter((todo) =>
+            new Date(todo.createAt).toISOString().split("T")[0] === TodayDate.toISOString().split("T")[0]);
         localStorage.setItem("Total", JSON.stringify(totalTodos));
         localStorage.setItem("Left", JSON.stringify(leftTodos));
         localStorage.setItem("Today", JSON.stringify(todayTodos));
+        localStorage.setItem("Week", JSON.stringify(weekTodos));
     }
     return (
         <>
@@ -127,8 +138,8 @@ function TodoList() {
                         <MenuItem value="전체">전체</MenuItem>
                         {categoryData?.data.map((cat)=>{
                             return (
-                                    <MenuItem value={cat.name}>{cat.name}</MenuItem>
-                                )
+                                <MenuItem value={cat.name}>{cat.name}</MenuItem>
+                            )
                         })}
                     </Select>
                 </FormControl>
