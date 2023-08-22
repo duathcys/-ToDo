@@ -22,7 +22,6 @@ function TodoSignUp() {
    const handleInputCheck = (e) => setInputCheck(e.target.value)
 
    const handleClickSignUpButton = ()=>{
-      console.log(inputPw === inputCheck)
       if(inputPw === inputCheck) {onClickSignUpButton({user_id:inputId, user_pw:inputPw, nickname:inputNick})}
       else Swal.fire('다시 시도해주세요', '비밀번호 확인이 바르지 않습니다.', 'error')
    }

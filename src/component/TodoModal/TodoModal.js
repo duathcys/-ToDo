@@ -24,7 +24,6 @@ const TodoModal = (props) => {
       )
    }
    const handleClickUpdateButton = () => {
-      console.log('input', inputValue)
       updateTodo({id: props.id, inputValue})
    }
 

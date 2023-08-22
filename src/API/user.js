@@ -18,12 +18,6 @@ export const deleteUser = async () =>{
     })
 }
 
-// export const getMyInfo = ()=>{
-//     return axios.get(`http://localhost:8000/user/auth/`, {
-//         params : {user_id: localStorage.getItem("UserId")}
-//     })
-// }
-
 export const getMyInfo = ()=> {
     return axios.get('http://localhost:8000/user/find/id/', {
         params : {nickname: localStorage.getItem("nickname")}

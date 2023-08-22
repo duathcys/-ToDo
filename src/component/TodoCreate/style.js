@@ -15,7 +15,6 @@ export const CircleButton = styled.button`
   cursor: pointer;
   width: 32px;
   height: 32px;
-  //display: block;
   align-items: center;
   justify-content: center;
   font-size: 60px;
