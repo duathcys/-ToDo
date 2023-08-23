@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: fixed;
-  //display: flex;
   top: 200px;
   bottom: 0;
   left: 0;
@@ -12,8 +11,10 @@ export const Container = styled.div`
   width: 685px;
   height: 512px;
   padding: 18px;
-  background-color: white;
-  border-radius: 8px;
+  background-color: #fff;
+  background-image: url("/images/bg02.png");
+  box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
   z-index: 2000;
 
   .exit-wrapper {
@@ -31,6 +32,10 @@ export const Container = styled.div`
   h3 {
     padding: 12px 0 12px 0;
     margin: 0;
+    display: flex;
+    justify-content: left;
+    align-content: center;
+
   }
 `;
 
@@ -73,45 +78,47 @@ export const Detail = styled.div`
 export const Input = styled.input`
   padding: 12px;
   border-radius: 4px;
-  border: 1px solid #dee2e6;
+  border: 1px solid rgba(222, 226, 230, 1);
   width: 100%;
   outline: none;
   font-size: 18px;
   box-sizing: border-box;
-  margin-bottom: 0px;
+  margin-bottom: 0;
+  margin-top: 5px;
+
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const MemoInput = styled.input`
-  padding-left: 12px;
-  padding-top: 72px;
-  padding-bottom: 72px;
+  padding: 12px;
   border-radius: 4px;
-  border: 1px solid #dee2e6;
+  border: 1px solid rgba(222, 226, 230, 1);
   width: 100%;
   outline: none;
   font-size: 18px;
   text-align: left;
   box-sizing: border-box;
-  margin-bottom: 5px;
+  margin-top: 5px;
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const Button = styled.button`
-  padding: 5px;
+  //padding: 5px;
+  //display: flex;
+  //display: inline-block;
   align-items: center;
-  justify-content: right;
-  color: black;
-  background: #e0dddd;
-  outline: 1px solid #e0dddd;
+  justify-content: center;
+  background: #fff;
+  //color: black;
+  //background: #e0dddd;
+  outline: none;
   border-radius: 4px;
-  border-color: #e0dddd;
+  border-color: #fff;
+  box-shadow: #fff;
   font-size: 15px;
   cursor: pointer;
-
-  &:hover {
-    color: #5e5b5b;
-  }
-
-  &:active {
-    color: #343131;
-  }
 `

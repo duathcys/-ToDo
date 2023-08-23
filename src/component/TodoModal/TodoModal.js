@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {MdComment} from "react-icons/md";
 import {Button, Canvas, Container, Detail, Input, MemoInput, Wrapper} from "./style";
 import {useGetDataQuery} from "../../hooks/useGetDataQuery";
 import {useUpdateMutation} from "../../hooks/useUpdateMutation";
-import { Checkbox } from "@mui/material";
+import {Checkbox, Divider} from "@mui/material";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CustomDatePicker.css';
@@ -52,7 +51,9 @@ const TodoModal = (props) => {
    const disableModal = () => {
       setModalOpen(!modalOpen);
    };
-   if (isLoading) return <h2>로딩중...</h2>
+
+   if (isLoading) {
+      console.log(isLoading);}
 
    return (
       <>
@@ -67,23 +68,25 @@ const TodoModal = (props) => {
                   </div>
                   <Wrapper>상세페이지</Wrapper>
                   <h3>TITLE</h3>
+                  <Divider/>
                   <Input name="title" value={inputValue.title} onChange={onInput}/>
-                  <div style={{display:"flex", flexDirection: "row"}}>
-                     <h3>COMPLETE</h3>
-                     <Checkbox
-                        name="done"
-                        label="Yes"
-                        value={inputValue.done}
-                        onChange={onInput}
-                        checked={checked}
-                     />
-                     <h3>Due Date</h3>
-                     <div style={{display:"flex", padding:"10px"}}>
-                        <DatePicker selected={dueDate} onChange={handleDateChange}/>
-                     </div>
+                  <h3>COMPLETE</h3>
+                  <Divider/>
+                  <Checkbox
+                     name="done"
+                     label="Yes"
+                     value={inputValue.done}
+                     onChange={onInput}
+                     checked={checked}
+                  />
+                  <h3>Due Date</h3>
+                  <Divider/>
+                  <div style={{display:"flex"}}>
+                     <DatePicker selected={dueDate} onChange={handleDateChange}/>
                   </div>
                   <h3>MEMO</h3>
-                  <MemoInput
+                  <Divider/>
+                  <Input
                      name="memo"
                      value={inputValue.memo}
                      onChange={onInput}

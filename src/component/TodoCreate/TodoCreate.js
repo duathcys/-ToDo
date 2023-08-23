@@ -3,12 +3,13 @@ import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
 import {CircleButton, CreateButton, CreateInput, InsertForm, InsertFormPositioner} from "./style";
 import {useCreateMutation} from "../../hooks/useCreateMutation";
-import {Checkbox, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import {Checkbox} from "@mui/material";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CustomDatePicker.css';
 import Swal from "sweetalert2";
 import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
+import CustomSelect from "../../CustomSelect";
 
 
 CreateButton.propTypes = {children: PropTypes.node};
@@ -70,17 +71,17 @@ function TodoCreate() {
                                  onChange={handleNewTodo}
                                  placeholder="할 일을 입력하세요."
                     />
-                    <div style={{display:"flex", flexDirection: "row"}}>
+                    <div style={{display: "flex", flexDirection: "row"}}>
                        <h2>COMPLETE</h2>
                        <Checkbox id={"done"}
                                  label={"Yes"}
                                  value={newTodo.done}
                                  onChange={handleNewTodo}
                                  checked={checked}
-                                 inputProps={{'aria-label':'controlled'}}
+                                 inputProps={{'aria-label': 'controlled'}}
                        />
                        <h2>Due Date</h2>
-                       <div style={{display:"flex", padding:"10px"}}>
+                       <div style={{display: "flex", padding: "10px"}}>
                           <DatePicker selected={dueDate} onChange={handleDateChange}/>
                        </div>
                     </div>
@@ -91,21 +92,29 @@ function TodoCreate() {
                                  placeholder="할 일에 대한 메모를 입력하세요."
                     />
                     <h2>CATEGORY</h2>
-                    <FormControl fullWidth>
-                       <InputLabel>Category</InputLabel>
-                       <Select placeholder="카테고리 선택"
-                               id="category"
-                               label="category"
-                               onChange={handleCategory}
-                               value={newTodo.category}
-                       >
-                          {categoryList?.data.map((category, idx)=>{
-                             return (
-                                 <MenuItem value={category.name}>{category.name}</MenuItem>
-                             )
-                          })}
-                       </Select>
-                    </FormControl>
+                    {/*<FormControl fullWidth>*/}
+                    {/*   <InputLabel>Category</InputLabel>*/}
+                    {/*   <Select placeholder="카테고리 선택"*/}
+                    {/*           id="category"*/}
+                    {/*           label="category"*/}
+                    {/*           onChange={handleCategory}*/}
+                    {/*           value={newTodo.category}*/}
+                    {/*   >*/}
+                    <CustomSelect
+                        inputLabel="Category"
+                        placeholder="카테고리 선택"
+                        id="category"
+                        label="category"
+                        onChange={handleCategory}
+                        value={newTodo.category}
+                        data={categoryList?.data}/>
+                    {/*{categoryList?.data.map((category, idx) => {*/}
+                    {/*   return (*/}
+                    {/*       <MenuItem value={category.name}>{category.name}</MenuItem>*/}
+                    {/*   )*/}
+                    {/*})}*/}
+                        {/*</Select>*/}
+                        {/*</FormControl>*/}
                     <CreateButton onClick={onCreate}
                     >생성
                     </CreateButton>

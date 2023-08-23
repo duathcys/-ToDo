@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {MdDelete, MdDone} from 'react-icons/md';
+import {MdDone} from 'react-icons/md';
 import {BIGBlock, CheckCircle, Remove, Text, TodoItemBlock} from "./style";
 import {useDeleteMutation} from "../../hooks/useDeleteMutation";
 import {useCheckUpdateMutation} from "../../hooks/useUpdateMutation";
@@ -37,7 +37,9 @@ function TodoItem(params) {
                             <Text>분  류</Text>
                             <Text>할  일</Text>
                             <Text>기  한</Text>
-                            <Remove><DeleteOutline/></Remove>
+                            <Remove>
+                                <DeleteOutline/>
+                            </Remove>
                             <TodoModal/>
                         </TodoItemBlock>
                     {sortList.map((Todo, idx) => {
