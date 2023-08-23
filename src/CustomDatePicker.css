@@ -22,12 +22,9 @@
 }
 
 
-.input:focus-visible {
-
+.react-datepicker__input-container input:focus-visible input:focus{
     border: 1px solid rgba(0, 0, 0, 0.5);
-    /*border: #61dafb;*/
+    outline: none;
+
 }
 
-.react-datepicker-ignore-onclickoutside {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-}

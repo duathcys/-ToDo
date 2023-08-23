@@ -1,10 +1,9 @@
 import {TextBlock} from "./style";
-import {Button, TextField} from "@mui/material";
+import {Button, Divider} from "@mui/material";
 import * as React from "react";
 import {useState} from "react";
 import Swal from "sweetalert2";
-import {TodoListBlock} from "../common";
-import {useUpdateUserMutation} from "../../hooks/useUpdateUserMutation";
+import {TodoInput, TodoListBlock} from "../common";
 import {updateMyInfo} from "../../API/user";
 
 export default function TodoChangeInfo() {
@@ -57,48 +56,53 @@ export default function TodoChangeInfo() {
     return (
         <TodoListBlock>
             <h2>회원 정보 수정</h2>
-            <TextBlock style={{display: "flex", flexDirection: "column"}}>
-                <TextField name="nickname"
+            <TextBlock>
+                <h4>Nickname</h4>
+                <Divider/>
+                <TodoInput name="nickname"
                            defaultValue={localStorage.getItem("Nickname")}
                            variant="standard"
                            label="Nickname"
-                           style={{width: "200px", margin: "10px"}}
                            onChange={onChangeInput}/>
-                <TextField disabled
+                <h4>ID</h4>
+                <Divider/>
+                <TodoInput disabled
                            name="userId"
                            defaultValue={localStorage.getItem("UserId")}
                            variant="standard"
                            label="ID"
-                           style={{width: "200px", margin: "10px"}}
                 />
-                <TextField name="user_pw"
+                <h4>Current Password</h4>
+                <Divider/>
+                <TodoInput name="user_pw"
                            variant="standard"
                            label="Password"
-                           style={{width: "200px", margin: "10px"}}
                            placeholder="현재 비밀번호"
                            onChange={onChangeInput}
                            type="password"/>
                 <Button onClick={handleClickButton}>비밀번호 변경하려면</Button>
+            </TextBlock>
                 {click ? (
-                    <>
-                        <TextField name="new_pw"
+                    <TextBlock>
+                        <h4>New Password</h4>
+                        <Divider/>
+                        <TodoInput name="new_pw"
                                    variant="standard"
                                    label="Password"
-                                   style={{width: "200px", margin: "10px"}}
                                    placeholder="새로운 비밀번호"
                                    onChange={onChangeInput}
                                    type="password"/>
-                        <TextField name="new_pw_confirm"
+                        <h4>New Password Confirm</h4>
+                        <Divider/>
+                        <TodoInput name="new_pw_confirm"
                                    variant="standard"
                                    label="PasswordConfirm"
-                                   style={{width: "200px", margin: "10px"}}
                                    placeholder="새로운 비밀번호 확인"
                                    onChange={onChangePwConfirm}
                                    type="password"/>
-                    </>
+                    </TextBlock>
                 ) : null}
                 <Button style={{width: "150px"}} onClick={handleUpdateInfo}>저 장</Button>
-            </TextBlock>
         </TodoListBlock>
     );
 };

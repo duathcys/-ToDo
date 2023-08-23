@@ -40,15 +40,17 @@ export const TodoInputbox = styled.form`
 export const TodoInput = styled.input`
   width: 400px;
   height: 50px;
-  background: white;
+  background: #fff;
   border-radius: 6px;
-  border: none;
-  box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(187, 187, 187, 0.8);
   font-size: 18px;
   margin: 10px;
-  &:active {
-    border-inline: none;
+  outline: none;
+
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.5);
   }
+
 `
 
 export const ConfirmButton = styled.button`
