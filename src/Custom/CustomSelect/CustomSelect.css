@@ -1,0 +1,27 @@
+.select {
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    box-sizing: border-box;
+    background-color: #fff;
+    font-family: HakgyoansimWoojuR, sans-serif;
+}
+
+.make-customSelect {
+    font-family: HakgyoansimWoojuR, sans-serif;
+}
+
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover .MuiOutlinedInput-notchedOutline {
+    border: 1px solid rgba(222, 226, 230, 1)
+
+}
+
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover .MuiOutlinedInput-notchedOutline:hover {
+    border: 1px solid rgba(222, 226, 230, 1)
+}
+
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover .MuiOutlinedInput-notchedOutline:focus{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}

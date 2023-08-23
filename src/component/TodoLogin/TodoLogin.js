@@ -3,10 +3,10 @@ import {useNavigate} from "react-router-dom";
 import {useLoginMutation} from "../../hooks/useLoginMutation";
 import HomeIcon from '@mui/icons-material/Home';
 import {IconButton, Tooltip} from "@mui/material";
-import {ConfirmButton, Formdiv, Title, TodoInput, TodoInputbox} from "../common";
+import {Formdiv, Title, TodoInput, TodoInputbox} from "../common";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import ContactsIcon from "@mui/icons-material/Contacts";
-import {getMyInfo} from "../../API/user";
+import CustomButton from "../../Custom/CustomButton/CustomButton";
 
 export default function TodoLogin() {
    const navigate = useNavigate();
@@ -62,10 +62,9 @@ export default function TodoLogin() {
                               autoComplete="off"
                               placeholder="비밀번호를 입력하세요"/>
                 </Formdiv>
-                <ConfirmButton
-                    onClick={onLogin}>
-                   확인
-                </ConfirmButton>
+                <CustomButton
+                    onClick={onLogin}
+                    name="확인"/>
              </TodoInputbox>
           </>
        </div>

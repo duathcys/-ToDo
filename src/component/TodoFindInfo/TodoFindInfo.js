@@ -5,8 +5,9 @@ import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import LoginIcon from "@mui/icons-material/Login";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import {ConfirmButton, Formdiv, Title, TodoInput, TodoInputbox} from "../common";
+import {Formdiv, Title, TodoInput, TodoInputbox} from "../common";
 import {getMyInfo} from "../../API/user";
+import CustomButton from "../../Custom/CustomButton/CustomButton";
 
 
 function TodoFindInfo() {
@@ -77,8 +78,8 @@ function TodoFindInfo() {
                         onChange={handleInputName}
                         placeholder="닉네임을 입력하세요"/>
                 </Formdiv>
-                <ConfirmButton onClick={handleSubmit}>확인</ConfirmButton>
-                <ConfirmButton onClick={handleSubmit}>비밀번호 재설정</ConfirmButton>
+                <CustomButton onClick={handleSubmit} name="확인"/>
+                <CustomButton onClick={handleSubmit} name="비밀번호 재설정"/>
             </TodoInputbox>
         </>
 

@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {Button, Canvas, Container, Detail, Input, MemoInput, Wrapper} from "./style";
+import {Canvas, Container, Detail, Input, Wrapper} from "./style";
 import {useGetDataQuery} from "../../hooks/useGetDataQuery";
 import {useUpdateMutation} from "../../hooks/useUpdateMutation";
 import {Checkbox, Divider} from "@mui/material";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
-import '../../CustomDatePicker.css';
+import '../../Custom/CustomDatePicker.css';
 import {FeedOutlined} from "@mui/icons-material";
+import CustomButton from "../../Custom/CustomButton/CustomButton";
 
 const TodoModal = (props) => {
    const [modalOpen, setModalOpen] = useState(false);
@@ -91,9 +92,7 @@ const TodoModal = (props) => {
                      value={inputValue.memo}
                      onChange={onInput}
                   />
-                  <Button onClick={handleClickUpdateButton}>
-                     완료
-                  </Button>
+                  <CustomButton onClick={handleClickUpdateButton} name="완료"/>
                </Container>
                <Canvas onClick={disableModal}/>
             </div>

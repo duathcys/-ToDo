@@ -50,24 +50,7 @@ export const TodoInput = styled.input`
   &:focus {
     border: 1px solid rgba(0, 0, 0, 0.5);
   }
-
-`
-
-export const ConfirmButton = styled.button`
-  width: auto;
-  min-width: 80px;
-  height: 30px;
-  cursor: pointer;
-  background: white;
-  border-radius: 6px;
-  border: none;
-  box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.25);
-  font-size: 18px;
-  margin-right: 30px;
-  position: relative;
-  margin-left: auto;
-  margin-top: 10px;
-  
+  font-family: HakgyoansimWoojuR, sans-serif;
 `
 
 export const Formdiv = styled.div`
@@ -81,7 +64,6 @@ export const TodoTemplateBlock = styled.div `
   height: 870px;
 
   position: relative;
-  //background-color: #fff;
   background-color: #e3e1e1;
   background-image: url("/images/bg02.png");
   border-radius: 6px;
@@ -90,6 +72,8 @@ export const TodoTemplateBlock = styled.div `
   margin: 32px auto;
   display: flex;
   flex-direction: column;
+  font-family: HakgyoansimWoojuR, sans-serif;
+  
 `;
 
 export const TodoHeadBlock = styled.div`

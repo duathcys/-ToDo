@@ -4,9 +4,10 @@ import {useSignUpMutation} from "../../hooks/useSignupMutation";
 import Swal from "sweetalert2"
 import HomeIcon from '@mui/icons-material/Home';
 import {IconButton, Tooltip} from "@mui/material";
-import {ConfirmButton, Formdiv, Title, TodoInput, TodoInputbox} from "../common";
+import {Formdiv, Title, TodoInput, TodoInputbox} from "../common";
 import LoginIcon from "@mui/icons-material/Login";
 import ContactsIcon from "@mui/icons-material/Contacts";
+import CustomButton from "../../Custom/CustomButton/CustomButton";
 
 function TodoSignUp() {
    const navigate = useNavigate();
@@ -76,7 +77,7 @@ function TodoSignUp() {
                               autoComplete="off"
                               placeholder="비밀번호를 한번 더 입력하세요"/>
                 </Formdiv>
-                <ConfirmButton onClick={handleClickSignUpButton}>확인</ConfirmButton>
+                <CustomButton onClick={handleClickSignUpButton} name="확인"/>
              </TodoInputbox>
 
           </>

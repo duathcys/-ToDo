@@ -6,6 +6,7 @@ import {Divider, FormControl, IconButton, InputLabel, MenuItem, OutlinedInput, S
 import SearchIcon from "@mui/icons-material/Search";
 import {useGetDataQuery} from "../hooks/useGetDataQuery";
 import {useGetCategoryQuery} from "../hooks/useGetCategoryQuery";
+import CustomSearch from "../Custom/CustomSearch";
 
 const TodoListBlock = styled.div`
   padding: 20px 32px;
@@ -116,29 +117,23 @@ function TodoList() {
     }
     return (
         <>
-            <div style={{display: "flex", flexDirection: "row", paddingLeft: "30px"}}>
-                <TextField
-                    variant="standard"
+            <div style={{display: "flex", flexDirection: "row", paddingLeft: "30px", fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
+                <CustomSearch
                     label="Search"
                     onChange={handleInputChange}
-                    sx={{width: 600, marginLeft: "50px"}}
-                />
-                <IconButton
-                    onClick={onSearch}>
-                    <SearchIcon/>
-                </IconButton>
-                <FormControl sx={{m: 1, minWidth: 120}}>
-                    <InputLabel style={{fontWeight: "bold"}}>선택</InputLabel>
+                    onClick={onSearch}/>
+                <FormControl sx={{m: 1, minWidth: 120, borderRadius:"4px"}}>
+                    <InputLabel style={{fontWeight: "bold", fontFamily:"HakgyoansimWoojuR, sans-serif"}}>카테고리</InputLabel>
                     <Select
                         value={selection}
                         label="selection"
                         onChange={handleSelect}
-                        input={<OutlinedInput label="선택"/>}
+                        input={<OutlinedInput label="카테고리"/>}
                     >
-                        <MenuItem value="전체">전체</MenuItem>
+                        <MenuItem value="전체" style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>전체</MenuItem>
                         {categoryData?.data.map((cat)=>{
                             return (
-                                <MenuItem value={cat.name}>{cat.name}</MenuItem>
+                                <MenuItem value={cat.name} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>{cat.name}</MenuItem>
                             )
                         })}
                     </Select>

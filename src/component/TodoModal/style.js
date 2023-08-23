@@ -89,6 +89,7 @@ export const Input = styled.input`
   &:focus {
     border: 1px solid rgba(0, 0, 0, 0.5);
   }
+  font-family: HakgyoansimWoojuR, sans-serif;
 `;
 
 export const MemoInput = styled.input`

@@ -32,16 +32,16 @@ function TodoItem(params) {
         <ul>
             <BIGBlock>
                 <>
-                        <TodoItemBlock>
-                            <CheckCircle/>
-                            <Text>분  류</Text>
-                            <Text>할  일</Text>
-                            <Text>기  한</Text>
-                            <Remove>
-                                <DeleteOutline/>
-                            </Remove>
-                            <TodoModal/>
-                        </TodoItemBlock>
+                    <TodoItemBlock>
+                        <CheckCircle/>
+                        <Text>분  류</Text>
+                        <Text>할  일</Text>
+                        <Text>기  한</Text>
+                        <Remove>
+                            <DeleteOutline/>
+                        </Remove>
+                        <TodoModal/>
+                    </TodoItemBlock>
                     {sortList.map((Todo, idx) => {
                         return (
                             <li key={idx}>

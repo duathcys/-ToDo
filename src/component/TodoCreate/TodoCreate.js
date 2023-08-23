@@ -6,10 +6,11 @@ import {useCreateMutation} from "../../hooks/useCreateMutation";
 import {Checkbox} from "@mui/material";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
-import '../../CustomDatePicker.css';
+import '../../Custom/CustomDatePicker.css';
 import Swal from "sweetalert2";
 import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
-import CustomSelect from "../../CustomSelect";
+import CustomSelect from "../../Custom/CustomSelect/CustomSelect";
+import CustomButton from "../../Custom/CustomButton/CustomButton";
 
 
 CreateButton.propTypes = {children: PropTypes.node};
@@ -71,20 +72,16 @@ function TodoCreate() {
                                  onChange={handleNewTodo}
                                  placeholder="할 일을 입력하세요."
                     />
-                    <div style={{display: "flex", flexDirection: "row"}}>
-                       <h2>COMPLETE</h2>
-                       <Checkbox id={"done"}
-                                 label={"Yes"}
-                                 value={newTodo.done}
-                                 onChange={handleNewTodo}
-                                 checked={checked}
-                                 inputProps={{'aria-label': 'controlled'}}
-                       />
-                       <h2>Due Date</h2>
-                       <div style={{display: "flex", padding: "10px"}}>
-                          <DatePicker selected={dueDate} onChange={handleDateChange}/>
-                       </div>
-                    </div>
+                    <h2>COMPLETE</h2>
+                    <Checkbox id={"done"}
+                              label={"Yes"}
+                              value={newTodo.done}
+                              onChange={handleNewTodo}
+                              checked={checked}
+                              inputProps={{'aria-label': 'controlled'}}
+                    />
+                    <h2>Due Date</h2>
+                    <DatePicker selected={dueDate} onChange={handleDateChange}/>
                     <h2>MEMO</h2>
                     <CreateInput id="memo"
                                  value={newTodo.memo}
@@ -101,8 +98,8 @@ function TodoCreate() {
                     {/*           value={newTodo.category}*/}
                     {/*   >*/}
                     <CustomSelect
-                        inputLabel="Category"
-                        placeholder="카테고리 선택"
+                        inputLabel="카테고리"
+                        // placeholder="카테고리 선택"
                         id="category"
                         label="category"
                         onChange={handleCategory}
@@ -113,11 +110,12 @@ function TodoCreate() {
                     {/*       <MenuItem value={category.name}>{category.name}</MenuItem>*/}
                     {/*   )*/}
                     {/*})}*/}
-                        {/*</Select>*/}
-                        {/*</FormControl>*/}
-                    <CreateButton onClick={onCreate}
-                    >생성
-                    </CreateButton>
+                    {/*</Select>*/}
+                    {/*</FormControl>*/}
+                    {/*<CreateButton onClick={onCreate}*/}
+                    {/*>생성*/}
+                    {/*</CreateButton>*/}
+                    <CustomButton onClick={onCreate} name="생성"/>
                  </InsertForm>
               </InsertFormPositioner>
           )}

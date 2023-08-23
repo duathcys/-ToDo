@@ -35,13 +35,24 @@ export default function TodoMypage() {
         navigate(`/todo/list/?info=${localStorage.getItem('UserId')}`)
     }
     const handleDropOut = () => {
-        deleteUser().then(
-            Swal.fire('회원 탈퇴 완료', '회원 탈퇴가 되었습니다.', 'success')
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        navigate('/');
-                    }
-                }));
+        Swal.fire({
+            title:'DROPOUT',
+            text: '회원 탈퇴를 하시겠습니까?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: '확인'
+        })
+            .then((result)=>{
+                if (result.isConfirmed) {
+                    deleteUser().then(
+                        Swal.fire('회원 탈퇴 완료', '회원 탈퇴가 되었습니다.', 'success')
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    navigate('/');
+                                }
+                            }));
+                }
+            })
     };
 
     const handleLogOut = () => {
@@ -85,19 +96,19 @@ export default function TodoMypage() {
                             onClose={handleClose}
                             onClick={handleClose}
                         >
-                            <MenuItem onClick={handleTodo}>
+                            <MenuItem onClick={handleTodo} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
                                 <ListItemIcon>
                                     <Checklist/>
                                 </ListItemIcon>
                                 TODO LIST 보기
                             </MenuItem>
-                            <MenuItem onClick={handleDropOut}>
+                            <MenuItem onClick={handleDropOut} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
                                 <ListItemIcon>
                                     <Block/>
                                 </ListItemIcon>
                                 회원 탈퇴
                             </MenuItem>
-                            <MenuItem onClick={handleLogOut}>
+                            <MenuItem onClick={handleLogOut} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
                                 <ListItemIcon>
                                     <Logout/>
                                 </ListItemIcon>
@@ -109,16 +120,16 @@ export default function TodoMypage() {
                 </div>
             </TodoHeadBlock>
             <FormControl sx={{m: 3, width: 300}}>
-                <InputLabel>메뉴 선택</InputLabel>
+                <InputLabel style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>메뉴 선택</InputLabel>
                 <Select placeholder="메뉴 선택"
                         id="selection"
                         label="selection"
                         onChange={handleMenu}
                         value={selection}
                         defaultValue="report">
-                    <MenuItem value="report">Today Report</MenuItem>
-                    <MenuItem value="info">회원정보 수정</MenuItem>
-                    <MenuItem value="category">카테고리 편집</MenuItem>
+                    <MenuItem value="report" style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>Today Report</MenuItem>
+                    <MenuItem value="info" style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>회원정보 수정</MenuItem>
+                    <MenuItem value="category" style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>카테고리 편집</MenuItem>
                 </Select>
             </FormControl>
             {componentsBySelection[selection] || null}

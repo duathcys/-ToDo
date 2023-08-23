@@ -5,6 +5,7 @@ import {useState} from "react";
 import Swal from "sweetalert2";
 import {TodoInput, TodoListBlock} from "../common";
 import {updateMyInfo} from "../../API/user";
+import CustomButton from "../../Custom/CustomButton/CustomButton";
 
 export default function TodoChangeInfo() {
 
@@ -80,7 +81,7 @@ export default function TodoChangeInfo() {
                            placeholder="현재 비밀번호"
                            onChange={onChangeInput}
                            type="password"/>
-                <Button onClick={handleClickButton}>비밀번호 변경하려면</Button>
+                <CustomButton onClick={handleClickButton} name="비밀번호 변경하려면"/>
             </TextBlock>
                 {click ? (
                     <TextBlock>
@@ -102,7 +103,7 @@ export default function TodoChangeInfo() {
                                    type="password"/>
                     </TextBlock>
                 ) : null}
-                <Button style={{width: "150px"}} onClick={handleUpdateInfo}>저 장</Button>
+                <CustomButton onClick={handleUpdateInfo} name="저장"/>
         </TodoListBlock>
     );
 };

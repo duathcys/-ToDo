@@ -70,23 +70,23 @@ function TodoHead() {
                id="menu"
                onClose={handleClose}
                onClick={handleClose}>
-               <MenuItem style={{fontWeight:"bold"}}>
+               <MenuItem style={{fontWeight:"bold", fontFamily:"HakgyoansimWoojuR, sans-serif"}} >
                   {localStorage.getItem("UserId")}님
                </MenuItem>
                <Divider/>
-               <MenuItem onClick={handleMyPage}>
+               <MenuItem onClick={handleMyPage} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
                <ListItemIcon>
                   <Person fontSize="small"/>
                </ListItemIcon>
                   My Page
             </MenuItem>
-               <MenuItem onClick={onClickLogoutBtn}>
+               <MenuItem onClick={onClickLogoutBtn} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
                   <ListItemIcon>
                      <Logout fontSize="small"/>
                   </ListItemIcon>
                   Logout
                </MenuItem>
-               <MenuItem onClick={onClickHomeBtn}>
+               <MenuItem onClick={onClickHomeBtn} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
                   <ListItemIcon>
                      <Home fontSize="small"/>
                   </ListItemIcon>

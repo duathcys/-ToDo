@@ -80,11 +80,15 @@ export const InsertForm = styled.form`
 export const CreateInput = styled.input`
   padding: 12px;
   border-radius: 4px;
-  border: 1px solid #dee2e6;
-  width: 100%;
+  border: 1px solid rgba(222, 226, 230, 1);
+  width: 500px;
   outline: none;
   font-size: 18px;
   box-sizing: border-box;
+  font-family: HakgyoansimWoojuR, sans-serif;
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const InputArea = styled.textarea`
