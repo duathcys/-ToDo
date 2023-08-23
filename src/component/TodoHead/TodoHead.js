@@ -48,7 +48,7 @@ function TodoHead() {
 
    return (
       <TodoHeadBlock>
-         <h1>To Do List</h1>
+         <h1>TODO LIST</h1>
          <div className="detail">{nowTime}</div>
          <div className="detail">{nowDay}</div>
          <div className="linkto">

@@ -57,7 +57,7 @@ export const Detail = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6495ed;
+  color: rgba(100, 149, 237, 0.5);
   font-size: 24px;
   cursor: pointer;
 
@@ -68,8 +68,6 @@ export const Detail = styled.div`
   &:active {
     color: rgba(100, 149, 237, 0.49);
   }
-
-  //display: none;
 `;
 
 export const Input = styled.input`

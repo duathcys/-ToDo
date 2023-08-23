@@ -4,26 +4,23 @@ export const Remove = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ff6b6b;
-  font-size: 24px;
+  color: rgba(255, 107, 107, 0.37);
   cursor: pointer;
-
-  //&:hover {
-  //  color: #ff6b6b;
-  //}
 
   &:active {
     color: crimson;
   }
 
-  //display: none;
+  &:hover {
+    color: rgba(255, 107, 107, 0.83);
+  }
 `;
 
 export const Change = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6495ed;
+  color: rgba(100, 149, 237, 0.51);
   font-size: 24px;
   cursor: pointer;
 
@@ -46,14 +43,15 @@ export const BIGBlock = styled.div`
 
 export const TodoItemBlock = styled.div`
   display: flex;
-  //align-items: center;
+  align-items: center;
+  justify-content: center;
   padding: 12px 0 12px 12px;
   flex-direction: row;
   //border: 1px solid black;
-  &:hover {
-    ${Remove} {
-      display: initial;
-    }
+  // &:hover {
+  //   ${Remove} {
+  //     display: initial;
+  //   }
   }
 `;
 
@@ -78,14 +76,15 @@ export const CheckCircle = styled.div`
 
 export const Text = styled.div`
   width: 160px;
+  display: flex;
   font-size: 20px;
-  //font-weight: bold;
   color: #495057;
-  //padding-right: ;
   border-bottom: black;
+  justify-content: center;
+  align-content: center;
   ${props =>
-   props.done &&
-   css`
+          props.done &&
+          css`
             color: #000000;
           `}
 `;

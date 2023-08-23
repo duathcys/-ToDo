@@ -13,11 +13,9 @@ export const useUpdateUserMutation = ()=>{
             Swal.fire('회원정보 수정', '회원정보가 수정되었습니다.', 'success');
             // localStorage.removeItem("Nickname");
             // localStorage.setItem("Nickname", data.nickname);
-            console.log(data);
             queryClient.invalidateQueries('user')
         },
         onError: (err)=>{
-            console.log(err);
             Swal.fire('회원정보 수정 오류', `${err}`, 'error');
     }
     })

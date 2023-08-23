@@ -4,6 +4,7 @@ import {BIGBlock, CheckCircle, Remove, Text, TodoItemBlock} from "./style";
 import {useDeleteMutation} from "../../hooks/useDeleteMutation";
 import {useCheckUpdateMutation} from "../../hooks/useUpdateMutation";
 import TodoModal from "../TodoModal/TodoModal";
+import {DeleteOutline} from "@mui/icons-material";
 
 TodoModal.propTypes = {};
 
@@ -31,12 +32,14 @@ function TodoItem(params) {
         <ul>
             <BIGBlock>
                 <>
-                    <TodoItemBlock>
-                        <CheckCircle/>
-                        <Text>분  류</Text>
-                        <Text>할  일</Text>
-                        <Text>기  한</Text>
-                    </TodoItemBlock>
+                        <TodoItemBlock>
+                            <CheckCircle/>
+                            <Text>분  류</Text>
+                            <Text>할  일</Text>
+                            <Text>기  한</Text>
+                            <Remove><DeleteOutline/></Remove>
+                            <TodoModal/>
+                        </TodoItemBlock>
                     {sortList.map((Todo, idx) => {
                         return (
                             <li key={idx}>
@@ -54,7 +57,7 @@ function TodoItem(params) {
                                         {Todo.dueDate}
                                     </Text>
                                     <Remove onClick={()=>onClickRemove(Todo.id)}>
-                                        <MdDelete/>
+                                        <DeleteOutline/>
                                     </Remove>
                                     <TodoModal id={Todo.id} title={Todo.title} done={Todo.done} memo={Todo.memo} info={Todo.info} dueDate={Todo.dueDate} category={Todo.category}/>
                                 </TodoItemBlock>

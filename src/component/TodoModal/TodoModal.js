@@ -7,6 +7,7 @@ import { Checkbox } from "@mui/material";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CustomDatePicker.css';
+import {FeedOutlined} from "@mui/icons-material";
 
 const TodoModal = (props) => {
    const [modalOpen, setModalOpen] = useState(false);
@@ -56,7 +57,7 @@ const TodoModal = (props) => {
    return (
       <>
          <Detail onClick={disableModal}>
-            <MdComment/>
+            <FeedOutlined/>
          </Detail>
          {modalOpen &&
             <div>

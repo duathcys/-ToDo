@@ -5,25 +5,28 @@ export const Title = styled.div`
   margin: 10px;
   text-align: center;
   font-size: 40px;
-  color: #000000;
+  font-weight: bolder;
+  color: #232324;
 `
 export const TodoInputbox = styled.form`
   width: 600px;
   height: auto;
   min-height: 450px;
-  background: #e0dddd;
+  background-color: #e3e1e1;
+  background-image: url("/images/bg02.png");
+  border-radius: 6px;
+  box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.25);
   margin-top: 100px;
-  //margin-bottom: 0px;
   margin-inline: auto;
   padding: 10px;
   
-  border-radius: 16px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 
   h2 {
     text-align: center;
@@ -38,22 +41,25 @@ export const TodoInput = styled.input`
   width: 400px;
   height: 50px;
   background: white;
-  border-radius: 10px;
+  border-radius: 6px;
   border: none;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.25);
   font-size: 18px;
   margin: 10px;
+  &:active {
+    border-inline: none;
+  }
 `
 
 export const ConfirmButton = styled.button`
   width: auto;
-  min-width: 100px;
+  min-width: 80px;
   height: 30px;
   cursor: pointer;
   background: white;
-  border-radius: 10px;
+  border-radius: 6px;
   border: none;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.25);
   font-size: 18px;
   margin-right: 30px;
   position: relative;
@@ -73,14 +79,13 @@ export const TodoTemplateBlock = styled.div `
   height: 870px;
 
   position: relative;
-  background: #e0dddd;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  //background-color: #fff;
+  background-color: #e3e1e1;
+  background-image: url("/images/bg02.png");
+  border-radius: 6px;
+  box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.25);
 
-  margin: 0 auto;
-
-  margin-top: 32px;
-  margin-bottom: 32px;
+  margin: 32px auto;
   display: flex;
   flex-direction: column;
 `;
@@ -89,10 +94,11 @@ export const TodoHeadBlock = styled.div`
   padding: 20px 32px 20px;
 
   h1 {
-    margin: 0px;
+    margin: 20px 0;
     text-align: center;
-    font-size: 40px;
-    color: #000000;
+    font-size: 50px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.94);
   }
 
   .detail {

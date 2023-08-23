@@ -24,7 +24,7 @@ function TodoHome(){
    return (
       <>
          <HomeForm>
-            TO DO LIST HOME
+            HOME
             <div>
                <Tooltip title="로그인">
                   <IconButton onClick={onLogin}>

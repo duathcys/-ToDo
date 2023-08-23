@@ -58,10 +58,7 @@ export const InsertFormPositioner = styled.div`
 export const InsertForm = styled.form`
 
   background: #f8f9fa;
-  padding-left: 32px;
-  padding-top: 32px;
-  padding-right: 32px;
-  padding-bottom: 32px;
+  padding: 32px;
 
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
@@ -72,6 +69,7 @@ export const InsertForm = styled.form`
     font-size: 25px;
     color: #000000;
   }
+
   h2 {
     text-align: left;
     font-size: 20px;
