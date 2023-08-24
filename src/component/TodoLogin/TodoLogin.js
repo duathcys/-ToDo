@@ -24,8 +24,6 @@ export default function TodoLogin() {
    }
    const handleClickGoHomeButton = () => navigate("/")
 
-   if (isLoading) return <h2>Waiting for LogIn</h2>;
-
    return (
        <div>
           <>

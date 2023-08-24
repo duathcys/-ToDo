@@ -7,24 +7,6 @@ import * as PropTypes from "prop-types";
 import {BIGBlock, Text, TodoItemBlock} from "../TodoItem/style";
 import CustomPagination from "../../Custom/CustomPagination";
 
-function DataGrid(props) {
-    return null;
-}
-
-DataGrid.propTypes = {
-    initialState: PropTypes.shape({
-        pagination: PropTypes.shape({
-            paginationModel: PropTypes.shape({
-                pageSize: PropTypes.number,
-                page: PropTypes.number
-            })
-        })
-    }),
-    pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
-    columns: PropTypes.any,
-    checkboxSelection: PropTypes.bool,
-    rows: PropTypes.any
-};
 export default function TodoCategory() {
     const { mutate: onCreateCategory } = useCreateCategoryMutation();
     const {data: categoryList} = useGetCategoryQuery();

@@ -49,8 +49,13 @@ export const CircleButton = styled.button`
 export const InsertFormPositioner = styled.div`
   z-index: 4;
   width: 100%;
-  bottom: 0;
-  left: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  
+  //overflow-block: visible;
+  bottom: 200px;
+  //left: 0;
   position: absolute;
 `;
 
@@ -58,10 +63,12 @@ export const InsertForm = styled.form`
 
   background: #f8f9fa;
   padding: 32px;
+  width: 600px;
 
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border-top: 1px solid #e9ecef;
+  border-radius: 6px;
+  border:1px solid #e9ecef;
+  box-shadow: #e9ecef;
+  
 
   h1 {
     text-align: center;
@@ -124,4 +131,17 @@ export const CreateButton = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 15px;
+`
+
+export const InputForm = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  //padding-left: 400px;
+  
+  h2 {
+    font-size: 20px;
+    margin: 10px;
+    width: 100px;
+  }
 `

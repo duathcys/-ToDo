@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {MdAdd} from 'react-icons/md';
 import * as PropTypes from "prop-types";
-import {CircleButton, CreateButton, CreateInput, InsertForm, InsertFormPositioner} from "./style";
+import {CircleButton, CreateButton, CreateInput, InputForm, InsertForm, InsertFormPositioner} from "./style";
 import {useCreateMutation} from "../../hooks/useCreateMutation";
 import {Checkbox} from "@mui/material";
 import DatePicker from "react-datepicker";
@@ -11,6 +11,8 @@ import Swal from "sweetalert2";
 import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
 import CustomSelect from "../../Custom/CustomSelect/CustomSelect";
 import CustomButton from "../../Custom/CustomButton/CustomButton";
+import {Formdiv} from "../common";
+import CustomDatePicker from "../../Custom/CustomDatePicker/CustomDatePicker";
 
 
 CreateButton.propTypes = {children: PropTypes.node};
@@ -66,56 +68,68 @@ function TodoCreate() {
               <InsertFormPositioner>
                  <InsertForm form={open.toString()}>
                     <h1>Create Todo</h1>
-                    <h2>TITLE</h2>
-                    <CreateInput id={"title"}
-                                 value={newTodo.title}
+                    <InputForm>
+                       <h2>제 목</h2>
+                       <CreateInput id={"title"}
+                                    value={newTodo.title}
+                                    onChange={handleNewTodo}
+                                    placeholder="할 일을 입력하세요."
+                       />
+                    </InputForm>
+                    <InputForm>
+                       <h2>완 료</h2>
+                       <Checkbox id={"done"}
+                                 label={"Yes"}
+                                 value={newTodo.done}
                                  onChange={handleNewTodo}
-                                 placeholder="할 일을 입력하세요."
-                    />
-                    <h2>COMPLETE</h2>
-                    <Checkbox id={"done"}
-                              label={"Yes"}
-                              value={newTodo.done}
-                              onChange={handleNewTodo}
-                              checked={checked}
-                              inputProps={{'aria-label': 'controlled'}}
-                    />
-                    <h2>Due Date</h2>
-                    <DatePicker selected={dueDate} onChange={handleDateChange}/>
-                    <h2>MEMO</h2>
-                    <CreateInput id="memo"
-                                 value={newTodo.memo}
-                                 onChange={handleNewTodo}
-                                 placeholder="할 일에 대한 메모를 입력하세요."
-                    />
-                    <h2>CATEGORY</h2>
-                    {/*<FormControl fullWidth>*/}
-                    {/*   <InputLabel>Category</InputLabel>*/}
-                    {/*   <Select placeholder="카테고리 선택"*/}
-                    {/*           id="category"*/}
-                    {/*           label="category"*/}
-                    {/*           onChange={handleCategory}*/}
-                    {/*           value={newTodo.category}*/}
-                    {/*   >*/}
-                    <CustomSelect
-                        inputLabel="카테고리"
-                        // placeholder="카테고리 선택"
-                        id="category"
-                        label="category"
-                        onChange={handleCategory}
-                        value={newTodo.category}
-                        data={categoryList?.data}/>
-                    {/*{categoryList?.data.map((category, idx) => {*/}
-                    {/*   return (*/}
-                    {/*       <MenuItem value={category.name}>{category.name}</MenuItem>*/}
-                    {/*   )*/}
-                    {/*})}*/}
-                    {/*</Select>*/}
-                    {/*</FormControl>*/}
-                    {/*<CreateButton onClick={onCreate}*/}
-                    {/*>생성*/}
-                    {/*</CreateButton>*/}
-                    {/*<CustomButton onClick={onCreate} name="생성"/>*/}
+                                 checked={checked}
+                                 inputProps={{'aria-label': 'controlled'}}
+                       />
+                    </InputForm>
+                    <InputForm>
+                       <h2>기 한</h2>
+                       <CustomDatePicker onChange={handleDateChange} selected={dueDate}/>
+                    </InputForm>
+                    <InputForm>
+                       <h2>메 모</h2>
+                       <CreateInput id="memo"
+                                    value={newTodo.memo}
+                                    onChange={handleNewTodo}
+                                    placeholder="할 일에 대한 메모를 입력하세요."
+                       />
+                    </InputForm>
+                    <InputForm>
+                       <h2>카테고리</h2>
+                       {/*<FormControl fullWidth>*/}
+                       {/*   <InputLabel>Category</InputLabel>*/}
+                       {/*   <Select placeholder="카테고리 선택"*/}
+                       {/*           id="category"*/}
+                       {/*           label="category"*/}
+                       {/*           onChange={handleCategory}*/}
+                       {/*           value={newTodo.category}*/}
+                       {/*   >*/}
+                       <CustomSelect
+                           inputLabel="카테고리"
+                           // placeholder="카테고리 선택"
+                           id="category"
+                           label="category"
+                           onChange={handleCategory}
+                           value={newTodo.category}
+                           data={categoryList?.data}/>
+                       {/*{categoryList?.data.map((category, idx) => {*/}
+                       {/*   return (*/}
+                       {/*       <MenuItem value={category.name}>{category.name}</MenuItem>*/}
+                       {/*   )*/}
+                       {/*})}*/}
+                       {/*</Select>*/}
+                       {/*</FormControl>*/}
+                       {/*<CreateButton onClick={onCreate}*/}
+                       {/*>생성*/}
+                       {/*</CreateButton>*/}
+                       {/*<CustomButton onClick={onCreate} name="생성"/>*/}
+                    </InputForm>
+
+
                  </InsertForm>
               </InsertFormPositioner>
           )}

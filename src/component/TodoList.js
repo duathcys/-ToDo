@@ -6,8 +6,6 @@ import {Divider, FormControl, InputLabel, MenuItem, OutlinedInput, Select} from 
 import {useGetDataQuery} from "../hooks/useGetDataQuery";
 import {useGetCategoryQuery} from "../hooks/useGetCategoryQuery";
 import CustomSearch from "../Custom/CustomSearch/CustomSearch";
-import CustomButton from "../Custom/CustomButton/CustomButton";
-import TodoCreate from "./TodoCreate/TodoCreate";
 
 const TodoListBlock = styled.div`
   padding: 20px 32px;
@@ -138,7 +136,7 @@ function TodoList() {
                         })}
                     </Select>
                 </FormControl>
-                <CustomButton onClick={<TodoCreate/>} name="생성"/>
+                {/*<CustomButton onClick={<TodoCreate/>} name="생성"/>*/}
             </div>
             <div style={{display: "flex", flexDirection: "row", alignContent: "center", justifyContent: "center"}}>
                 <Block>
@@ -154,6 +152,5 @@ function TodoList() {
         </>
     );
 }
-
 
 export default TodoList;
