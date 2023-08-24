@@ -58,7 +58,7 @@ export const TodoItemBlock = styled.div`
 export const CheckCircle = styled.div`
   width: 32px;
   height: 32px;
-  border: 1px solid #ced4da;
+  border: 1px solid rgba(187, 187, 187, 0.9);
   border-radius: 30px;
   font-size: 24px;
   display: flex;
@@ -67,8 +67,8 @@ export const CheckCircle = styled.div`
   margin-right: 30px;
   cursor: pointer;
   ${props =>
-   props.done &&
-   css`
+          props.done &&
+          css`
             border: 1px solid #ff0000;
             color: #ff0000;
           `}

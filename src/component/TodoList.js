@@ -6,7 +6,7 @@ import {Divider, FormControl, IconButton, InputLabel, MenuItem, OutlinedInput, S
 import SearchIcon from "@mui/icons-material/Search";
 import {useGetDataQuery} from "../hooks/useGetDataQuery";
 import {useGetCategoryQuery} from "../hooks/useGetCategoryQuery";
-import CustomSearch from "../Custom/CustomSearch";
+import CustomSearch from "../Custom/CustomSearch/CustomSearch";
 
 const TodoListBlock = styled.div`
   padding: 20px 32px;

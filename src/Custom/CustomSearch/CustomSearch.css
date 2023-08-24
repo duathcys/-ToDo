@@ -1,0 +1,22 @@
+.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+    font-family: HakgyoansimWoojuR, sans-serif;
+
+}
+
+.search-style {
+    display: flex;
+    flex-direction: row;
+    padding-left: 30px;
+}
+
+/*.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {*/
+/*    outline: none;*/
+/*    box-shadow: none;*/
+/*    border-radius: 4px;*/
+
+/*}*/
+
+/*.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover {*/
+/*    outline: none;*/
+/*    border: none;*/
+/*}*/

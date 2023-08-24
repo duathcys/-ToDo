@@ -6,7 +6,7 @@ import {useCreateMutation} from "../../hooks/useCreateMutation";
 import {Checkbox} from "@mui/material";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
-import '../../Custom/CustomDatePicker.css';
+import '../../Custom/CustomDatePicker/CustomDatePicker.css';
 import Swal from "sweetalert2";
 import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
 import CustomSelect from "../../Custom/CustomSelect/CustomSelect";
@@ -121,8 +121,7 @@ function TodoCreate() {
           )}
           <CircleButton
               onClick={onToggle}
-              open={open}
-          >
+              open={open}>
              <MdAdd/>
           </CircleButton>
        </>

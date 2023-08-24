@@ -60,8 +60,8 @@ export const InsertForm = styled.form`
   background: #f8f9fa;
   padding: 32px;
 
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   border-top: 1px solid #e9ecef;
 
   h1 {
