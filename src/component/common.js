@@ -61,7 +61,7 @@ export const Formdiv = styled.div`
 
 export const TodoTemplateBlock = styled.div `
   width: 1500px;
-  height: 870px;
+  height: 867px;
 
   position: relative;
   background-color: #e3e1e1;

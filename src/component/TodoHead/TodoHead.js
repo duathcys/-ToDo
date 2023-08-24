@@ -3,8 +3,7 @@ import moment from "moment";
 import 'moment/locale/ko';
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
-import {Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem} from "@mui/material";
-import {Home, Logout, Person} from "@mui/icons-material";
+import {Avatar, Box, Divider, IconButton, Menu, MenuItem} from "@mui/material";
 import {TodoHeadBlock} from "../common";
 import CustomMenuItem from "../../Custom/CustomMenuItem/CustomMenuItem";
 

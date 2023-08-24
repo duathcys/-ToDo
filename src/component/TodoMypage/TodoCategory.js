@@ -142,26 +142,26 @@ export default function TodoCategory() {
             <h2>카테고리 편집</h2>
             <ul>
                 <BIGBlock>
-                        {itemsToShow?.map((Cate, idx)=>{
-                            return(
-                                <TodoItemBlock>
-                                    <li key={idx}>
-                                        <TodoItemBlock>
-                                            <Text>
-                                                {Cate.id}
-                                            </Text>
-                                            <Text>
-                                                {Cate.name}
-                                            </Text>
-                                        </TodoItemBlock>
-                                    </li>
-                                </TodoItemBlock>
-                            )
-                        })}
+                    {itemsToShow?.map((Cate, idx)=>{
+                        return(
+                            <TodoItemBlock>
+                                <li key={idx}>
+                                    <TodoItemBlock>
+                                        <Text>
+                                            {Cate.id}
+                                        </Text>
+                                        <Text>
+                                            {Cate.name}
+                                        </Text>
+                                    </TodoItemBlock>
+                                </li>
+                            </TodoItemBlock>
+                        )
+                    })}
                 </BIGBlock>
             </ul>
             {/*<CustomPagination data={categoryList?.data}/>*/}
-            <Pagination
+            <CustomPagination
                 count={pageCount}
                 page={currentPage}
                 onChange={handlePageChange}/>

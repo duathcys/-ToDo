@@ -1,9 +1,8 @@
 import {TodoHeadBlock, TodoTemplateBlock} from "../common";
-import {FormControl, IconButton, InputLabel, ListItemIcon, Menu, MenuItem, Select} from "@mui/material";
+import {FormControl, IconButton, InputLabel, Menu, MenuItem, Select} from "@mui/material";
 import * as React from "react";
 import {useState} from "react";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {Block, Checklist, Logout} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import {deleteUser} from "../../API/user";

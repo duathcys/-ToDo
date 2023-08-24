@@ -38,6 +38,7 @@ export const Change = styled.div`
 export const BIGBlock = styled.div`
   display: flex;
   flex-direction: column;
+  height: 400px;
   //border: 2px solid blue;
 `
 

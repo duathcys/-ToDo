@@ -1,6 +1,7 @@
 import {IconButton, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./CustomSearch.css";
+
 export default function CustomSearch({label, onChange, onClick}){
     return(
         <div>

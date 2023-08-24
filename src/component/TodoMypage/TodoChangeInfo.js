@@ -1,5 +1,5 @@
 import {TextBlock} from "./style";
-import {Button, Divider} from "@mui/material";
+import {Divider} from "@mui/material";
 import * as React from "react";
 import {useState} from "react";
 import Swal from "sweetalert2";
