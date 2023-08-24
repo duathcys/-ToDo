@@ -1,14 +1,14 @@
 import styled, {css} from "styled-components";
 
 export const CircleButton = styled.button`
-  background: #38d9a9;
+  background: rgba(96, 107, 88, 0.8);
 
   &:hover {
-    background: #63e6be;
+    background: rgba(91, 105, 73, 1);
   }
 
   &:active {
-    background: #20c997;
+    background: rgba(91, 105, 73, 1);
   }
 
   z-index: 5;
@@ -26,21 +26,20 @@ export const CircleButton = styled.button`
   border: none;
   outline: none;
   display: flex;
-  align-items: center;  
-  justify-content: center;
+  border-radius: 4px;
 
   transition: 0.125s all ease-in;
   ${props =>
-   props.open &&
-   css`
-            background: #ff6b6b;
+          props.open &&
+          css`
+            background: rgba(246, 131, 133, 0.8);
 
             &:hover {
-              background: #ff8787;
+              background: rgba(246, 131, 133, 1);
             }
 
             &:active {
-              background: #fa5252;
+              background: rgba(246, 131, 133, 1);
             }
 
             transform: translate(-50%, 50%) rotate(45deg);

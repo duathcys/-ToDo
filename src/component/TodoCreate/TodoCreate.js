@@ -115,7 +115,7 @@ function TodoCreate() {
                     {/*<CreateButton onClick={onCreate}*/}
                     {/*>생성*/}
                     {/*</CreateButton>*/}
-                    <CustomButton onClick={onCreate} name="생성"/>
+                    {/*<CustomButton onClick={onCreate} name="생성"/>*/}
                  </InsertForm>
               </InsertFormPositioner>
           )}
