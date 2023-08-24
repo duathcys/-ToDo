@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import {Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem} from "@mui/material";
 import {Home, Logout, Person} from "@mui/icons-material";
 import {TodoHeadBlock} from "../common";
+import CustomMenuItem from "../../Custom/CustomMenuItem/CustomMenuItem";
 
 const nowTime = moment().format('YYYY년 MM월 DD일');
 let today = moment();
@@ -46,57 +47,42 @@ function TodoHead() {
       navigate(`/user/mypage`);
    }
 
-   return (
-      <TodoHeadBlock>
-         <h1>TODO LIST</h1>
-         <div className="detail">{nowTime}</div>
-         <div className="detail">{nowDay}</div>
-         <div className="linkto">
-            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-            <IconButton
-               onClick={handleClick}
-               sx={{ ml: 2 }}
-               aria-controls={open ? 'menu' : undefined}
-               aria-haspopup="true"
-               aria-expanded={open ? 'true' : undefined}>
-               <Avatar
-                  sx={{bgcolor: '#e1bee7'}}>
-                  {localStorage.getItem("UserId").charAt(0)}
-               </Avatar>
-            </IconButton>
-            </Box>
-            <Menu anchorEl={anchorEl}
-               open={open}
-               id="menu"
-               onClose={handleClose}
-               onClick={handleClose}>
-               <MenuItem style={{fontWeight:"bold", fontFamily:"HakgyoansimWoojuR, sans-serif"}} >
-                  {localStorage.getItem("UserId")}님
-               </MenuItem>
-               <Divider/>
-               <MenuItem onClick={handleMyPage} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
-               <ListItemIcon>
-                  <Person fontSize="small"/>
-               </ListItemIcon>
-                  My Page
-            </MenuItem>
-               <MenuItem onClick={onClickLogoutBtn} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
-                  <ListItemIcon>
-                     <Logout fontSize="small"/>
-                  </ListItemIcon>
-                  Logout
-               </MenuItem>
-               <MenuItem onClick={onClickHomeBtn} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
-                  <ListItemIcon>
-                     <Home fontSize="small"/>
-                  </ListItemIcon>
-                  Home
-               </MenuItem>
-            </Menu>
-         </div>
-      </TodoHeadBlock>
+    return (
+        <TodoHeadBlock>
+            <h1>TODO LIST</h1>
+            <div className="detail">{nowTime}</div>
+            <div className="detail">{nowDay}</div>
+            <div className="linkto">
+                <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>
+                    <IconButton
+                        onClick={handleClick}
+                        sx={{ml: 2}}
+                        aria-controls={open ? 'menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}>
+                        <Avatar
+                            sx={{bgcolor: '#e1bee7'}}>
+                            {localStorage.getItem("UserId").charAt(0)}
+                        </Avatar>
+                    </IconButton>
+                </Box>
+                <Menu anchorEl={anchorEl}
+                      open={open}
+                      id="menu"
+                      onClose={handleClose}
+                      onClick={handleClose}>
+                    <MenuItem style={{fontWeight: "bold", fontFamily: "HakgyoansimWoojuR, sans-serif"}}>
+                        {localStorage.getItem("UserId")}님
+                    </MenuItem>
+                    <Divider/>
+                    <CustomMenuItem onClick={handleMyPage} name="MyPage"/>
+                    <CustomMenuItem onClick={onClickLogoutBtn} name="LogOut"/>
+                    <CustomMenuItem onClick={onClickHomeBtn} name="Home"/>
+                </Menu>
+            </div>
+        </TodoHeadBlock>
 
-   );
+    );
 }
 
 export default TodoHead

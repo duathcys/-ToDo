@@ -1,6 +1,13 @@
 .css-1x51dt5-MuiInputBase-input-MuiInput-input {
-    font-family: HakgyoansimWoojuR, sans-serif;
+    font-family: HakgyoansimWoojuR, sans-serif !important;
+    font-size: 18px !important;
+}
 
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
+    font-family: HakgyoansimWoojuR, sans-serif !important;
+}
+label[data-shrink=false]+.MuiInputBase-formControl .css-1x51dt5-MuiInputBase-input-MuiInput-input {
+    font-family: HakgyoansimWoojuR, sans-serif !important;
 }
 
 .search-style {
@@ -20,3 +27,4 @@
 /*    outline: none;*/
 /*    border: none;*/
 /*}*/
+

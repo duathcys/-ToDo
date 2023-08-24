@@ -10,6 +10,7 @@ import {deleteUser} from "../../API/user";
 import TodoChangeInfo from "./TodoChangeInfo";
 import TodoReport from "./TodoReport";
 import TodoCategory from "./TodoCategory";
+import CustomMenuItem from "../../Custom/CustomMenuItem/CustomMenuItem";
 
 export default function TodoMypage() {
     const navigate = useNavigate();
@@ -96,24 +97,9 @@ export default function TodoMypage() {
                             onClose={handleClose}
                             onClick={handleClose}
                         >
-                            <MenuItem onClick={handleTodo} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
-                                <ListItemIcon>
-                                    <Checklist/>
-                                </ListItemIcon>
-                                TODO LIST 보기
-                            </MenuItem>
-                            <MenuItem onClick={handleDropOut} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
-                                <ListItemIcon>
-                                    <Block/>
-                                </ListItemIcon>
-                                회원 탈퇴
-                            </MenuItem>
-                            <MenuItem onClick={handleLogOut} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
-                                <ListItemIcon>
-                                    <Logout/>
-                                </ListItemIcon>
-                                로그아웃
-                            </MenuItem>
+                            <CustomMenuItem onClick={handleTodo} name="TodoList"/>
+                            <CustomMenuItem onClick={handleDropOut} name="회원탈퇴"/>
+                            <CustomMenuItem onClick={handleLogOut} name="로그아웃"/>
                         </Menu>
                     </div>
                     {localStorage.getItem("UserId")}님

@@ -117,7 +117,7 @@ function TodoList() {
     }
     return (
         <>
-            <div style={{display: "flex", flexDirection: "row", paddingLeft: "30px", fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
+            <div style={{display: "flex", flexDirection: "row", paddingLeft: "30px"}}>
                 <CustomSearch
                     label="Search"
                     onChange={handleInputChange}

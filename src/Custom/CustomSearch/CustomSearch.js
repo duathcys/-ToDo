@@ -3,7 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import "./CustomSearch.css";
 export default function CustomSearch({label, onChange, onClick}){
     return(
-        <div className="search-style">
+        <div>
             <TextField
                 variant="standard"
                 label={label}

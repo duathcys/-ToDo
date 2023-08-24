@@ -9,7 +9,7 @@ import '../../Custom/CustomDatePicker/CustomDatePicker.css';
 import {FeedOutlined} from "@mui/icons-material";
 import CustomButton from "../../Custom/CustomButton/CustomButton";
 import CustomDatePicker from "../../Custom/CustomDatePicker/CustomDatePicker";
-import CustomCheckBox from "../../Custom/CustomCheckBox";
+import CustomCheckBox from "../../Custom/CustomCheckBox/CustomCheckBox";
 
 const TodoModal = (props) => {
    const [modalOpen, setModalOpen] = useState(false);
@@ -81,13 +81,6 @@ const TodoModal = (props) => {
                         value={inputValue.done}
                         onChange={onInput}
                         checked={checked}/>
-                        {/*<Checkbox*/}
-                        {/*   name="done"*/}
-                        {/*   label="Yes"*/}
-                        {/*   value={inputValue.done}*/}
-                        {/*   onChange={onInput}*/}
-                        {/*   checked={checked}*/}
-                        {/*/>*/}
                     <h3>Due Date</h3>
                     <Divider/>
                     <CustomDatePicker selected={dueDate} onChange={handleDateChange}/>
