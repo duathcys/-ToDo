@@ -24,9 +24,8 @@ export default function TodoCategory() {
     };
 
     const onClickCreate = ()=>{
-        onCreateCategory({name:input});
+        onCreateCategory({name:input, info: localStorage.getItem("UserId")});
     }
-
     const onChangeInput = (e)=>{
         setInput(e.target.value);
     }
@@ -42,22 +41,26 @@ export default function TodoCategory() {
             <h2>카테고리 편집</h2>
             <ul>
                 <BIGBlock>
-                    {itemsToShow?.map((Cate, idx)=>{
-                        return(
-                            <TodoItemBlock>
-                                <li key={idx}>
+                    {categoryData && categoryData.length > 0 ? (
+                            itemsToShow?.map((Cate, idx) => {
+                                return (
                                     <TodoItemBlock>
-                                        <Text>
-                                            {Cate.id}
-                                        </Text>
-                                        <Text>
-                                            {Cate.name}
-                                        </Text>
+                                        <li key={idx}>
+                                            <TodoItemBlock>
+                                                <Text>
+                                                    {Cate.id}
+                                                </Text>
+                                                <Text>
+                                                    {Cate.name}
+                                                </Text>
+                                            </TodoItemBlock>
+                                        </li>
                                     </TodoItemBlock>
-                                </li>
-                            </TodoItemBlock>
-                        )
-                    })}
+                                )
+                            })) :
+                        (
+                        <p>Loading</p>
+                        )}
                 </BIGBlock>
             </ul>
             <TodoItemBlock>
