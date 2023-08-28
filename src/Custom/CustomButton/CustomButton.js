@@ -8,6 +8,8 @@ export default function CustomButton({onClick, name}) {
                 color:"black",
                 fontFamily:"HakgyoansimWoojuR, sans-serif",
                 fontSize: "18px",
+                alignItems: "center",
+                justifyContent: "center",
             }
         }>
             {name}

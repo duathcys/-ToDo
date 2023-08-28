@@ -87,7 +87,7 @@ export const CreateInput = styled.input`
   padding: 12px;
   border-radius: 4px;
   border: 1px solid rgba(222, 226, 230, 1);
-  width: 500px;
+  width: 450px;
   outline: none;
   font-size: 18px;
   box-sizing: border-box;
@@ -137,11 +137,11 @@ export const InputForm = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px;
-  align-content: center;
-  
+  align-items: center;
+
   h2 {
     font-size: 20px;
     margin: 10px;
-    width: 100px;
+    width: 80px;
   }
 `
