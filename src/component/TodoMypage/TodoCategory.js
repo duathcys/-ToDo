@@ -2,34 +2,40 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import {useCreateCategoryMutation} from "../../hooks/useCreateMutation";
 import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
-import {TodoListBlock} from "../common";
-import * as PropTypes from "prop-types";
+import {CreateCateInput, TodoListBlock} from "../common";
 import {BIGBlock, Text, TodoItemBlock} from "../TodoItem/style";
 import CustomPagination from "../../Custom/CustomPagination";
+import CustomButton from "../../Custom/CustomButton/CustomButton";
 
 export default function TodoCategory() {
     const { mutate: onCreateCategory } = useCreateCategoryMutation();
     const {data: categoryList} = useGetCategoryQuery();
-    // const [rowsPerPage, setRowsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [startIndex, setStartIndex] = useState();
     const [endIndex, setEndIndex] = useState();
     const itemsPerPage = 5;
+    const categoryData = categoryList?.data;
     const [pageCount, setPageCount] = useState(0);
-    const itemsToShow = categoryList?.data.slice(startIndex, endIndex);
-
+    const itemsToShow = categoryData.slice(startIndex, endIndex);
+    const [input, setInput] = useState("");
 
     const handlePageChange = (e, value) => {
         setCurrentPage(value);
     };
 
+    const onClickCreate = ()=>{
+        onCreateCategory({name:input});
+    }
+
+    const onChangeInput = (e)=>{
+        setInput(e.target.value);
+    }
+
     useEffect(() => {
         setStartIndex((currentPage - 1) * itemsPerPage);
         setEndIndex(startIndex + itemsPerPage);
-        console.log(startIndex, endIndex, currentPage);
-        console.log(currentPage);
-        setPageCount(Math.ceil(categoryList?.data.length / itemsPerPage));
-    }, [currentPage, startIndex, endIndex]);
+        setPageCount(Math.ceil(categoryData.length / itemsPerPage));
+    }, [currentPage, startIndex, endIndex, categoryData]);
 
     return (
         <TodoListBlock>
@@ -54,6 +60,10 @@ export default function TodoCategory() {
                     })}
                 </BIGBlock>
             </ul>
+            <TodoItemBlock>
+                <CreateCateInput onChange={onChangeInput}/>
+                <CustomButton name="생성" onClick={onClickCreate}/>
+            </TodoItemBlock>
             <CustomPagination
                 count={pageCount}
                 page={currentPage}

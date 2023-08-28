@@ -132,3 +132,20 @@ export const TodoListBlock = styled.div`
     text-align: center;
   }
 `;
+
+export const CreateCateInput = styled.input`
+  padding: 12px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid rgba(187, 187, 187, 0.8);
+  box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.25);
+  width: 300px;
+  outline: none;
+  font-size: 18px;
+  box-sizing: border-box;
+  font-family: HakgyoansimWoojuR, sans-serif;
+
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+`;
