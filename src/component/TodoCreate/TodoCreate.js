@@ -97,10 +97,9 @@ function TodoCreate() {
                        />
                     </InputForm>
                     <InputForm>
-                       <h2>카테고리</h2>
+                       <h2>분 류</h2>
                        <CustomSelect
                            inputLabel="카테고리"
-                           // placeholder="카테고리 선택"
                            id="category"
                            label="category"
                            onChange={handleCategory}

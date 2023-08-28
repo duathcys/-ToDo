@@ -2,10 +2,11 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem/TodoItem";
 import history from "./TodoCheck";
-import {Divider, FormControl, InputLabel, MenuItem, OutlinedInput, Select} from "@mui/material";
+import {Divider} from "@mui/material";
 import {useGetDataQuery} from "../hooks/useGetDataQuery";
 import {useGetCategoryQuery} from "../hooks/useGetCategoryQuery";
 import CustomSearch from "../Custom/CustomSearch/CustomSearch";
+import CustomSelect from "../Custom/CustomSelect/CustomSelect";
 
 const TodoListBlock = styled.div`
   padding: 20px 32px;
@@ -120,23 +121,15 @@ function TodoList() {
                     label="Search"
                     onChange={handleInputChange}
                     onClick={onSearch}/>
-                <FormControl sx={{m: 1, minWidth: 120, borderRadius:"4px"}}>
-                    <InputLabel style={{fontWeight: "bold", fontFamily:"HakgyoansimWoojuR, sans-serif"}}>카테고리</InputLabel>
-                    <Select
-                        value={selection}
-                        label="selection"
-                        onChange={handleSelect}
-                        input={<OutlinedInput label="카테고리"/>}
-                    >
-                        <MenuItem value="전체" style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>전체</MenuItem>
-                        {categoryData?.data.map((cat)=>{
-                            return (
-                                <MenuItem value={cat.name} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>{cat.name}</MenuItem>
-                            )
-                        })}
-                    </Select>
-                </FormControl>
-                {/*<CustomButton onClick={<TodoCreate/>} name="생성"/>*/}
+                <CustomSelect
+                    inputLabel="카테고리"
+                    id="category"
+                    label="selection"
+                    onChange={handleSelect}
+                    value={selection}
+                    data={categoryData?.data}
+                    view="전체"
+                />
             </div>
             <div style={{display: "flex", flexDirection: "row", alignContent: "center", justifyContent: "center"}}>
                 <Block>
