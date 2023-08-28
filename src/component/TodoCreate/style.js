@@ -137,7 +137,7 @@ export const InputForm = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px;
-  //padding-left: 400px;
+  align-content: center;
   
   h2 {
     font-size: 20px;
