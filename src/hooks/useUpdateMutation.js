@@ -1,5 +1,6 @@
 import {useMutation, useQueryClient} from "react-query";
 import {TodoCheckUpdate, TodoUpdate} from "../API/todo";
+import Swal from "sweetalert2";
 
 
 export const useUpdateMutation = () => {
@@ -8,6 +9,7 @@ export const useUpdateMutation = () => {
       TodoUpdate(id, inputValue)
    }, {
       onSuccess: (data) => {
+         Swal.fire('할 일 수정', '할 일을 수정했습니다.', 'success');
          queryClient.invalidateQueries("todo")
             .then(res => res)
       },

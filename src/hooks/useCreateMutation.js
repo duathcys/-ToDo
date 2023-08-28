@@ -7,6 +7,7 @@ export const useCreateMutation = () => {
    const queryClient = useQueryClient()
    return useMutation(TodoAdd, {
       onSuccess: () => {
+         Swal.fire('할 일 생성', '할 일을 생성했습니다', 'success');
          queryClient.invalidateQueries("todo")
       },
       onError:(error)=>{
@@ -19,6 +20,7 @@ export const useCreateCategoryMutation = ()=>{
    const queryClient = useQueryClient();
    return useMutation(createCategory, {
       onSuccess:()=>{
+         Swal.fire('카테고리 생성', '카테고리를 생성했습니다', 'success');
          queryClient.invalidateQueries("category")
       },
       onError:(error)=>{
