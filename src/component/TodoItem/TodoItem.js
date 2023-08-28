@@ -27,8 +27,6 @@ function TodoItem(params) {
     useEffect(() => {
         setStartIndex((currentPage - 1) * itemsPerPage);
         setEndIndex(startIndex + itemsPerPage);
-        console.log(startIndex, endIndex, currentPage);
-        console.log(currentPage);
         setPageCount(Math.ceil(sortList?.length / itemsPerPage));
     }, [currentPage, startIndex, endIndex]);
 
