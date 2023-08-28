@@ -1,50 +1,42 @@
-.select {
-    border-radius: 4px;
-    border: 1px solid #dee2e6;
-    width: 100%;
-    outline: none;
-    font-size: 18px;
-    box-sizing: border-box;
-    background-color: #fff;
-    font-family: HakgyoansimWoojuR, sans-serif;
-}
-
-.make-customSelect {
-    font-family: HakgyoansimWoojuR, sans-serif;
-}
-
-.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover .MuiOutlinedInput-notchedOutline {
-    border: 1px solid rgba(222, 226, 230, 1)
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    height: 44px !important;
+    width: 450px;
+    background-color: transparent;
 
 }
 
-.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover .MuiOutlinedInput-notchedOutline:hover {
-    border: 1px solid rgba(222, 226, 230, 1)
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover {
+    border: transparent !important;
+    outline-color: transparent !important;
+
 }
 
-.MuiOutlinedInput-notchedOutline:focus{
-    border: 1px solid rgba(222, 226, 230, 1)
+.MuiOutlinedInput-notchedOutline .MuiOutlinedInput-notchedOutline:hover .MuiOutlinedInput-notchedOutline:focus{
+    border: none !important;
 }
 
-.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-    font-family: HakgyoansimWoojuR, sans-serif;
-}
-
-.css-6hp17o-MuiList-root-MuiMenu-list {
-    font-family: HakgyoansimWoojuR, sans-serif !important;
-}
 
 .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
     font-family: HakgyoansimWoojuR, sans-serif !important;
     text-align: center;
-    font-size: 18px;
-
+    font-size: 18px !important;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    line-height: 0.99em !important;
+    overflow: visible;
 }
 
-.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-    height: 44px;
-    border: 1px solid rgba(222, 226, 230, 1);
-    outline: none;
-    border-radius: 4px;
-
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+    font-family: HakgyoansimWoojuR, sans-serif !important;
 }
+
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+    font-family: HakgyoansimWoojuR, sans-serif !important;
+}
+
+/*.css-1g7jl8d-MuiFormControl-root {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
