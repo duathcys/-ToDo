@@ -4,14 +4,12 @@ import * as PropTypes from "prop-types";
 import {CircleButton, CreateButton, CreateInput, InputForm, InsertForm, InsertFormPositioner} from "./style";
 import {useCreateMutation} from "../../hooks/useCreateMutation";
 import {Checkbox} from "@mui/material";
-import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../Custom/CustomDatePicker/CustomDatePicker.css';
 import Swal from "sweetalert2";
 import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
 import CustomSelect from "../../Custom/CustomSelect/CustomSelect";
 import CustomButton from "../../Custom/CustomButton/CustomButton";
-import {Formdiv} from "../common";
 import CustomDatePicker from "../../Custom/CustomDatePicker/CustomDatePicker";
 
 
@@ -100,14 +98,6 @@ function TodoCreate() {
                     </InputForm>
                     <InputForm>
                        <h2>카테고리</h2>
-                       {/*<FormControl fullWidth>*/}
-                       {/*   <InputLabel>Category</InputLabel>*/}
-                       {/*   <Select placeholder="카테고리 선택"*/}
-                       {/*           id="category"*/}
-                       {/*           label="category"*/}
-                       {/*           onChange={handleCategory}*/}
-                       {/*           value={newTodo.category}*/}
-                       {/*   >*/}
                        <CustomSelect
                            inputLabel="카테고리"
                            // placeholder="카테고리 선택"
@@ -116,20 +106,8 @@ function TodoCreate() {
                            onChange={handleCategory}
                            value={newTodo.category}
                            data={categoryList?.data}/>
-                       {/*{categoryList?.data.map((category, idx) => {*/}
-                       {/*   return (*/}
-                       {/*       <MenuItem value={category.name}>{category.name}</MenuItem>*/}
-                       {/*   )*/}
-                       {/*})}*/}
-                       {/*</Select>*/}
-                       {/*</FormControl>*/}
-                       {/*<CreateButton onClick={onCreate}*/}
-                       {/*>생성*/}
-                       {/*</CreateButton>*/}
-                       {/*<CustomButton onClick={onCreate} name="생성"/>*/}
                     </InputForm>
-
-
+                    <CustomButton onClick={onCreate} name="생성"/>
                  </InsertForm>
               </InsertFormPositioner>
           )}
