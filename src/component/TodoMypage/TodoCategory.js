@@ -17,7 +17,7 @@ export default function TodoCategory() {
     const itemsPerPage = 5;
     const categoryData = categoryList?.data;
     const [pageCount, setPageCount] = useState(0);
-    const itemsToShow = categoryData.slice(startIndex, endIndex);
+    const itemsToShow = categoryData !== undefined ? categoryData.slice(startIndex, endIndex) : null;
     const [input, setInput] = useState("");
 
     const handlePageChange = (e, value) => {
@@ -36,8 +36,9 @@ export default function TodoCategory() {
     }
 
     useEffect(() => {
-        setStartIndex((currentPage - 1) * itemsPerPage);
-        setEndIndex(startIndex + itemsPerPage);
+        const calStartIndex = (currentPage - 1) * itemsPerPage;
+        setStartIndex(calStartIndex);
+        setEndIndex(calStartIndex + itemsPerPage);
         setPageCount(Math.ceil(categoryData.length / itemsPerPage));
     }, [currentPage, startIndex, endIndex, categoryData]);
 
@@ -69,6 +70,7 @@ export default function TodoCategory() {
                 </BIGBlock>
             </ul>
             <TodoItemBlock>
+                <Text>카테고리명</Text>
                 <CreateCateInput onChange={onChangeInput}/>
                 <CustomButton name="생성" onClick={onClickCreate}/>
             </TodoItemBlock>

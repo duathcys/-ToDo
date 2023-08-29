@@ -37,52 +37,53 @@ export default function TodoChangeInfo() {
             Swal.fire('회원정보 수정', '비밀번호가 일치하지 않습니다.', "error");
         } else {
             // updateUser(newInfo);
-                updateMyInfo(newInfo).then((res)=>{
-                    if (res) {
-                        Swal.fire('회원정보 수정', '회원정보가 수정되었습니다.', 'success');
-                        localStorage.removeItem("Nickname");
-                        localStorage.setItem("Nickname", newInfo.nickname);
-                        setNewInfo({
-                            nickname: localStorage.getItem("Nickname"),
-                            user_id: localStorage.getItem("UserId"),
-                            user_pw: "",
-                            new_pw: "",
-                        })
-                    }
-                }).catch((err)=>{
-                    Swal.fire('회원정보 수정', `${err.response.data}`, 'error')
-                })
-            }
+            updateMyInfo(newInfo).then((res)=>{
+                if (res) {
+                    Swal.fire('회원정보 수정', '회원정보가 수정되었습니다.', 'success');
+                    localStorage.removeItem("Nickname");
+                    localStorage.setItem("Nickname", newInfo.nickname);
+                    setNewInfo({
+                        nickname: localStorage.getItem("Nickname"),
+                        user_id: localStorage.getItem("UserId"),
+                        user_pw: "",
+                        new_pw: "",
+                    })
+                }
+            }).catch((err)=>{
+                Swal.fire('회원정보 수정', `${err.response.data}`, 'error')
+            })
+        }
     }
     return (
         <TodoListBlock>
             <h2>회원 정보 수정</h2>
-            <TextBlock>
-                <h4>Nickname</h4>
-                <Divider/>
-                <TodoInput name="nickname"
-                           defaultValue={localStorage.getItem("Nickname")}
-                           variant="standard"
-                           label="Nickname"
-                           onChange={onChangeInput}/>
-                <h4>ID</h4>
-                <Divider/>
-                <TodoInput disabled
-                           name="userId"
-                           defaultValue={localStorage.getItem("UserId")}
-                           variant="standard"
-                           label="ID"
-                />
-                <h4>Current Password</h4>
-                <Divider/>
-                <TodoInput name="user_pw"
-                           variant="standard"
-                           label="Password"
-                           placeholder="현재 비밀번호"
-                           onChange={onChangeInput}
-                           type="password"/>
-                <CustomButton onClick={handleClickButton} name="비밀번호 변경하려면"/>
-            </TextBlock>
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+                <TextBlock>
+                    <h4>Nickname</h4>
+                    <Divider/>
+                    <TodoInput name="nickname"
+                               defaultValue={localStorage.getItem("Nickname")}
+                               variant="standard"
+                               label="Nickname"
+                               onChange={onChangeInput}/>
+                    <h4>ID</h4>
+                    <Divider/>
+                    <TodoInput disabled
+                               name="userId"
+                               defaultValue={localStorage.getItem("UserId")}
+                               variant="standard"
+                               label="ID"
+                    />
+                    <h4>Current Password</h4>
+                    <Divider/>
+                    <TodoInput name="user_pw"
+                               variant="standard"
+                               label="Password"
+                               placeholder="현재 비밀번호"
+                               onChange={onChangeInput}
+                               type="password"/>
+                    <CustomButton onClick={handleClickButton} name="비밀번호 변경하려면"/>
+                </TextBlock>
                 {click ? (
                     <TextBlock>
                         <h4>New Password</h4>
@@ -104,6 +105,8 @@ export default function TodoChangeInfo() {
                     </TextBlock>
                 ) : null}
                 <CustomButton onClick={handleUpdateInfo} name="저장"/>
+            </div>
+
         </TodoListBlock>
     );
 };
