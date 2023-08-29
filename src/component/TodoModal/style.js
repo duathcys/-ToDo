@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: fixed;
-  top: 200px;
+  top: 140px;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   flex-direction: column;
   width: 685px;
-  height: 512px;
+  height: 612px;
   padding: 18px;
   background-color: #fff;
   background-image: url("/images/bg02.png");

@@ -136,10 +136,9 @@ export const TodoListBlock = styled.div`
 export const CreateCateInput = styled.input`
   padding: 12px;
   border-radius: 4px;
-  background: transparent;
+  background: #fff;
   border: 1px solid rgba(187, 187, 187, 0.8);
-  box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.25);
-  width: 300px;
+  width: 250px;
   outline: none;
   font-size: 18px;
   box-sizing: border-box;

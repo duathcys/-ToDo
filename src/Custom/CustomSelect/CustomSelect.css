@@ -5,15 +5,14 @@
 
 }
 
-.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover {
-    border: transparent !important;
-    outline-color: transparent !important;
+/*.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover {*/
+/*    border: transparent !important;*/
+/*    outline-color: transparent !important;*/
+/*}*/
 
-}
-
-.MuiOutlinedInput-notchedOutline .MuiOutlinedInput-notchedOutline:hover .MuiOutlinedInput-notchedOutline:focus{
-    border: none !important;
-}
+/*.MuiOutlinedInput-notchedOutline .MuiOutlinedInput-notchedOutline:hover .MuiOutlinedInput-notchedOutline:focus{*/
+/*    border: none !important;*/
+/*}*/
 
 
 .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
@@ -40,3 +39,6 @@
 /*    align-items: center;*/
 /*    justify-content: center;*/
 /*}*/
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: rgb(0, 0, 0, 0.5) !important;
+}

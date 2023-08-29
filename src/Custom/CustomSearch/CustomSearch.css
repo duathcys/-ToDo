@@ -15,7 +15,8 @@ label[data-shrink=false]+.MuiInputBase-formControl .css-1x51dt5-MuiInputBase-inp
     flex-direction: row;
     padding-left: 30px;
 }
-.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root:after {
+
+.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root:after {
     font-family: HakgyoansimWoojuR, sans-serif !important;
     color: rgba(0, 0, 0, 0.5) !important;
 }
@@ -25,3 +26,16 @@ label[data-shrink=false]+.MuiInputBase-formControl .css-1x51dt5-MuiInputBase-inp
     border-bottom: 2px solid rgba(0, 0, 0, 0.5) !important;
 }
 
+.css-v4u5dn-MuiInputBase-root-MuiInput-root {
+    font-family: HakgyoansimWoojuR, sans-serif !important;
+}
+
+.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+    font-family: HakgyoansimWoojuR, sans-serif !important;
+}
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: rgba(0, 0, 0, 0.5) !important;
+
+
+}
