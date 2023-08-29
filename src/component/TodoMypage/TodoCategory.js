@@ -6,6 +6,7 @@ import {CreateCateInput, TodoListBlock} from "../common";
 import {BIGBlock, Text, TodoItemBlock} from "../TodoItem/style";
 import CustomPagination from "../../Custom/CustomPagination";
 import CustomButton from "../../Custom/CustomButton/CustomButton";
+import Swal from "sweetalert2";
 
 export default function TodoCategory() {
     const { mutate: onCreateCategory } = useCreateCategoryMutation();
@@ -24,7 +25,11 @@ export default function TodoCategory() {
     };
 
     const onClickCreate = ()=>{
-        onCreateCategory({name:input, info: localStorage.getItem("UserId")});
+        if (input === "") {
+            Swal.fire('카테고리 생성', '카테고리명을 입력하세요', 'error');
+        } else {
+            onCreateCategory({name:input, info: localStorage.getItem("UserId")});
+        }
     }
     const onChangeInput = (e)=>{
         setInput(e.target.value);
