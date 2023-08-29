@@ -9,15 +9,21 @@ import {FeedOutlined} from "@mui/icons-material";
 import CustomButton from "../../Custom/CustomButton/CustomButton";
 import CustomDatePicker from "../../Custom/CustomDatePicker/CustomDatePicker";
 import CustomCheckBox from "../../Custom/CustomCheckBox/CustomCheckBox";
+import CustomSelect from "../../Custom/CustomSelect/CustomSelect";
+import {useGetCategoryQuery} from "../../hooks/useGetCategoryQuery";
 
 const TodoModal = (props) => {
    const [modalOpen, setModalOpen] = useState(false);
    const {isLoading, data} = useGetDataQuery();
-   const [inputValue, setInputValue] = useState({title: props.title, done: props.done, memo: props.memo, info:props.info, dueDate:props.dueDate});
+   const [inputValue, setInputValue] = useState({title: props.title, done: props.done, memo: props.memo, info:props.info, dueDate:props.dueDate, category:props.category});
    const [checked, setChecked] = useState(props.done);
    const {mutate: updateTodo, isSuccess} = useUpdateMutation();
    const [dueDate, setDueDate] = useState(new Date());
+   const {data: categoryList} = useGetCategoryQuery();
+   const handleCategory = (e)=>{
+      setInputValue({...inputValue, category: e.target.value})
 
+   }
    const handleDateChange =(date)=>{
       const formatDate = date.toISOString().split('T')[0];
       setDueDate(date);
@@ -43,10 +49,10 @@ const TodoModal = (props) => {
       })
       setChecked(e.target.checked);
       setInputValue((prev)=>(
-            {...prev, done:e.target.checked}
+          {...prev, done:e.target.checked}
       ))
       setInputValue((prev)=>(
-         {...prev, info:props.info}
+          {...prev, info:props.info}
       ))
    }
 
@@ -69,30 +75,33 @@ const TodoModal = (props) => {
                        &times;
                     </div>
                     <Wrapper>상세페이지</Wrapper>
-                    <h3>TITLE</h3>
-                    <Divider/>
-                    <Input name="title" value={inputValue.title} onChange={onInput}/>
-                    <h3>COMPLETE</h3>
-                    <Divider/>
-                    <CustomCheckBox
-                        name="done"
-                        label="Yes"
-                        value={inputValue.done}
-                        onChange={onInput}
-                        checked={checked}/>
-                    <h3>Due Date</h3>
-                    <Divider/>
-                    <CustomDatePicker selected={dueDate} onChange={handleDateChange}/>
-                        {/*<div style={{display:"flex"}}>*/}
-                        {/*   <DatePicker selected={dueDate} onChange={handleDateChange}/>*/}
-                        {/*</div>*/}
-                    <h3>MEMO</h3>
-                    <Divider/>
-                    <Input
-                        name="memo"
-                        value={inputValue.memo}
-                        onChange={onInput}
-                    />
+                    <div>
+                       <h3>TITLE</h3>
+                       <Input name="title" value={inputValue.title} onChange={onInput}/>
+                       <h3>COMPLETE</h3>
+                       <CustomCheckBox
+                           name="done"
+                           label="Yes"
+                           value={inputValue.done}
+                           onChange={onInput}
+                           checked={checked}/>
+                       <h3>Due Date</h3>
+                       <CustomDatePicker selected={dueDate} onChange={handleDateChange}/>
+                       <h3>MEMO</h3>
+                       <Input
+                           name="memo"
+                           value={inputValue.memo}
+                           onChange={onInput}
+                       />
+                       <h3>Category</h3>
+                       <CustomSelect
+                           inputLabel="카테고리"
+                           id="category"
+                           label="category"
+                           onChange={handleCategory}
+                           value={inputValue.category}
+                           data={categoryList?.data}/>
+                    </div>
                     <CustomButton onClick={handleClickUpdateButton} name="완료"/>
                  </Container>
                  <Canvas onClick={disableModal}/>
