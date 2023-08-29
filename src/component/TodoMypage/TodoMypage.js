@@ -1,5 +1,5 @@
 import {TodoHeadBlock, TodoTemplateBlock} from "../common";
-import {FormControl, IconButton, InputLabel, Menu, MenuItem, Select} from "@mui/material";
+import {Box, FormControl, IconButton, InputLabel, Menu, MenuItem, Select, Tab, Tabs} from "@mui/material";
 import * as React from "react";
 import {useState} from "react";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -10,20 +10,34 @@ import TodoChangeInfo from "./TodoChangeInfo";
 import TodoReport from "./TodoReport";
 import TodoCategory from "./TodoCategory";
 import CustomMenuItem from "../../Custom/CustomMenuItem/CustomMenuItem";
+import * as PropTypes from "prop-types";
 
+function CustomTabPanel(props) {
+    const {children, value, index} = props;
+    return (
+        <div hidden={value !== index}>
+            {value === index && (
+                <Box p={3}>
+                    {children}
+                </Box>
+            )}
+        </div>
+    );
+}
+
+CustomTabPanel.propTypes = {
+    value: PropTypes.number,
+    children: PropTypes.node,
+    index: PropTypes.number,
+};
 export default function TodoMypage() {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const [selection, setSelection] = useState('');
-    const componentsBySelection = {
-        report: <TodoReport/>,
-        info: <TodoChangeInfo/>,
-        category: <TodoCategory/>
-    }
+    const [value, setValue] = useState(0);
 
-    const handleMenu = (e) => {
-        setSelection(e.target.value);
+    const handleMenu = (e, newValue) => {
+        setValue(newValue);
     };
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
@@ -104,20 +118,24 @@ export default function TodoMypage() {
                     {localStorage.getItem("UserId")}님
                 </div>
             </TodoHeadBlock>
-            <FormControl sx={{m: 3, width: 300}}>
-                <InputLabel style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>메뉴 선택</InputLabel>
-                <Select placeholder="메뉴 선택"
-                        id="selection"
-                        label="selection"
-                        onChange={handleMenu}
-                        value={selection}
-                        defaultValue="report">
-                    <MenuItem value="report" style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>Today Report</MenuItem>
-                    <MenuItem value="info" style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>회원정보 수정</MenuItem>
-                    <MenuItem value="category" style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>카테고리 편집</MenuItem>
-                </Select>
-            </FormControl>
-            {componentsBySelection[selection] || null}
+            <Box sx={{width: '100%'}}>
+                <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+                    <Tabs value={value} onChange={handleMenu} centered>
+                        <Tab label="Today Report"/>
+                        <Tab label="회원정보 수정"/>
+                        <Tab label="카테고리 편집"/>
+                    </Tabs>
+                </Box>
+                <CustomTabPanel value={value} index={0}>
+                    <TodoReport/>
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={1}>
+                    <TodoChangeInfo/>
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={2}>
+                    <TodoCategory/>
+                </CustomTabPanel>
+            </Box>
         </TodoTemplateBlock>
     );
 
