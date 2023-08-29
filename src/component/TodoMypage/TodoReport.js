@@ -1,7 +1,8 @@
-import {DetailBlock, TextBlock} from "./style";
+import {TextBlock} from "./style";
 import * as React from "react";
 import {useState} from "react";
 import {TodoListBlock} from "../common";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
 
 export default function TodoReport(){
     const [data, setData] = useState([]);
@@ -9,6 +10,17 @@ export default function TodoReport(){
     const totalTodo = JSON.parse(localStorage.getItem('Total'));
     const leftTodo = JSON.parse(localStorage.getItem('Left'));
     const weekTodo = JSON.parse(localStorage.getItem('Week'));
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [selection, setSelection] = useState([]);
+
+    const onChangePage = (e, newPage)=>{
+        setPage(newPage)
+    }
+    const onChangeRowsPerPage = (e)=>{
+        setRowsPerPage(+e.target.value);
+        setPage(0);
+    }
     const onClickButton = (e)=>{
         const buttonTitle = e.target.id;
         switch (buttonTitle) {
@@ -43,22 +55,42 @@ export default function TodoReport(){
                         <h4 onClick={onClickButton} id="total">총 TODO : {totalTodo.length} (개)</h4>
                         <h4 onClick={onClickButton} id="unFinish">남은 TODO : {leftTodo.length} (개)</h4>
                     </TextBlock>
-                    {/*<div style={{display:"flex", flexDirection: "row"}}>*/}
-                    {/*    <h2>할 일</h2>*/}
-                    {/*    <h2>기 한</h2>*/}
-                    {/*    <h2>분 류</h2>*/}
-                    {/*</div>*/}
-                    <DetailBlock>
-                        {data?.map((todo)=>{
-                            return(
-                                <div style={{display:"flex", flexDirection: "row"}}>
-                                    <h4>{todo.title}</h4>
-                                    <h4>{todo.dueDate}</h4>
-                                    <h4>{todo.category}</h4>
-                                </div>
-                            )
-                        })}
-                    </DetailBlock>
+                    {/*<DetailBlock>*/}
+                    <div>
+
+                    </div>
+                        <Paper sx={{width:"500px", backgroundColor:"#fff", borderShadow:"none", outLine:"none" }} style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}>
+                            <TableContainer sx={{maxHeight:440}}>
+                                <Table stickyHeader aria-label="sticky table">
+                                    <TableHead >
+                                        <TableRow>
+                                            <TableCell key="title">title</TableCell>
+                                            <TableCell key="category">category</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {data?.map( (todo)=> {
+                                            return (
+                                                <TableRow>
+                                                    <TableCell key="title">{todo.title}</TableCell>
+                                                    <TableCell key="category">{todo.category}</TableCell>
+                                                </TableRow>
+                                            )
+                                        })}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10]}
+                                component="div"
+                                count={data ? data.length : 0}
+                                page={page}
+                                onPageChange={onChangePage}
+                                onRowsPerPageChange={onChangeRowsPerPage}
+                                rowsPerPage={rowsPerPage}
+                                style={{fontFamily:"HakgyoansimWoojuR, sans-serif"}}/>
+                        </Paper>
+                    {/*</DetailBlock>*/}
                 </div>
             </TodoListBlock>
         </>
